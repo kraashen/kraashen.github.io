@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Recently, there was a study published on OpenSSL versions used by privacy conscious software recommended in the Privacytools.io guide [1]. This study took a stance on not only the OpenSSL crypto library, but the components used by software critical to privacy and safety. The study revealed that many applications are using outdated components. As mobile world is becoming a significant part of how we communicate with people and mobile malware development in Q1 2014 continues to focus exclusively on the Android platform [2], this follow-up study focuses on Android applications mentioned in the study.'>
+
+<meta property='og:title' content='Follow-up: Android privacy tools best served fresh • tracing bytes'>
+<meta property='og:description' content='Recently, there was a study published on OpenSSL versions used by privacy conscious software recommended in the Privacytools.io guide [1]. This study took a stance on not only the OpenSSL crypto library, but the components used by software critical to privacy and safety. The study revealed that many applications are using outdated components. As mobile world is becoming a significant part of how we communicate with people and mobile malware development in Q1 2014 continues to focus exclusively on the Android platform [2], this follow-up study focuses on Android applications mentioned in the study.'>
+<meta property='og:url' content='http://example.com/posts/2015-04-14-follow-up-android-privacy-tools-best-served-fresh/'>
+<meta property='og:site_name' content='tracing bytes'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:published_time' content='2015-04-14T05:49:01&#43;03:00'/><meta property='article:modified_time' content='2015-04-14T05:49:01&#43;03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@tomihj'>
+
+<meta name="generator" content="Hugo 0.29" />
+
+  <title>Follow-up: Android privacy tools best served fresh • tracing bytes</title>
+  <link rel='canonical' href='http://example.com/posts/2015-04-14-follow-up-android-privacy-tools-best-served-fresh/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/assets/css/main.bc2171e3.css'>
+</head>
+
+
+<body class='page type-posts'>
+  <div class='site'>
+
+    <a class='screen-reader' href='#main'>Skip to Content</a>
+
+    <header id='header' class='header-container'>
+      <div class='header site-header'>
+        <nav id='main-menu' class='main-menu-container' aria-label='Main Menu'>
+  <ul class='main-menu'>
+  <li>
+      <a href='/'>Home</a>
+    </li>
+  
+  </ul>
+</nav>
+
+        <div class='header-info'>
+          
+          <p class='site-title title'>tracing bytes</p>
+          
+          <p class='site-description subtitle'>programming and tech journeys, stack traces, and bits of bytes</p>
+        </div>
+      </div>
+    </header>
+
+
+<main id='main' class='main'>
+  <article lang='en' class='entry'>
+    <header class='header-container'>
+  <div class='header entry-header'>
+    <div class='header-info'>
+      <h1 class='title'>Follow-up: Android privacy tools best served fresh</h1>
+      
+
+    </div>
+    
+<div class='meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader'>Posted on </span>
+  <time class='date' datetime='2015-04-14T05:49:01&#43;03:00'>2015, Apr 14</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+    
+    
+
+    <div class='entry-content'>
+  
+
+<p>Recently, there was a study published on OpenSSL versions used by privacy conscious software recommended in the Privacytools.io guide [1]. This study took a stance on not only the OpenSSL crypto library, but the components used by software critical to privacy and safety. The study revealed that many applications are using outdated components. As mobile world is becoming a significant part of how we communicate with people and mobile malware development in Q1 2014 continues to focus exclusively on the Android platform [2], this follow-up study focuses on Android applications mentioned in the study.</p>
+
+<p>I was also curious about some of the most popular free social media and utility applications used on Android, and reported to the developers if I noticed old OpenSSL libraries being used. To not to lose focus from the privacy and security critical applications from the original study, we will focus only on them.</p>
+
+<p>In this follow-up study I used BOMtotal [3] service. It is a service which provides a list of software components used in software and also attempts to provide information about the version of the component.</p>
+
+<h2 id="study-setup">Study setup</h2>
+
+<pre><code>* Choose target Android applications based on Privacytools.io collection and the original study [1]
+* Collect the Android Application Packages (APK) from the Google Play Store
+    * Applications were downloaded on 2015-04-12
+* Use BOMTotal service for scanning the application components
+* Collect the Bill of Materials URLs, tool version identification, and software components including their respective versions
+    * Focus was on OpenSSL and PolarSSL versions
+* Collect OpenSSL version history from the OpenSSL release notes and use the release intervals for 'best before dates' mentioned in the original study [1].
+* Compare OpenSSL versions used by the applications to the OpenSSL version history [4]
+</code></pre>
+
+<h2 id="results">Results</h2>
+
+<p>Results with BOMtotal URLs along with full component analysis can be found from here:</p>
+
+<p><a href="https://docs.google.com/spreadsheets/d/12TE-Wr2NpVyGNAIfwAO1A-RdyemhEdfO-_dWBt7p6cA/pubhtml">https://docs.google.com/spreadsheets/d/12TE-Wr2NpVyGNAIfwAO1A-RdyemhEdfO-_dWBt7p6cA/pubhtml</a></p>
+
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="center">Type</th>
+<th align="center">Best Before Date based on oldest OpenSSL version</th>
+<th align="center">Detected SW Version</th>
+<th align="center">OpenSSL Version</th>
+<th align="center">PolarSSL Version</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>proxy.sh Safejumper</td>
+<td align="center">VPN provider</td>
+<td align="center">2015-01-08</td>
+<td align="center">1.5</td>
+<td align="center">1.0.1j</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>AirVPN</td>
+<td align="center">VPN provider</td>
+<td align="center">-</td>
+<td align="center">1.1.16</td>
+<td align="center">-</td>
+<td align="center">1.3.9</td>
+</tr>
+
+<tr>
+<td>Torbrowser</td>
+<td align="center">Browser recommendation</td>
+<td align="center">-</td>
+<td align="center">15.0.0-RC2</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>Firefox</td>
+<td align="center">Browser recommendation</td>
+<td align="center">-</td>
+<td align="center">36.0.4</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>Tutanota</td>
+<td align="center">Privacy-conscious email</td>
+<td align="center">-</td>
+<td align="center">1.9.2</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>ChatSecure</td>
+<td align="center">Encrypted instant messenger</td>
+<td align="center">2014-06-05</td>
+<td align="center">14.1.1-RC2</td>
+<td align="center">1.0.1g</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>Text Secure / Signal</td>
+<td align="center">Encrypted instant messenger</td>
+<td align="center">-</td>
+<td align="center">2.9.3</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>RedPhone / Signal</td>
+<td align="center">Encrypted video / voice</td>
+<td align="center">2014-08-06</td>
+<td align="center">1.0.3</td>
+<td align="center">1.0.1h</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>Linphone</td>
+<td align="center">Encrypted video / voice</td>
+<td align="center">-</td>
+<td align="center">2.3.2</td>
+<td align="center">-</td>
+<td align="center">1.3.2</td>
+</tr>
+
+<tr>
+<td>Seafile (client)</td>
+<td align="center">Encrypted cloud storage</td>
+<td align="center">-</td>
+<td align="center">1.6.0</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td>encryptr</td>
+<td align="center">Password manager</td>
+<td align="center">-</td>
+<td align="center">1.1.0</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+
+<p>It can be seen from the Table 1, from the Android applications three are using OpenSSL in their current versions and two PolarSSL. 6 out of 11 applications were not using either. As this blog post was written, latest version of PolarSSL is 1.3.10 which was then rebranded to mbed SSL [5]. Of these three applications all OpenSSL versions were outdated and several vulnerabilities have been fixed since then [6]. The best before date is calculated based on the oldest version of the OpenSSL used in the tool binary in question [7].</p>
+
+<h2 id="brief-discussion">Brief discussion</h2>
+
+<p>It should be noted that BOMtotal does not do vulnerability analysis, but rather gives user a Bill of Materials which contains the components of which the software is built on. This is one approach to begin to understand what our software consists of. It can also be considered what kind of impact the components we use have in our software.</p>
+
+<h2 id="credits">Credits</h2>
+
+<p>Thanks to Kasper Kyllönen (<a href="https://twitter.com/KasperKyll">@KasperKyll</a>)  for doing such an extensive study on privacy and safety conscience applications and tracking OpenSSL version history in a detailed manner, which this follow-up study utilized extensively. Additional thanks also to Marko Laakso in Codenomicon for giving the idea for the follow-up study on Android applications, my colleagues for feedback on the study, and Privacytools.io for maintaining such an important collection of privacy-critical applications.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Privacy Tools best served fresh - a study I made on the OpenSSL versions of the privacytools.io downloads
+nkapu (Security Researcher / Hacker)
+<a href="http://www.reddit.com/r/privacytoolsIO/comments/32fy7h/privacy_tools_best_served_fresh_a_study_i_made_on/">http://www.reddit.com/r/privacytoolsIO/comments/32fy7h/privacy_tools_best_served_fresh_a_study_i_made_on/</a> (2015-04-13)</p>
+
+<p>[2] Mobile Threat Report Q1 2014
+F-Secure
+<a href="https://www.f-secure.com/documents/996508/1030743/Mobile_Threat_Report_Q1_2014.pdf">https://www.f-secure.com/documents/996508/1030743/Mobile_Threat_Report_Q1_2014.pdf</a> (2014)</p>
+
+<p>[3] BOMtotal
+Codenomicon
+<a href="http://www.bomtotal.com">http://www.bomtotal.com</a></p>
+
+<p>[4] Google Docs Survey: privacytools.io best served fresh (2015-04-11 - 2015-04-12)
+nkapu
+<a href="https://docs.google.com/spreadsheets/d/12YWSVuItaXtsgY2kH134D1_vt1Nkszs_QrhkPISHrgQ/pubhtml">https://docs.google.com/spreadsheets/d/12YWSVuItaXtsgY2kH134D1_vt1Nkszs_QrhkPISHrgQ/pubhtml</a></p>
+
+<p>[5] mbed SSL
+<a href="https://tls.mbed.org/download">https://tls.mbed.org/download</a></p>
+
+<p>[6] OpenSSL Release Notes
+<a href="https://www.openssl.org/news/openssl-notes.html">https://www.openssl.org/news/openssl-notes.html</a></p>
+
+<p>[7] Privacy Tools best served fresh documentation and analysis
+nkapu
+<a href="https://docs.google.com/document/d/1Q_wPBBzObSBw1gYChNjVG8zTmxaAjQ7ne1mYU-hCrds/pub">https://docs.google.com/document/d/1Q_wPBBzObSBw1gYChNjVG8zTmxaAjQ7ne1mYU-hCrds/pub</a></p>
+
+</div>
+
+    
+<footer class='entry-footer-container'>
+  <div class='entry-footer'>
+  
+  </div>
+</footer>
+
+
+  </article>
+  
+<nav class='entry-nav-container'>
+  <div class='entry-nav'><div class='next-entry'>
+      <a href='/posts/2015-04-23-component-analysis-of-popular-free-android-software/'>
+        <span class='screen-reader'>Next post: </span>Component analysis of popular free Android software<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social-menu-container'>
+  <nav aria-label='Social Menu'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/anerani' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://facebook.com/tomijunt' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Facebook account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/tomihj' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:erani@iki.fi' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/tomijuntunen' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</div>
+        <div class='copyright'>
+  <p>
+        
+      
+
+       &copy; 2017 Tomi Juntunen 
+  </p>
+</div>
+
+      </div>
+    </footer>
+
+  </div><script src='/assets/js/main.f29c93b9.js'></script></body>
+
+</html>
+

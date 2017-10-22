@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on tracing bytes</title>
+    <link>http://example.com/</link>
+    <description>Recent content in Home on tracing bytes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Oct 2017 02:37:22 +0300</lastBuildDate>
+    
+	<atom:link href="http://example.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mikrotik 493G with a Home DMZ</title>
+      <link>http://example.com/posts/2017-10-22-mikrotik-493g-with-a-home-dmz/</link>
+      <pubDate>Sun, 22 Oct 2017 02:37:22 +0300</pubDate>
+      
+      <guid>http://example.com/posts/2017-10-22-mikrotik-493g-with-a-home-dmz/</guid>
+      <description>In the previous post I showed one way to set up a home network using Mikrotik Routerboard. Next up in my project list was to set up a Raspberry Pi web server to host my own website and a blog (this one in fact). This required some tweaks to my home network set up as I needed to allow access to a device in my network from the public Internet.</description>
+    </item>
+    
+    <item>
+      <title>Setting up MikroTik 493G as a home router (&#43;WLAN AP)</title>
+      <link>http://example.com/posts/2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/</link>
+      <pubDate>Sun, 15 Oct 2017 23:39:06 +0300</pubDate>
+      
+      <guid>http://example.com/posts/2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/</guid>
+      <description>MikroTik is a company that sells e.g. configurable network appliances for a decent price point. I thought that their routerboard could be great for both casual and home lab use, so I went and bought a second-hand routerboard to tinker with. It felt it would be a nice change and an addition to get hands-on and acquainted with setting up computer networks from the scratch besides looking at tcpdumps/whatnot</description>
+    </item>
+    
+    <item>
+      <title>Component analysis of popular free Android software</title>
+      <link>http://example.com/posts/2015-04-23-component-analysis-of-popular-free-android-software/</link>
+      <pubDate>Thu, 23 Apr 2015 18:23:01 +0300</pubDate>
+      
+      <guid>http://example.com/posts/2015-04-23-component-analysis-of-popular-free-android-software/</guid>
+      <description>In my previous post I took a look at some of the Privacytools.io guide&amp;rsquo;s Android applications and their respective OpenSSL versions due to an inspiration that a study gave me [1]. I also thought to continue this as a follow-up and take a look into some of the popular free Android software available on Google Play and tried to study what they are built upon.
+Study set up  Choose target Android applications based on common popularity among people and Play Store lists of popular free applications Collect the Android Application Packages (APK) from the Google Play Store  Applications were downloaded on 2015-04-15  Use BOMTotal[2] service for scanning the application components Collect the Bill of Materials URLs, tool version identification, and software components including their respective versions  Focus was on OpenSSL and getting familiar with 3rd party ad components  Collect OpenSSL version history from the OpenSSL release notes and use the release intervals for &amp;lsquo;best before dates&amp;rsquo; mentioned in the original study on Privacytools.</description>
+    </item>
+    
+    <item>
+      <title>Follow-up: Android privacy tools best served fresh</title>
+      <link>http://example.com/posts/2015-04-14-follow-up-android-privacy-tools-best-served-fresh/</link>
+      <pubDate>Tue, 14 Apr 2015 05:49:01 +0300</pubDate>
+      
+      <guid>http://example.com/posts/2015-04-14-follow-up-android-privacy-tools-best-served-fresh/</guid>
+      <description>Recently, there was a study published on OpenSSL versions used by privacy conscious software recommended in the Privacytools.io guide [1]. This study took a stance on not only the OpenSSL crypto library, but the components used by software critical to privacy and safety. The study revealed that many applications are using outdated components. As mobile world is becoming a significant part of how we communicate with people and mobile malware development in Q1 2014 continues to focus exclusively on the Android platform [2], this follow-up study focuses on Android applications mentioned in the study.</description>
+    </item>
+    
+  </channel>
+</rss>

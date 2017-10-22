@@ -1,0 +1,61 @@
+baseURL = "http://example.com/"
+languageCode = "en-us"
+title = "tracing bytes"
+theme = "minimo"
+
+Paginate = 5
+preserveTaxonomyNames = true
+
+enableRobotsTXT = true # generate robots.txt
+pygmentsCodefences = true
+
+defaultContentLanguage = "en"
+
+[params.info]
+description = "programming and tech journeys, stack traces, and bits of bytes"
+title404 = "Oh my! You took a wrong turn I guess. :("
+
+[params.copyright]
+prefix = ""
+holder = "Tomi Juntunen"
+startYear = "2017"
+suffix = ""
+
+[params.settings]
+dateFormat = "2006, Jan 02"
+listDateFormat = "2006, Jan 02"
+hideEntryNavigation = ["page"] # boolean / array of sections
+hideSocialMenu = false
+showReadingTime = false
+
+[params.opengraph.twitter]
+page = "tomihj" # Twitter page username
+
+[params.seo]
+# Title Separator: - – — · • * ⋆ | ~ « » < >
+titleSeparator = "•"
+
+[params.social]
+email = "erani@iki.fi"
+facebook = "tomijunt"
+github = "anerani"
+linkedin = "tomijuntunen"
+twitter = "tomihj"
+
+[params.social.config]
+platforms = ["github","facebook","twitter","email","linkedin"]
+
+[taxonomies]
+author = "authors"
+category = "categories"
+tag = "tags"
+
+[permalinks]
+page = "/:slug/"
+
+[languages]
+# edit this block for your own language
+[languages.en]
+lang = "en"
+languageName = "English"
+weight = 1

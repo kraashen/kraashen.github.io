@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='In my previous post I took a look at some of the Privacytools.io guide&rsquo;s Android applications and their respective OpenSSL versions due to an inspiration that a study gave me [1]. I also thought to continue this as a follow-up and take a look into some of the popular free Android software available on Google Play and tried to study what they are built upon.
+Study set up  Choose target Android applications based on common popularity among people and Play Store lists of popular free applications Collect the Android Application Packages (APK) from the Google Play Store  Applications were downloaded on 2015-04-15  Use BOMTotal[2] service for scanning the application components Collect the Bill of Materials URLs, tool version identification, and software components including their respective versions  Focus was on OpenSSL and getting familiar with 3rd party ad components  Collect OpenSSL version history from the OpenSSL release notes and use the release intervals for &lsquo;best before dates&rsquo; mentioned in the original study on Privacytools.'>
+
+<meta property='og:title' content='Component analysis of popular free Android software • tracing bytes'>
+<meta property='og:description' content='In my previous post I took a look at some of the Privacytools.io guide&rsquo;s Android applications and their respective OpenSSL versions due to an inspiration that a study gave me [1]. I also thought to continue this as a follow-up and take a look into some of the popular free Android software available on Google Play and tried to study what they are built upon.
+Study set up  Choose target Android applications based on common popularity among people and Play Store lists of popular free applications Collect the Android Application Packages (APK) from the Google Play Store  Applications were downloaded on 2015-04-15  Use BOMTotal[2] service for scanning the application components Collect the Bill of Materials URLs, tool version identification, and software components including their respective versions  Focus was on OpenSSL and getting familiar with 3rd party ad components  Collect OpenSSL version history from the OpenSSL release notes and use the release intervals for &lsquo;best before dates&rsquo; mentioned in the original study on Privacytools.'>
+<meta property='og:url' content='http://example.com/posts/2015-04-23-component-analysis-of-popular-free-android-software/'>
+<meta property='og:site_name' content='tracing bytes'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:published_time' content='2015-04-23T18:23:01&#43;03:00'/><meta property='article:modified_time' content='2015-04-23T18:23:01&#43;03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@tomihj'>
+
+<meta name="generator" content="Hugo 0.29" />
+
+  <title>Component analysis of popular free Android software • tracing bytes</title>
+  <link rel='canonical' href='http://example.com/posts/2015-04-23-component-analysis-of-popular-free-android-software/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/assets/css/main.bc2171e3.css'>
+</head>
+
+
+<body class='page type-posts'>
+  <div class='site'>
+
+    <a class='screen-reader' href='#main'>Skip to Content</a>
+
+    <header id='header' class='header-container'>
+      <div class='header site-header'>
+        <nav id='main-menu' class='main-menu-container' aria-label='Main Menu'>
+  <ul class='main-menu'>
+  <li>
+      <a href='/'>Home</a>
+    </li>
+  
+  </ul>
+</nav>
+
+        <div class='header-info'>
+          
+          <p class='site-title title'>tracing bytes</p>
+          
+          <p class='site-description subtitle'>programming and tech journeys, stack traces, and bits of bytes</p>
+        </div>
+      </div>
+    </header>
+
+
+<main id='main' class='main'>
+  <article lang='en' class='entry'>
+    <header class='header-container'>
+  <div class='header entry-header'>
+    <div class='header-info'>
+      <h1 class='title'>Component analysis of popular free Android software</h1>
+      
+
+    </div>
+    
+<div class='meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader'>Posted on </span>
+  <time class='date' datetime='2015-04-23T18:23:01&#43;03:00'>2015, Apr 23</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+    
+    
+
+    <div class='entry-content'>
+  
+
+<p>In my previous post I took a look at some of the Privacytools.io guide&rsquo;s Android applications and their respective OpenSSL versions due to an inspiration that a study gave me [1]. I also thought to continue this as a follow-up and take a look into some of the popular free Android software available on Google Play and tried to study what they are built upon.</p>
+
+<h2 id="study-set-up">Study set up</h2>
+
+<ol>
+<li>Choose target Android applications based on common popularity among people and Play Store lists of popular free applications</li>
+<li>Collect the Android Application Packages (APK) from the Google Play Store
+
+<ul>
+<li>Applications were downloaded on 2015-04-15</li>
+</ul></li>
+<li>Use BOMTotal[2] service for scanning the application components</li>
+<li>Collect the Bill of Materials URLs, tool version identification, and software components including their respective versions
+
+<ul>
+<li>Focus was on OpenSSL and getting familiar with 3rd party ad components</li>
+</ul></li>
+<li>Collect OpenSSL version history from the OpenSSL release notes and use the release intervals for &lsquo;best before dates&rsquo; mentioned in the original study on Privacytools.io guide apps [3].</li>
+<li>Compare OpenSSL versions used by the applications to the OpenSSL version history [4] and collect summary of possible third party ad components.
+
+<ul>
+<li>Contact security teams of those developers whose applications have outdated OpenSSL libraries</li>
+</ul></li>
+</ol>
+
+<h2 id="results">Results</h2>
+
+<p>The document along with full BOMtotal links can be found from Google Docs:</p>
+
+<p><a href="https://docs.google.com/spreadsheets/d/1U-smPMQ-3xUIwdWApWH9VCAiAegTlk0zsi0B2tWDonU/pubhtml">https://docs.google.com/spreadsheets/d/1U-smPMQ-3xUIwdWApWH9VCAiAegTlk0zsi0B2tWDonU/pubhtml</a></p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Software</th>
+<th align="center">Type</th>
+<th align="center">Best Before Date based on oldest OpenSSL version</th>
+<th align="center">Detected SW Version</th>
+<th align="center">OpenSSL Version</th>
+<th align="center">3rd party ad libraries</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">AntiVirus Security AVG</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">4.3</td>
+<td align="center">-</td>
+<td align="center">x</td>
+</tr>
+
+<tr>
+<td align="center">Avast Mobile Security</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">4.0.7880</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">CCleaner</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">1.09.36</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">Clean Master</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">5.9.5</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">F-Secure Mobile Security</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">15.0.016484</td>
+<td align="center">-</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">Facebook</td>
+<td align="center">Social Media</td>
+<td align="center">current</td>
+<td align="center">31.0.0.19.13</td>
+<td align="center">1.0.2a</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">Facebook Messenger</td>
+<td align="center">Instant Messaging</td>
+<td align="center">-</td>
+<td align="center">25.0.0.17.14</td>
+<td align="center">n/a</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">Flashlight</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">5.2.4</td>
+<td align="center">-</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">Freedome</td>
+<td align="center">VPN</td>
+<td align="center">2014-08-06</td>
+<td align="center">n/a</td>
+<td align="center">1.0.1h</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">Instagram</td>
+<td align="center">Social Media</td>
+<td align="center">-</td>
+<td align="center">6.19.0</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">LINE</td>
+<td align="center">Video / Phone</td>
+<td align="center">-</td>
+<td align="center">5.1.2</td>
+<td align="center">-</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">OGQ Backgrounds HD</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">3.6.4</td>
+<td align="center">-</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">Skype</td>
+<td align="center">Video / Phone</td>
+<td align="center">2014-10-15</td>
+<td align="center">5.3.0.65524</td>
+<td align="center">1.0.1i</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">Snapchat</td>
+<td align="center">Instant Messaging</td>
+<td align="center">current</td>
+<td align="center">9.5.2.0</td>
+<td align="center">1.0.1m</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">Stylem Media Backgrounds</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">2.0.5</td>
+<td align="center">-</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">Surpax LED Flashlight</td>
+<td align="center">Utility</td>
+<td align="center">-</td>
+<td align="center">1.0.6</td>
+<td align="center">-</td>
+<td align="center">x</td>
+</tr>
+
+<tr>
+<td align="center">Telegram</td>
+<td align="center">Instant Messaging</td>
+<td align="center">-</td>
+<td align="center">2.7.0</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">Tinder</td>
+<td align="center">Social Media / Dating</td>
+<td align="center">-</td>
+<td align="center">4.0.6</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">Viber</td>
+<td align="center">Video / Phone</td>
+<td align="center">-</td>
+<td align="center">5.3.0.2339</td>
+<td align="center">-</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">VKontakte</td>
+<td align="center">Social Media</td>
+<td align="center">-</td>
+<td align="center">3.11</td>
+<td align="center">-</td>
+<td align="center">[a]</td>
+</tr>
+
+<tr>
+<td align="center">Whatsapp</td>
+<td align="center">Instant Messaging</td>
+<td align="center">-</td>
+<td align="center">2.12.5</td>
+<td align="center">-</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><em>Table 1. Android applications with their OpenSSL version results and possible 3rd party advertisement libraries. [x]=3rd party components present, [a]=google-ad component present.</em></p>
+
+<p>Table 1 shows the summary of OpenSSL versions, their &lsquo;best before dates&rsquo; and if there was 3rd party ad libraries found. Applications were downloaded on 2014-04-15 but I wanted to take time for the developers of those applications who had outdated OpenSSL components to respond to me first before publishing the results. Best before date was calculated as Kasper Kyllönen collected them in his study based on the oldest OpenSSL version used in the tool binary in question [3].</p>
+
+<p>It can be seen that most of the applications are not using OpenSSL, but then again there are some cases with ad components that are not Google&rsquo;s own. These ad components included libraries such as tapjoy, inmobi, and mopub, one of which was within an Antivirus application and other was a common flashlight app. I took the digging a bit deeper and focused also on what other components those applications needed: common apps included e.g. google-wallet, google-chromecast, social media apis, google-drive, and google-fitness libraries which are in some cases out of scope of the use of the application in my opinion.</p>
+
+<h2 id="discussion-and-thoughts">Discussion and thoughts</h2>
+
+<p>What our applications are made of is one fundamental basis to start to understand what kind of impact the components that we use have in our software. This does not directly indicate vulnerability analysis but it comes as a part of this. BOMtotal has leveraged the work to dissect and dive into what the apps we use and have developed are using, and can plan and react if we notice something out of order - even in our own applications we develop.</p>
+
+<h2 id="credits-and-thanks">Credits and thanks</h2>
+
+<p>Thanks to Ossi Herrala and Antti Tönkyrä for assisting in reviewing my analysis, and all security teams of developers and services who include OpenSSL in their software who responded in a polite and quick manner to my reports.</p>
+
+<p>As of writing this blog post, those parties responded to the notification within 48 hours I sent about OpenSSL to them. Some have also patched them already.</p>
+
+<p>[1] <a href="http://tracingbytes.blogspot.com/2015/04/follow-up-android-privacy-tools-best.html">http://tracingbytes.blogspot.com/2015/04/follow-up-android-privacy-tools-best.html</a></p>
+
+<p>[2] <a href="http://www.bomtotal.com/">http://www.bomtotal.com/</a>
+BOMtotal</p>
+
+<p>[3] <a href="https://docs.google.com/document/d/1Q_wPBBzObSBw1gYChNjVG8zTmxaAjQ7ne1mYU-hCrds/pub">https://docs.google.com/document/d/1Q_wPBBzObSBw1gYChNjVG8zTmxaAjQ7ne1mYU-hCrds/pub</a>
+nkapu, Security Researcher / Hacker</p>
+
+<p>[4] <a href="https://www.openssl.org/news/openssl-notes.html">https://www.openssl.org/news/openssl-notes.html</a>
+OpenSSL Release Notes</p>
+
+</div>
+
+    
+<footer class='entry-footer-container'>
+  <div class='entry-footer'>
+  
+  </div>
+</footer>
+
+
+  </article>
+  
+<nav class='entry-nav-container'>
+  <div class='entry-nav'><div class='prev-entry'>
+      <a href='/posts/2015-04-14-follow-up-android-privacy-tools-best-served-fresh/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader'>Previous post: </span>Follow-up: Android privacy tools best served fresh</a>
+    </div><div class='next-entry'>
+      <a href='/posts/2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/'>
+        <span class='screen-reader'>Next post: </span>Setting up MikroTik 493G as a home router (&#43;WLAN AP)<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social-menu-container'>
+  <nav aria-label='Social Menu'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/anerani' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://facebook.com/tomijunt' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Facebook account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/tomihj' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:erani@iki.fi' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/tomijuntunen' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</div>
+        <div class='copyright'>
+  <p>
+        
+      
+
+       &copy; 2017 Tomi Juntunen 
+  </p>
+</div>
+
+      </div>
+    </footer>
+
+  </div><script src='/assets/js/main.f29c93b9.js'></script></body>
+
+</html>
+
