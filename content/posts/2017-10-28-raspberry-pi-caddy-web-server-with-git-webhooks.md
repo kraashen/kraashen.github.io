@@ -62,11 +62,56 @@ There might still be unneeded services left on my RasPi, but I'll add them here 
 
 ### Caddy
 
-* install caddy and related plugins
+[Caddy](https://caddyserver.com/) is a HTTP/2 web server with support for automatic HTTPS using Let's Encrypt certificates. It would not be tedious to set up a battle-hardened *nginx* or *Apache* using the same certificate provider, but I wanted to give a shot at Caddy due to a recommendation from a friend. Besides, it's written in Go instead of C, which made me more curious for my use case as a personal web server.
+
+Caddy is quite straightforward to install and configure:
+
+```bash
+# git and hugo submodules are needed: git for webhook, I hugo for compiling and deploying static website so it's optional.
+curl https://getcaddy.com | bash -s http.git,http.hugo
+```
+
+Basic configuration is also quite simple and HTTP is enabled by default, which is quite beautiful. Note also that [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) header needs to be added manually. In short, this tells web browsers to use only HTTPS to access the site. If you have subdomains, refer to the Mozilla documentation for more details.
+
+```
+pixl.dy.fi {
+    root /var/www/pixl.dy.fi
+    tls [mail-address]
+
+    header / {
+        Strict-Transport-Security "max-age=31536000;"
+    }
+}
+```
+
+That's all that is needed for basic hosting of a website. Now Caddy is needed to run as ```www-data``` user and as a daemon on the background. Caddy documentations have a nice template how this is done using ```systemd``` which I also ended up using. You can find the documentation foir this at [https://github.com/mholt/caddy/tree/master/dist/init/linux-systemd], which also includes instructions to set up the www-data user properly.
+
+As in documentation, the Caddy binary needs the ability to bind to privileged ports 80 and 443. ```cap_net_bind_service``` [does exactly this](http://man7.org/linux/man-pages/man7/capabilities.7.html)
+
+```
+setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
+```
+
+After this, check, study, edit, and deploy the ```caddy.service``` file accordingly and enable these parameters in the configuration. At least I had issues starting Caddy as a service due to that it was not able to bind to the ports 80 and 443. This ticket in Caddy Community was quite helpful: [https://caddy.community/t/caddy-wont-start-could-not-start-http-server-for-challenge-listen-tcp-80-bind-permission-denied/2543/2]
+
+```
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+```
 
 ### Github Webhooks
 
-* how to configure the github webhooks on server and github page
+Now that the web server is running and serves the website properly, it would be nice to have something else than Hello World as content. I use Hugo as main platform for delivering static websites. It's static site rendering framework written - tadah - Go. The posts are written in Markdown and it has already quite a handful of themes available as well from the community.
+
+How about if you could make blog posts anywhere with our devices with git and a text editor and publish them on your server without intervention? One way to do this are Git webhooks. So the workflow goes about like this:
+
+* Blog posts are in Markdown in a private git repository
+* With every push to master branch, posts that are not drafted should be published
+* Client edits posts locally and pushes changes to git
+* The server has a Git webhook configured that received a notification of activity in the branch
+* The server pulls latest revision of the blog
+* The server builds new version of the site and deploys it
 
 ## Audit
 
