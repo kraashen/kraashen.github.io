@@ -74,7 +74,7 @@ dtoverlay=pi3-disable-bt
 dtoverlay=pi3-disable-wifi
 ```
 
-Disable unndeeded *systemd* services:
+Disable unneeded *systemd* services:
 
 ```bash
 # BLuetooth-related services
