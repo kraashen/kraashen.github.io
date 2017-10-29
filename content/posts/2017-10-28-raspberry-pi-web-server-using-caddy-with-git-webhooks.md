@@ -37,11 +37,11 @@ iface [interface] inet static
     netmask 255.255.255.0
 ```
 
-Also it was fun to realize during wondering why this did not work that in Debian Stretch, [interface naming has changed by default](https://www.debian.org/releases/stable/amd64/release-notes/ch-whats-new.en.html#new-interface-names):
+After wondering why this did not work it was fun to find out that in Debian Stretch, [interface naming has changed by default](https://www.debian.org/releases/stable/amd64/release-notes/ch-whats-new.en.html#new-interface-names):
 
 > The installer and newly installed systems will use a new standard naming scheme for network interfaces instead of eth0, eth1, etc. The old naming method suffered from enumeration race conditions that made it possible for interface names to change unexpectedly and is incompatible with mounting the root filesystem read-only. The new enumeration method relies on more sources of information, to produce a more repeatable outcome. It uses the firmware/BIOS provided index numbers and then tries PCI card slot numbers, producing names like ens0 or enp1s1 (ethernet) or wlp3s0 (wlan). USB devices, which can be added to the system at any time, will have names based upon their ethernet MAC addresses. 
 
-The interface name needs to be of this defined form e.g. checking by ```ifconfig```, or it must be changed manually to the legacy format by including/editing a udev rule in ```/etc/udev/rules.d/``` directory. While there are plenty of resources on how to achieve this, note that [it will be deprecated starting Debian 10](https://lists.debian.org/debian-user/2017/07/msg01453.html).
+The interface name needs to be of this syntax. It can be found out e.g. checking by ```ifconfig```, or it must be changed manually to the legacy format by including/editing a udev rule in ```/etc/udev/rules.d/``` directory. While there are plenty of resources on how to achieve this, note that [it will be deprecated starting Debian 10](https://lists.debian.org/debian-user/2017/07/msg01453.html).
 
 More detailed explanation is in [here](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/), but the key point is that fixed names based on firmware, topology, and location information has advantage of being consistent across changes in the environment e.g. including reboots, hardware changes.
 
@@ -77,7 +77,10 @@ dtoverlay=pi3-disable-wifi
 Disable unneeded *systemd* services:
 
 ```bash
-# BLuetooth-related services
+# disable dhcpcd
+systemctl disable dhcpcd.service && systemctl stop dhcpcd.service
+
+# Bluetooth-related services
 systemctl disable bluealsa.service && systemctl stop bluealsa.service
 systemctl disable hciuart.service && systemctl stop hciuart.service
 systemctl disable bluetooth.service && systemctl stop bluetooth.service
