@@ -1,5 +1,5 @@
 ---
-title: "Raspberry Pi Web Server Using Caddy and Git Webhooks"
+title: "Raspberry Pi Web Server Using Caddy and Github Webhooks"
 date: 2017-10-28T16:57:26+03:00
 draft: false
 ---
@@ -20,7 +20,7 @@ I divided the process of the setup into couple of phases:
 * Investigate what services Pi runs out of the box; Why are they needed or why they are not needed. Remove unneeded services.
 * Deploy and configure Caddy.
  * While it uses Let's Encrypt by default, study how it works and why it works as it does.
-* Configure Git webhooks
+* Configure Github webhooks
 * "Audit" the server
 
 ### Networking and interfaces
@@ -216,3 +216,4 @@ It was also interesting to notice that while using a system account feels a bit 
 [Debian: Network Configuration](https://wiki.debian.org/NetworkConfiguration#Predictable_Network_Interface_Names)
 
 [Debian: Unattended Upgrades](https://wiki.debian.org/UnattendedUpgrades)
+
