@@ -13,7 +13,7 @@ RasPis have always been a tempting choice for me as a very affordable platform f
 I divided the process of the setup into couple of phases:
 
 * User account creation and separation. Clean up default ```pi``` user.
-* Basic firewalling of the server using ```iptables```, ```fail2ban``` (for SSH)
+* Basic firewalling of the server using ```iptables```, ```fail2ban```
 * Use SSH key for remote login only
 * Configure automatic updates
 * Define static IP addressing, study how it works on Pi, what services handle it etc, how interface naming works on Debian distros.
