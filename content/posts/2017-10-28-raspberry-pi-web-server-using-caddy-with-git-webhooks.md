@@ -125,7 +125,7 @@ domain {
 }
 ```
 
-That's all that is needed for basic hosting of a website. Now Caddy is should be run as separate user, which is commonly ```www-data```, and as a daemon on the background. Caddy documentations have a nice template how this is done using ```systemd``` which I also ended up using. You can find the documentation for this at https://github.com/mholt/caddy/tree/master/dist/init/linux-systemd, which also includes instructions to set up the www-data user properly.
+That's all that is needed for basic hosting of a website. Now Caddy should be run as separate user, which is commonly ```www-data```, and as a daemon on the background. Caddy documentations have a nice template how this is done using ```systemd``` which I also ended up using. You can find the documentation for this at https://github.com/mholt/caddy/tree/master/dist/init/linux-systemd, which also includes instructions to set up the www-data user properly.
 
 As in documentation, the Caddy binary needs the ability to bind to privileged ports 80 and 443. ```cap_net_bind_service``` [does exactly this](http://man7.org/linux/man-pages/man7/capabilities.7.html)
 
