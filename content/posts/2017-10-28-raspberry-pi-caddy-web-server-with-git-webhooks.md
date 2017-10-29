@@ -199,7 +199,7 @@ Read permissions are enough for this use to just update the hosted site, so the 
 
 ## Auditing
 
-Huzzah! Now the web server is hosting the static website. Now what? It would be also fun to check out how the server fares against hostile access attempts, so it was fun to do even basic level auditing. While I'm not a huge fan of "checkbox security", I'd recommend at minimum running ```nmap``` and also found out about ```lynis``` for auditing. Auditing my own servers was fun, and these tools are something to start from something.
+Huzzah! Now the web server is hosting the static website. Now what? It would be also fun to check out how the server fares out in the wild, so it was fun to do even basic level auditing. While I'm not a huge fan of "checkbox security", I'd recommend at minimum running ```nmap``` and also found out about ```lynis``` for auditing. Auditing my own servers was fun, and these tools are something to start from something.
 
 ## Conclusions
 
