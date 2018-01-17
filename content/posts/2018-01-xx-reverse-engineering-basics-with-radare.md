@@ -6,7 +6,7 @@ draft: true
 
 Some time ago I got more and more curious on how software works on low level. I felt it essential for software and system engineers to understand software internals so I thought more about diving into the topic of reverse engineering from software development perspective. I found lots of Radare tutorials on reverse engineering and finding examples such as hidden passwords and injection techniques, but not so many on just general how to analyse binaries and understand the software internals and more importantly: Why things work as they just do.
 
-I got a recommended on using Radare as a starting point, so that's what I decided to go with. In this post, I'll go through some of the very basic things I had to revise myself a bit, since it's been almost 10 years from my computer architecture classes, and how to disassemble a very simple binary using Radare. The goal is to get familiar with understanding Assembly and how software internals work.
+In this post, I'll go through some of the very basic things I had to revise myself a bit, since it's been almost 10 years from my computer architecture classes, and how to disassemble a very simple binary using [Radare](https://www.radare.org/r/). The goal is to get familiar with understanding Assembly and how software internals work.
 
 # Reverse Engineering
 
@@ -35,6 +35,21 @@ Exploring hex dumps of the machine code of a software to understand the internal
 Disassembler is a program (hello, Radare) that translates the compiled machine code representation to assembly language. The output of the program aims for readability, making it eventually a reverse-engineering tool. While disassembler produces an assembly output of the original software, an interactive disassembler allows examination of the software that shows the changes made by the user. Software such as Radare in this case work greatly as a debugger as well, so it is also possible to interact and examine the software while running and debugging it.
 
 ### Opcodes
+
+Opcode stands for operation code. It is a part of a machine language instruction that tells the operation to be performed. Opcodes also may include operands that act as the data to be processed by the operation.
+
+```asm
+PUSH ebp     ; <- Here, PUSH is an opcode and ebp is the operand
+MOV ebp, esp ; <- Same rules apply
+
+...
+
+SUB ebp, 0x04h 
+
+; and so forth
+```
+
+Opcodes are different depending across various processor architectures, and some architectures support different types of operands to these opcodes. Operands may be e.g. memory addresses and values in the stack. All opcodes together form the instruction set of the processor.
 
 ### Registers
 
@@ -68,5 +83,7 @@ Here are some of the features of Radare and what is can do at the time of writin
 # Hello World revisited
 
 ## ??
+
+# Basic password reverse engineering
 
 # Conclusions
