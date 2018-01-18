@@ -53,7 +53,48 @@ Opcodes are different depending across various processor architectures, and some
 
 ### Registers
 
-### Flags
+In assembly language, we'll be talking about processor registeries. There are other types of memory registers as well when it comes to [hardware registers](https://en.wikipedia.org/wiki/Hardware_register) in general, but in CPU, processor registers are the real deal. 
+
+The operations described earlier require processing data. This data is stored in memory. It can be volatile memory (RAM) or non-volatile memory (disk). The data is faster to handle in the processor itself instead of doing operations directly in the memory. Processors have **registeries** that act as a temporary and quickly available location for data to be processed.
+
+Registeries vary between different architectures as well. In this blog post, focus will be on [x86 architecture](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) to take a brief look on some basics. Registers are classified according to the instructions that operate on them.
+
+#### General-purpose registers
+
+As the name implies, general-purpose registers (GPR) can hold data or a memory location in a form of an address. They can be used quite freely by the programmer with opcodes without too much limitations.
+
+x86 architecture GPRs are:
+
+* AX (Accumulator register).
+* CX (Counter register).
+* DX (Data Register).
+* BX (Base register).
+* SP (Stack Pointer register).
+* BP (Stack Base Pointer register).
+* SI (Source Index register).
+* DI (Destination Index register).
+
+These are all by default 16-bit registers. Registers are categorized to 8, 16, 32, and 64 -bit register based on their prefixes and suffixes:
+
+* With E appended (E = extended), means a 32-bit register.
+* With R appended, means a 64-bit register.
+* Accumulator, counter, data, and base registers with either H or L suffix mean 8-bit register.
+ * H-suffix means the most-significant byte, higher half of the 16 bits.
+ * L-suffix means the least-significant byte, lower half of the 16 bits.
+
+Let's take a look at a table to get a better look:
+
+{{insert_pic_here}}
+
+... hmm more descriptions ...
+
+Whoa! This may be already quite a lot of stuff to take. Let's go through them all to understand what they are.
+
+#### Segment registers
+
+#### Flags
+
+#### 64-bit conventions
 
 ### Heap & Stack
 
