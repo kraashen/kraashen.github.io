@@ -1,6 +1,7 @@
 ---
 title: "Reverse Engineering With Radare from Software Engineering perspective - Fundamentals and Basics"
 date: 2018-01-22
+draft: true
 ---
 
 Some time ago I got more and more curious on how software works on low level. I felt it essential for software and system engineers to understand software internals so I thought more about diving into the topic of reverse engineering from software development perspective. I found lots of Radare tutorials on reverse engineering and finding examples such as hidden passwords and injection techniques, but not so many on just general how to analyse binaries and understand the software internals and more importantly: Why things work as they just do.
