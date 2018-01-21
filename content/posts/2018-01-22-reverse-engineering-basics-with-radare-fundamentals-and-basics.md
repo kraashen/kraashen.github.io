@@ -4,11 +4,11 @@ date: 2018-01-22
 draft: true
 ---
 
-Some time ago I got more and more curious on how software works on low level. I felt it essential for software and system engineers to understand software internals so I thought more about diving into the topic of reverse engineering from software development perspective. I found lots of Radare tutorials on reverse engineering and finding examples such as hidden passwords and injection techniques, but not so many on just general how to analyse binaries and understand the software internals and more importantly: Why things work as they just do.
+Some time ago, I got more and more curious on how software works on low level. I felt it essential for software and system engineers to understand software internals so I thought more about diving into the topic of reverse engineering from software development perspective. I found lots of Radare tutorials on reverse engineering and finding examples such as hidden passwords and injection techniques, but not so many on just general how to analyse binaries and understand the software internals and more importantly: Why things work as they just do.
 
-It's been almost 10 years from my computer architecture classes. I tried to dive into radare quite straightforwardly with some hands-on examples but I repeatedly hit walls when it came to things such as how memory management works, how assembly code is read, how registers are used (and what they even where), and so forth. I was successful in reverse engineering a simple password hunting application though before I decided to go back to basics, yay!
+It's been almost 10 years from my computer architecture classes! I tried to dive into radare quite straightforwardly with some hands-on examples but I repeatedly hit walls when it came to things such as how memory management works, how assembly code is read, how registers are used (and what they even where), and so forth. I was successful though in reverse engineering a simple application in one password hunting exercise before I decided to go back to basics, yay!
 
-So, couple of steps back, and getting back to some basic stuff on computer architectures to help understanding low-level code and how to analyze it better. 
+So, couple of steps back, and back to some basic stuff on computer architectures. Hopefully it will help understanding low-level code and how to analyze it better. 
 
 In this post, I'll go through some of the very basic things in computer architectures that I had to revise myself a bit. I hope will help you also understand assembly as well. Also, we'll take a look on how to disassemble a very simple binary using [Radare](https://www.radare.org/r/). The goal is to get familiar with understanding Assembly and how software internals work together with computer architecture fundamentals.
 
@@ -126,7 +126,31 @@ Following picture shows an example of a layout of a stack
 
 [picture here]
 
-How about heap? 
+How about heap? In contrast to stack, heap is more flexible and more unorganized. It is completely separate memory from the stack without a specific layout. A programmer can define variables that are out of scope of a function which are then placed on heap. Programmer will then have the responsibility of releasing this memory manually. In some languages, this is done by garbage collector when the variables are not used anymore. 
+
+While stack memory is fixed, memory on the heap is allocated in run-time of an application. When a software runs out of heap memory, a [heap overflow](https://en.wikipedia.org/wiki/Heap_overflow) will occur, which can have destructive properties on the data that is processed. Without memory protection on the systems, even data outside the scope of the software could be affected.
+
+So, some key differences:
+
+#### Stack
+
+* Managed by compiler (mostly, of course programmer has the power which are local variables in functions)
+* Last-in-first-out (LIFO) -principle
+* Contains local variables, return addresses of functions
+* Grows from the top to bottom
+* Fixed in size (usually)
+* Variables are deallocated automatically when they go out of scope
+* Threads have own stacks
+
+#### Heap
+
+* Managed by programmer
+* Contains variables that are out of local scope
+* Programmer or garbage collector is responsible in freeing the memory
+* Grows from the bottom to the top
+* Allocated in run-time
+* More heap can be allocated by the operating system if the amount of memory is not sufficient
+* Threads share the heap
 
 # Radare?
 
@@ -148,6 +172,8 @@ Here are some of the features of Radare and what is can do at the time of writin
 * Binary diffing
 
 # Conclusions and follow-up
+
+
 
 # Sources to study
 
