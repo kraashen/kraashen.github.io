@@ -342,7 +342,7 @@ This was quite a journey. Here, basics of computer architectures were revisited 
 
 Radare has also a nice list of other tools that come in handy for binary analysis. These include binary diffing, binary inspection, command line parameters for analyze-all during startup, debugging... But they will be topics for other posts later on.
 
-[Megabeets: A journey into Radare2](https://www.megabeets.net/a-journey-into-radare-2-part-1/) is really good blog post to read through as a next step and I highly recommend it. That post and Disobey event in Finland both inspired me a lot to start studying the topic more. The Megabeets post goes a bit more deep into analysis of a binary and features of Radare that can be used to reverse engineer binaries and explains them in a very good way.
+[Megabeets: A journey into Radare2](https://www.megabeets.net/a-journey-into-radare-2-part-1/) is really good blog post to read through as a next step and I highly recommend it. That post and Disobey event in Finland both inspired me a lot to start studying the topic more. The Megabeets post goes a bit more deep into analysis of a binary and shows more features of Radare that can be used to reverse engineer binaries and explains them in a very good way.
 
 # Sources to study
 
