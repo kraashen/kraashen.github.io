@@ -41,7 +41,7 @@ int main(void) {
 }
 ```
 
-This compiled on Windows platform with WSL into following bytecode
+I use Windows Subsystem for Linux, which allows me to run Linux binaries on Windows. This code compiles with GCC on Windows platform with WSL into following bytecode
 
 ```
 $ hexdump -C | head
@@ -83,11 +83,11 @@ Binaries may include information such as headers and other metadata which the sy
 
 #### Disassemblers
 
-Disassembler is a program that translates the compiled machine code representation to assembly language. The output of the program aims for readability, making it eventually a reverse-engineering tool. While disassembler produces an assembly output of the original software, an interactive disassembler allows examination of the software that shows the changes made by the user. Software such as Radare in this case work greatly as a debugger as well, so it is also possible to interact and examine the software while running and debugging it.
+Disassembler is a program that translates the compiled machine code representation to assembly language. The output of the program aims for readability, making it eventually a reverse-engineering tool. While disassembler produces an assembly output of the original software, an interactive disassembler allows examination of the software that shows the changes made by the user. Originally IDA software actually was for easily foxing software errors and mistakes interactively. Software such as Radare in this case work greatly as a debugger as well, so it is also possible to interact and examine the software while running and debugging it.
 
 ### Opcodes and instructions
 
-Opcode stands for operation code. All opcodes together form the instruction set of the processor. An instruction set is a specified set of commands a processor can execute. Opcodes are a part of these machine language that tells the processor what operation to be performed. Opcodes also may include operands that act as the data to be processed by the operation. They can be represented in a short textual form called instructions that are mnemonics which tell the programmer what operation is being performed in an easily memorable and understandable form.
+Opcode stands for operation code. All opcodes together form the instruction set of the processor. An instruction set is a specified set of commands a processor can execute. Opcodes are a part of these machine language which tell the processor what operation is to be performed. Opcodes also may include operands that act as the data to be processed by the operation. They can be represented in a short textual form called instructions that are mnemonics which tell the programmer what operation is being performed in an easily memorable and understandable form.
 
 ```assembly
 PUSH ebp     ; <- Here, PUSH is an instruction and ebp is the operand
@@ -104,15 +104,15 @@ Opcodes and instruction sets are different depending across various processor ar
 
 ### Registers
 
-There are many register types, especially when it comes to [hardware registers](https://en.wikipedia.org/wiki/Hardware_register). In assembly language and reverse engineering, we'll be talking mostly about processor registeries. These are the real deal in this case.
+There are many register types, especially when it comes to [hardware registers](https://en.wikipedia.org/wiki/Hardware_register). In assembly language and reverse engineering, we'll be talking mostly about processor registers. These are the real deal in this case.
 
-The operations described earlier process data. This data is stored in memory. It can be volatile memory (RAM) or non-volatile memory (disk). The data is faster to handle in the processor itself instead of doing operations in the memory. Processors have a set of registers that act as a temporary and quickly available location for data to be processed.
+The operations described earlier process data. This data is stored in memory. It can be volatile memory (RAM) or non-volatile memory (disk). Most of the time, CPU instructions handle data in RAM or in the registers. In some special cases it can also be done on disk using real-mode BIOS interrupts. The data is faster to handle in the processor itself instead of doing operations in the memory. Processors have a set of registers that act as a temporary and quickly available location for data to be processed.
 
-Registeries vary between different architectures as well. Here, focus will be on [x86 architecture](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) to take a brief look on some basics. Registers are categorized according to the instructions that operate on them.
+registers vary between different architectures as well. Here, focus will be on Intel [x86 architecture](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) to take a brief look on some basics. Registers are categorized according to the instructions that operate on them.
 
 #### General-purpose registers
 
-As the name implies, general-purpose registers (GPR) can hold data or a memory location in a form of an address. They can be used quite freely by the programmer with opcodes without too much limitations. GPRs have conventions based on their naming, but modern CPUs can use them quite freely for storing data, and different environments have different conventions. Even compilers exploit this freedom of conventions on different platforms.
+As the name implies, general-purpose registers (GPR) can hold data or a memory location in a form of address. They can be used quite freely by the programmer with opcodes without too much limitations. GPRs have conventions based on their naming, but modern CPUs can use them flexibly for storing data, and different environments have different conventions. Even compilers exploit this freedom of conventions on different platforms.
 
 x86 architecture GPRs are:
 
@@ -158,7 +158,7 @@ Flags themselves are rarely visible from the assembly itself, but it is useful t
 
 Still hanging along? Great! Before going into actual reverse engineering example, a quick look will be taken at how heap and stack memory works in assembly. This is essential to help understanding what is happening in the assembly code and why. I won't dive into too much details here, so I recommend also checking out more detailed sources on memory management as well in the end of this post.
 
-When a software is executed, memory is reverved for the application. Part of this memory is allocated for stack and the maximum size of it is usually fixed by the operating system. Part of the memory is reserved for heap.
+When a software is executed, memory is reserved for the application. Part of this memory is allocated for stack and the maximum size of it is usually fixed by the operating system. Part of the memory is reserved for heap.
 
 How does the stack memory work? It is fairly simple. It's pretty much similar to the [stack data type](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), where values are pushed on top of the stack and popped out in the reverse order to be used as. Like a LIFO queue. It's like blazing-fast bookkeeping and putting stuff aside while doing something else.
 
