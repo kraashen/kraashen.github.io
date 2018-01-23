@@ -20,7 +20,7 @@ Wikipedia defines reverse engineering in general as:
 
 > -- the processes of extracting knowledge or design information from a product and reproducing it or reproducing anything based on the extracted information.[1]:3 The process often involves disassembling something (a mechanical device, electronic component, computer program, or biological, chemical, or organic matter) and analyzing its components and workings in detail.
 
-When it comes to software engineering, the meaning may vary. There are taxonomies that define reverse engineering as rebuilding or understanding the system logic from the end to the beginning (or vice versa). 
+When it comes to software, the meaning may vary. There are taxonomies that define reverse engineering as rebuilding or understanding the system logic from the end to the beginning (or vice versa). 
 
 However, there can be different types of systems to analyze: some of them can be black boxes where there is no source code availble, they can be obfuscated, and some may be commented or documented or not neither at all. Reverse engineering of software may also have different kind of goals: dissecting, also known as disassemblying, the software binary in raw machine language to understand how it works and what it does (which is what Radare does, for instance), analysing the information exchange of the software e.g. in network traffic when it comes to protocol reverse engineering, and decompiling the software, which is a technique to attempt to create a high-level representation of the original binary and it's contents.
 
