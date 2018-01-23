@@ -18,7 +18,7 @@ The goal is to get familiar with understanding assembly and how software interna
 
 Wikipedia defines reverse engineering in general as:
 
-> - - the processes of extracting knowledge or design information from a product and reproducing it or reproducing anything based on the extracted information.[1]:3 The process often involves disassembling something (a mechanical device, electronic component, computer program, or biological, chemical, or organic matter) and analyzing its components and workings in detail.
+> -- the processes of extracting knowledge or design information from a product and reproducing it or reproducing anything based on the extracted information.[1]:3 The process often involves disassembling something (a mechanical device, electronic component, computer program, or biological, chemical, or organic matter) and analyzing its components and workings in detail.
 
 When it comes to software engineering, the meaning may vary. There are taxonomies that define reverse engineering as rebuilding or understanding the system logic from the end to the beginning (or vice versa). 
 
