@@ -338,7 +338,7 @@ So lets break it down line by line what happens here:
 
 # Conclusions
 
-Well, this was quite a journey. Here, basics of computer architectures were revisited and reverse engineering principles were studied without too much prior knowledge of them using Radare. It felt a bit silly having a Hello World example here, but I found it still useful to understand and combine system fundamentals together with the syntax and basics of assembly, how Radare is used, and it gave a basic toolset to start diving a bit more deeper from now on.
+This was quite a journey. Here, basics of computer architectures were revisited and reverse engineering principles were studied without too much prior knowledge of them using Radare. It felt a bit silly having a Hello World example here, but I found it still useful to understand and combine system fundamentals together with the syntax and basics of assembly, how Radare is used, and it gave a basic toolset to start diving a bit more deeper from now on.
 
 Radare has also a nice list of other tools that come in handy for binary analysis. These include binary diffing, binary inspection, command line parameters for analyze-all during startup, debugging... But they will be topics for other posts later on.
 
