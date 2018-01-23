@@ -1,16 +1,18 @@
 ---
-title: "Reverse Engineering With Radare from Software Engineering perspective - Fundamentals and Basics"
+title: "Reverse Engineering With Radare - Fundamentals and Basics"
 date: 2018-01-22
 draft: true
 ---
 
-Some time ago, I got more and more curious on how software works on low level. I felt it essential for software and system engineers to understand software internals so I thought more about diving into the topic of reverse engineering from software development perspective. I found lots of Radare tutorials on reverse engineering and finding examples such as hidden passwords and injection techniques, but not so many on just general how to analyse binaries and understand the software internals and more importantly: Why things work as they just do.
+As I got more and more curious on how software works, I felt it essential as a software and systems engineer to start understanding deeper low-level internals of software. So I thought about diving more into the topic of reverse engineering from software developer's perspective using an open source tool called Radare. There are plenty of extremely well written Radare tutorials on reverse engineering and finding examples such as hidden passwords and injection techniques using it. However, I did not find so many articles in general on how to analyze binaries and at the same time understand it together with the knowledge of computer architectures and their murky innards.
 
-It's been almost 10 years from my computer architecture classes! I tried to dive into radare quite straightforwardly with some hands-on examples but I repeatedly hit walls when it came to things such as how memory management works, how assembly code is read, how registers are used (and what they even where), and so forth. I was successful though in reverse engineering a simple application in one password hunting exercise before I decided to go back to basics, yay!
+So, reality hit me: It's been almost 10 years from my computer architecture classes! I had no prior experience in reverse engineering besides the recent online examples. I tried to dive into Radare in straightforward manner with some hands-on examples, but I repeatedly came to wonder how memory management works, how assembly code should be read *properly*, how registers are used (and what they even where), and so forth. Well, I was still successful though in reverse engineering some simple applications related to password hunting exercises, but then I decided to go back to basics.
 
-So, couple of steps back, and back to some basic stuff on computer architectures. Hopefully it will help understanding low-level code and how to analyze it better. 
+So, couple of steps back, and back to studying some computer architectures. Hopefully it will help understanding low-level code and how to analyze it better.
 
-In this post, I'll go through some of the very basic things in computer architectures that I had to revise myself a bit. I hope will help you also understand assembly as well. Also, we'll take a look on how to disassemble a very simple binary using [Radare](https://www.radare.org/r/). The goal is to get familiar with understanding Assembly and how software internals work together with computer architecture fundamentals.
+In this post, I'll go through some of the very basic things in reverse engineering and computer architectures that I had to study and revise a bit. Also, a look will be taken on how to disassemble a very simple Hello World binary using [Radare](https://www.radare.org/r/). I will explain the software at the later part of this post. 
+
+The goal is to get familiar with understanding assembly and how software internals work. These will be combined together with some topics that I felt essential in starting a journey in reverse engineering and understanding software internals without prior knowledge of any kind of reverse engineering.
 
 # Reverse Engineering
 
@@ -18,32 +20,77 @@ Wikipedia defines reverse engineering in general as:
 
 > - - the processes of extracting knowledge or design information from a product and reproducing it or reproducing anything based on the extracted information.[1]:3 The process often involves disassembling something (a mechanical device, electronic component, computer program, or biological, chemical, or organic matter) and analyzing its components and workings in detail.
 
-When it comes to software engineering, the meaning may vary. There are flexible taxonomies that attempt to define reverse engineering as simply rebuilding or understanding the system logic from the end to the beginning. 
+When it comes to software engineering, the meaning may vary. There are taxonomies that define reverse engineering as rebuilding or understanding the system logic from the end to the beginning (or vice versa). 
 
-However, there can be different types of systems to analyze: some of them can be black boxes when there is no source code availble, they can be obfuscated, and documented or not documented at all. Reverse engineering of software may also have different kind of goals: dissecting (aka. disassemblying) the software binary in raw machine language to understand how it works and what it does (which is what Radare does, for instance), analysing the information exchange of the software e.g. in network traffic when it comes to protocol reverse engineering, and decompiling the software, which is a technique to attempt to create a high-level representation of the original binary and it's contents.
+However, there can be different types of systems to analyze: some of them can be black boxes where there is no source code availble, they can be obfuscated, and some may be commented or documented or not neither at all. Reverse engineering of software may also have different kind of goals: dissecting, also known as disassemblying, the software binary in raw machine language to understand how it works and what it does (which is what Radare does, for instance), analysing the information exchange of the software e.g. in network traffic when it comes to protocol reverse engineering, and decompiling the software, which is a technique to attempt to create a high-level representation of the original binary and it's contents.
 
-In this post I will be focusing on reverse engineering software binary.
+In this post, focus will be on reverse engineering software binaries.
 
 ## Assembly, Assembling, and Disassembling
 
-Assembly (ASM, aka. Assembler) language is a low-level programming language. It is very close to the machine code instructions of the hardware, and is dependent to the architectures it has been developed for. Assembly uses mnemonics - short textual and easily rememberable statements - that represent low-level machine instructions (code) which are referred to as opcodes, registers, and flags.  Assembly is converted to machine code using a so called assembler. There are multiple types of assemblers, which allow things such as cross-compilation of existing ASM code to other systems.
+Assembly (ASM, aka. Assembler) language is a low-level programming language. It is very close to the machine code instructions of the hardware, and is dependent to the architectures it has been developed for. Assembly uses mnemonics - short textual and easily rememberable statements - that represent low-level machine instructions (code) which are referred to as opcodes, registers, and flags. Assembly is converted to machine code using an assembler. There are also multiple types of assemblers, which allow e.g. cross-compilation of existing ASM code to other systems.
 
-```asm
-# some example 
+Lets take a look at a simple "Hello World w/ assembly" program:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello World w/ Assembly!\n");
+    return 0;
+}
 ```
 
-There are different types of binary files. However, a file that is not a text file (binary) and that is treated as an executable (!) and ran by the system, is interpreted as a representation of a software in machine code. Binaries may include information such as headers and other metadata which the system uses how to interpret the file when executed. Binaries without headers and metadata is called a flat binary.
+This compiled on Windows platform with WSL into following bytecode
 
-Exploring hex dumps of the machine code of a software to understand the internals of it may be tedious, so this is where disassemblying comes to play. 
+```
+$ hexdump -C | head
+00000000  7f 45 4c 46 02 01 01 00  00 00 00 00 00 00 00 00  |.ELF............|
+00000010  02 00 3e 00 01 00 00 00  30 04 40 00 00 00 00 00  |..>.....0.@.....|
+00000020  40 00 00 00 00 00 00 00  d8 19 00 00 00 00 00 00  |@...............|
+00000030  00 00 00 00 40 00 38 00  09 00 40 00 1f 00 1c 00  |....@.8...@.....|
+00000040  06 00 00 00 05 00 00 00  40 00 00 00 00 00 00 00  |........@.......|
+00000050  40 00 40 00 00 00 00 00  40 00 40 00 00 00 00 00  |@.@.....@.@.....|
+00000060  f8 01 00 00 00 00 00 00  f8 01 00 00 00 00 00 00  |................|
+00000070  08 00 00 00 00 00 00 00  03 00 00 00 04 00 00 00  |................|
+00000080  38 02 00 00 00 00 00 00  38 02 40 00 00 00 00 00  |8.......8.@.....|
+00000090  38 02 40 00 00 00 00 00  1c 00 00 00 00 00 00 00  |8.@.............|
+...
+```
 
-Disassembler is a program (hello, Radare) that translates the compiled machine code representation to assembly language. The output of the program aims for readability, making it eventually a reverse-engineering tool. While disassembler produces an assembly output of the original software, an interactive disassembler allows examination of the software that shows the changes made by the user. Software such as Radare in this case work greatly as a debugger as well, so it is also possible to interact and examine the software while running and debugging it.
+Which shown in disassembled form in Radare as
 
-### Opcodes
+```assembly
+> s main
+> pdf
+|           0x00400526    55           push rbp
+|           0x00400527    4889e5       mov rbp, rsp
+|           0x0040052a    bfc4054000   mov edi, str.HelloWorld
+|           0x0040052f    e8ccfeffff   call sym.imp.puts
+|              sym.imp.puts(unk)
+|           0x00400534    b800000000   mov eax, 0x0
+|           0x00400539    5d           pop rbp
+\           0x0040053a    c3           ret
+```
 
-Opcode stands for operation code. It is a part of a machine language instruction that tells the operation to be performed. Opcodes also may include operands that act as the data to be processed by the operation. They can be represented in a short textual form - mnemonic - that tell the programmer what operation is being performed in an easily memorable and understandable form.
+#### Binaries
 
-```asm
-PUSH ebp     ; <- Here, PUSH is an opcode and ebp is the operand
+A binary file is essentially a sequence of bytes. There are different types of binary files, which may include e.g. images and audio files. However, a software binary can be defined as:
+
+> A file is interpreted as a representation of a software in machine code when it is a not a text file (binary) and is treated as an executable and ran by the system. 
+
+Binaries may include information such as headers and other metadata which the system uses how to interpret the file when executed. Binaries without headers and metadata is called a flat binary. Exploring hex dumps of the machine code to understand the internals of it may be tedious, so this is where disassemblying comes to play.
+
+#### Disassemblers
+
+Disassembler is a program that translates the compiled machine code representation to assembly language. The output of the program aims for readability, making it eventually a reverse-engineering tool. While disassembler produces an assembly output of the original software, an interactive disassembler allows examination of the software that shows the changes made by the user. Software such as Radare in this case work greatly as a debugger as well, so it is also possible to interact and examine the software while running and debugging it.
+
+### Opcodes and instructions
+
+Opcode stands for operation code. All opcodes together form the instruction set of the processor. An instruction set is a specified set of commands a processor can execute. Opcodes are a part of these machine language that tells the processor what operation to be performed. Opcodes also may include operands that act as the data to be processed by the operation. They can be represented in a short textual form called instructions that are mnemonics which tell the programmer what operation is being performed in an easily memorable and understandable form.
+
+```assembly
+PUSH ebp     ; <- Here, PUSH is an instruction and ebp is the operand
 MOV ebp, esp ; <- Same rules apply
 
 ...
@@ -53,15 +100,15 @@ SUB ebp, 0x04h
 ; and so forth
 ```
 
-Opcodes are different depending across various processor architectures, and some architectures support different types of operands to these opcodes. Operands may be e.g. memory addresses and values in the stack. All opcodes together form the instruction set of the processor. To understand the opcodes supported by your architecture or the architecture of the software you are reverse engineering, you'll have to look for reference manuals of that specific architecture.
+Opcodes and instruction sets are different depending across various processor architectures, and some architectures support different types of instructions. Operands may be e.g. memory addresses and values in the stack. To understand the instructions supported by your architecture or the architecture of the software you are reverse engineering, you'll have to look for reference manuals of that specific architecture.
 
 ### Registers
 
-In assembly language and reverse engineering, we'll be talking about processor registeries. There are other types of memory registers as well when it comes to [hardware registers](https://en.wikipedia.org/wiki/Hardware_register) in general, but in CPU, processor registers are the real deal. 
+There are many register types, especially when it comes to [hardware registers](https://en.wikipedia.org/wiki/Hardware_register). In assembly language and reverse engineering, we'll be talking mostly about processor registeries. These are the real deal in this case.
 
-The operations described earlier process data. This data is stored in memory. It can be volatile memory (RAM) or non-volatile memory (disk). The data is faster to handle in the processor itself instead of doing operations directly in the memory. Processors have **registeries** that act as a temporary and quickly available location for data to be processed.
+The operations described earlier process data. This data is stored in memory. It can be volatile memory (RAM) or non-volatile memory (disk). The data is faster to handle in the processor itself instead of doing operations in the memory. Processors have a set of registers that act as a temporary and quickly available location for data to be processed.
 
-Registeries vary between different architectures as well. In this blog post, focus will be on [x86 architecture](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) to take a brief look on some basics. Registers are classified according to the instructions that operate on them.
+Registeries vary between different architectures as well. Here, focus will be on [x86 architecture](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) to take a brief look on some basics. Registers are categorized according to the instructions that operate on them.
 
 #### General-purpose registers
 
@@ -105,30 +152,32 @@ In processors, there is [a long list of so called flags](https://en.wikibooks.or
 
 The results of certain operations or state are stored to these flags with either bit value set to 0 or 1. From this flag register, the processor will understand what operation will be executed next and how. For instance, opcode ```JNE``` (jump to memory location if operands are not equal) uses flag ```ZF```, which is a flag to indicate whether result of an operation is zero. Similarly, when doing calculation with large integers, which can [overflow](https://en.wikipedia.org/wiki/Integer_overflow), an overflow flag ```OF``` is used to indicate if the result is too large for the register to contain.
 
-Flags themselves are rarely visible from the assembly itself, but it is useful to understand how they work as the register values can be analysed while debugging.
+Flags themselves are rarely visible from the assembly itself, but it is useful to understand how they work.
 
-### Heap & Stack
+### Heap & Stack - "high" level look
 
-Still hanging along? Great! Before going into actual reverse engineering example, let's take a quick look at how heap and stack memory works in assembly. This is essential to help understanding what is happening in the assembly code and why. I won't dive into too much details so I recommend also checking out more detailed sources on memory management as well in the end of this post.
+Still hanging along? Great! Before going into actual reverse engineering example, a quick look will be taken at how heap and stack memory works in assembly. This is essential to help understanding what is happening in the assembly code and why. I won't dive into too much details here, so I recommend also checking out more detailed sources on memory management as well in the end of this post.
 
-When a software is executed, memory is reverved in RAM for the application. Part of this memory is allocated for stack and the size of it is usually fixed. Part of the memory is reserved for heap.
+When a software is executed, memory is reverved for the application. Part of this memory is allocated for stack and the maximum size of it is usually fixed by the operating system. Part of the memory is reserved for heap.
 
-How does the stack memory work? It is fairly simple on high-level. Stack size is fixed from the start of the application or thread. If there are multiple threads, they will have their own memory stack. When the stack is reserved, the stack pointer ```RSP``` (64-bit system) will point to the top of the stack. The stack grows downwards in size from the top to the bottom. If the pointer runs out of memory past the bottom, a [stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow) will occur.
+How does the stack memory work? It is fairly simple. It's pretty much similar to the [stack data type](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), where values are pushed on top of the stack and popped out in the reverse order to be used as. Like a LIFO queue. It's like blazing-fast bookkeeping and putting stuff aside while doing something else.
 
-Stack works pretty much similarly like a [stack data type](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), where values are pushed on top of the stack and popped out in the reverse order they were inserted for use. Stack contains e.g.:
+Stack size is fixed from the start of the application or thread. If there are multiple threads, they will have their own memory stack. When the stack is reserved, the stack pointer ```ESP``` (32-bit system) will point to the top of the stack. The stack grows downwards from the top to the bottom and stack pointer address follows on the top of the stack. If the pointer runs out of memory address scope and therefore past the top, a [stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow) will occur.
 
-* Local variables of functions that will go out of scope after executing them
+Stack contains e.g.:
+
+* Local variables of functions that will go out of scope after executing them.
 * Return address of the function, i.e. where will the processor continue after the function returns
 * Function arguments before calling them
- * NOTE! There are also system and architecture conventions to use registers for function arguments instead of the stack
+ * NOTE! There are also conventions to use registers for function arguments instead of the stack. For instance, 64-bit Windows systems do this, which I learned the hard way.
 
-Following picture shows an example of a layout of a stack
+How about heap? In contrast to stack, heap is more flexible and more unorganized. It is separate memory from the stack without a specific layout. A programmer can define and manipulate variables which are placed on heap. Programmer will then have the responsibility of releasing this memory manually. In some languages, this is done by garbage collector when the variables are not used anymore. 
 
-[picture here]
+While stack memory is fixed, memory on the heap is allocated and deallocated dynamically during the run-time of an application. When a software runs out of heap memory, a [heap overflow](https://en.wikipedia.org/wiki/Heap_overflow) will occur. Without memory protection on the systems, even data outside the scope of the software could be affected.
 
-How about heap? In contrast to stack, heap is more flexible and more unorganized. It is completely separate memory from the stack without a specific layout. A programmer can define variables that are out of scope of a function which are then placed on heap. Programmer will then have the responsibility of releasing this memory manually. In some languages, this is done by garbage collector when the variables are not used anymore. 
+Following picture shows an example of a layout of a stack and heap within the memory allocated to an application. ([Source](https://en.wikipedia.org/wiki/Data_segment))
 
-While stack memory is fixed, memory on the heap is allocated in run-time of an application. When a software runs out of heap memory, a [heap overflow](https://en.wikipedia.org/wiki/Heap_overflow) will occur, which can have destructive properties on the data that is processed. Without memory protection on the systems, even data outside the scope of the software could be affected.
+![](/img/memorylayout.png)
 
 So, some key differences:
 
@@ -154,7 +203,7 @@ So, some key differences:
 
 # Radare?
 
-Enter Radare! It is a cross-platform open source tool and framework for binary analysis that was discussed earlier. In this blog post, I'm talking mainly about Radare2 which is a rewritten project based on the original Radare project. Commonly it seems that people refer to it also just as Radare.
+Enter Radare! It is a cross-platform open source tool and framework for binary analysis that was discussed earlier. In this blog post, I'm talking mainly about Radare2 which is a rewritten project based on the original Radare project. Commonly it seems that people refer to it also just as Radare. Radare has a **really** steep learning curve for reverse engineering, at least for a newbie like me, so I'll break down some basic commands that might be useful to get started tweaking around. I'm still studying it more myself as well, so I'll also try to break down the analysis into understandable chunks.
 
 Based on Github:
 
@@ -171,9 +220,127 @@ Here are some of the features of Radare and what is can do at the time of writin
 * Emulator
 * Binary diffing
 
-# Conclusions and follow-up
+## Hello World revisited
 
+So having just installed and fired up Radare with the compiled binary and you land on an empty terminal. What now? It works like a shell. In fact - it is a shell.
 
+* If you type ```?``` after a command and hit return, you'll get help texts related to that command or subcommand.
+* ```ie``` lists the entrypoints of the binary. Handy for pinpointing where the application logic starts.
+* ```iz``` lists strings of the binary.
+* ```iI``` tells information about the binary, related to the headers that were discussed briefly in the binary section
+* ```V``` toggles visual mode
+* ```VV``` toggles visual mode with graph
+ * ```p``` is used for navigating between different views in the visual mode. Use ```hjkl``` to navigate around.
+* ```s``` short for "seek". Takes a variable, address or function name as an argument to seek within the address space of the application.
+* ```~``` is used for grepping something from the output of previous command. Think: ```iz~Hello```
+* ```p``` print command
+ * ```pdf``` print disassembled function
+* ```aa(a)```, this is your trusted companion to start analyzing. ``aa`` stands for analyze all, but does not really do all it could do (huh?). The newer ```aaa``` does a bit more extensive analysis
+ * You can also start Radare using ```r2 -A[A]``` command line flags to do initial analysis.
+
+So what has a simple Hello World eaten? Let's check out the file information:
+
+```
+> iI
+file    [snip]
+type    EXEC (Executable file)
+pic     false
+has_va  true
+root    elf
+class   ELF64
+lang    c
+arch    x86
+bits    64
+machine AMD x86-64 architecture
+os      linux
+subsys  linux
+endian  little
+...
+```
+
+So here we can see plenty of information: The file is a Linux (ELF) executable developed in C (duh?) on x86 64-bit architecture, and it's little endian. Now let's analyze the binary and check out its internals:
+
+```asm
+; what 'aa' does
+> aa
+[x] Analyze all flags starting with sym. and entry0 (aa)
+
+; what 'aaa' does
+> aaa
+[x] Analyze all flags starting with sym. and entry0 (aa)
+[x] Analyze len bytes of instructions for references (aar)
+[x] Analyze function calls (aac)
+[x] Use -AA or aaaa to perform additional experimental analysis.
+[x] Constructing a function name for fcn.* and sym.func.* functions (aan)
+
+; 'aaaa' mentioned? we must go deeper...
+> aaaa
+[x] Analyze all flags starting with sym. and entry0 (aa)
+[x] Analyze len bytes of instructions for references (aar)
+[x] Analyze function calls (aac)
+[x] Emulate code to find computed references (aae)
+[x] Analyze consecutive function (aat)
+[x] Constructing a function name for fcn.* and sym.func.* functions (aan)
+[x] Type matching analysis for all functions (afta)
+
+; lets seek to the main function
+> s main 
+
+; ...and check out the main function with print disassemble function command
+> pdf
+/ (fcn) sym.main 21
+|           0x00400526    55           push rbp
+|           0x00400527    4889e5       mov rbp, rsp
+|           0x0040052a    bfc4054000   mov edi, str.HelloWorldwassembly
+|           0x0040052f    e8ccfeffff   call sym.imp.puts
+|              sym.imp.puts(unk)
+|           0x00400534    b800000000   mov eax, 0x0
+|           0x00400539    5d           pop rbp
+\           0x0040053a    c3           ret
+```
+
+Alright, great! Now we are ended up in the main function of the application. So let's break this down and use our knowledge from earlier to see what's going on. Layout of the pdf output is following:
+
+```
+memory address    opcodes in hex    instruction and operands    
+0x00400526        55                push rbp
+```
+
+So lets break it down line by line what happens here:
+
+```asm
+; the base pointer, where the execution currently is, is pushed to the stack
+; the program will later know that it will return the execution here
+           0x00400526    55           push rbp
+
+; move current stack pointer to the base pointer register
+           0x00400527    4889e5       mov rbp, rsp
+
+; move our Hello World! string to the edi register
+           0x0040052a    bfc4054000   mov edi, str.HelloWorldwassembly
+
+; call the puts function to print the string from the register
+; the function will pick up the parameter as an argument from the edi register
+           0x0040052f    e8ccfeffff   call sym.imp.puts
+              sym.imp.puts(unk)
+
+; set eax register value to zero, which is our set return value
+           0x00400534    b800000000   mov eax, 0x0
+
+; pop the value we put to the stack earlier back to the base pointer register
+           0x00400539    5d           pop rbp
+
+; finally, return
+           0x0040053a    c3           ret
+```
+
+# Conclusions
+
+Well, this was quite a journey. Here, basics of computer architectures were revisited and reverse engineering principles were studied without too much prior knowledge of them using Radare. It felt a bit silly having a Hello World example here, but I found it still useful to understand and combine system fundamentals together with the syntax and basics of assembly, how Radare is used, and it gave a basic toolset to start diving a bit more deeper from now on.
+
+Radare has also a nice list of other tools that come in handy for binary analysis. These include binary diffing, binary inspection, command line parameters for analyze-all during startup, debugging... But they will be topics for other posts later on.
+
+[Megabeets: A journey into Radare2](https://www.megabeets.net/a-journey-into-radare-2-part-1/) is really good blog post to read through as a next step and I highly recommend it. That post and Disobey event in Finland both inspired me a lot to start studying the topic more. The Megabeets post goes a bit more deep into analysis of a binary and features of Radare that can be used to reverse engineer binaries and explains them in a very good way.
 
 # Sources to study
 
