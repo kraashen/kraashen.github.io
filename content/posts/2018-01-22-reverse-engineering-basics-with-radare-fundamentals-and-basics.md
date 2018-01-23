@@ -154,7 +154,7 @@ The results of certain operations or state are stored to these flags with either
 
 Flags themselves are rarely visible from the assembly itself, but it is useful to understand how they work.
 
-### Heap & Stack - "high" level look
+### Heap & Stack - high level look
 
 Still hanging along? Great! Before going into actual reverse engineering example, a quick look will be taken at how heap and stack memory works in assembly. This is essential to help understanding what is happening in the assembly code and why. I won't dive into too much details here, so I recommend also checking out more detailed sources on memory management as well in the end of this post.
 
