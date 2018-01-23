@@ -203,7 +203,9 @@ So, some key differences:
 
 # Radare?
 
-Enter Radare! It is a cross-platform open source tool and framework for binary analysis that was discussed earlier. In this blog post, I'm talking mainly about Radare2 which is a rewritten project based on the original Radare project. Commonly it seems that people refer to it also just as Radare. Radare has a **really** steep learning curve for reverse engineering, at least for a newbie like me, so I'll break down some basic commands that might be useful to get started tweaking around. I'm still studying it more myself as well, so I'll also try to break down the analysis into understandable chunks.
+Enter Radare! It is a cross-platform open source tool and swiss army knife for binary analysis. In this blog post, I'm talking mainly about Radare2 which is a rewritten project based on the original Radare project. Commonly people refer to it also just as Radare. 
+
+Radare has a **really** steep learning curve for reverse engineering, at least for a newbie like me, so I'll break down some basic commands that might be useful to get started tweaking around. I'm still studying it more myself as well, so I'll also try to break down the analysis into understandable chunks.
 
 Based on Github:
 
