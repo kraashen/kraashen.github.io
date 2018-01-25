@@ -160,7 +160,7 @@ Still hanging along? Great! Before going into actual reverse engineering example
 
 When a software is executed, memory is reserved for the application. Part of this memory is allocated for stack and the maximum size of it is usually fixed by the operating system. Part of the memory is reserved for heap.
 
-How does the stack memory work? It is fairly simple. It's pretty much similar to the [stack data type](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), where values are pushed on top of the stack and popped out in the reverse order to be used as. Like a LIFO queue. It's like blazing-fast bookkeeping and putting stuff aside while doing something else.
+How does the stack memory work? It is fairly simple. It's pretty much similar to the [stack data type](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), where values are pushed on top of the stack and popped out in the reverse order to be used. Like a LIFO queue. It's like blazing-fast bookkeeping and putting stuff aside while doing something else.
 
 Stack size is fixed from the start of the application or thread. If there are multiple threads, they will have their own memory stack. When the stack is reserved, the stack pointer ```ESP``` (32-bit system) will point to the top of the stack. The stack grows downwards from the top to the bottom and stack pointer address follows on the top of the stack. If the pointer runs out of memory address scope and therefore past the top, a [stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow) will occur.
 
