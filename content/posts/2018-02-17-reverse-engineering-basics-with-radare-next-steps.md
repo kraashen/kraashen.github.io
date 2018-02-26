@@ -55,7 +55,7 @@ int main() {
 }
 ```
 
-## Information
+## Information - ra2bin and iI output
 
 As typical, lets check out some generic information about the binary we will be inspecting. Alternatively, you can run ```rabin2 -I [path_to_binary]``` on the command line to get similar information. **Rabin2** is a binary information extractor based on Radare. Within Radare, you can use ```iI``` command to get this information.
 
@@ -90,36 +90,38 @@ subsys   linux
 va       true
 ```
 
-This time, I'm going to attempt to explain further what the output of this command tells us about binaries. I didn't find any information what some of the abbreviations stand for so I'll try my best list them down based on sources I found.
+This time, I'm going to attempt to explain further what the output of this command tells us about binaries. I didn't find really information what some of the abbreviations stand for so I'll try my best list them down based on sources I found.
 
-* **arch**: Architecture for which the binary has been assembled for. 
-* **binsz**: Size of the binary program in bits. 
-* **bintype**: Type of the binary, e.g. an ```elf``` binary is an executable Linux binary. See [Executable and Linkable Format Wiki page] (https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) for more details on linux binaries. Respectively on Windows, this could be Portable Executable (PE) and on OS X a Mach-O binary.
-* **bits**: Bitness of the binary. Commonly 32/64 bit nowadays. 
-* **canary**: Does the binary have stack canary protection enabled.
-* **class**: Class of the binary
-* **crypto**: Boolean flag to tell if the binary is encrypted. This is a method in the binary protection.[This article from Phrack](https://grugq.github.io/docs/phrack-58-05.txt) is a great source to understand binary encryption and its background in more detail.
-* **endian**: Endianness of the binary. See [this Wiki page](https://en.wikipedia.org/wiki/Endianness) for more details, this is useful to understand later on when endianness can be reversed on some binaries.
-* **havecode**: Probably tells if the binary has debug symbols. I compiled the example binary with debug symbols enabled and disabled and this flag changed depending if debug symbols were enabled or not. 
-* **intrp**: No idea.
-* **lang**: Language which the binary was developed in.
-* **linenum**: No idea. 
-* **lsyms**: Also no idea.
-* **machine**: Machine and architecture the binary was compiled on.
-* **maxopsz**: Maximum bit size of an operation the binary includes.
-* **minopsz**: Minimum bit size of an operation the binary includes.
-* **nx**: NX bit is related to executable space protection. This tells us if parts of the memory locations of the binary are marked as non-executable. Processor will then refuse to execute instructions in these memory locations.
-* **os**: Operating system kernel for which the binary has been compiled for.
-* **pcalign**:
-* **pic**: Is the binary [position-independent code](https://en.wikipedia.org/wiki/Position-independent_code). This means that the machine-code can be placed anywhere in the memory and it would execute regardless of its absolute address. This is common e.g. for shared libraries. 
-* **relocs**:
-* **relro**:
-* **rpath**:
-* **static**: A binary can be static or a dynamically linked binary. This tells us which one the binary is.
-* **stripped**: When a binary is stripped, it has the symbols table removed and results in a more compact binary. A non-stripped binary includes more information due to the included symbols table and possible also debug symbols as well.
-* **subsys**: 
-* **va**: 
+|Term           |Explanation|
+|**arch**       |Architecture for which the binary has been assembled for.|
+|**binsz**      | Size of the binary program in bits.|
+|**bintype**    |Type of the binary, e.g. an ```elf``` binary is an executable Linux binary. See [Executable and Linkable Format Wiki page] (https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) for more details on linux binaries. Respectively on Windows, this could be Portable Executable (PE) and on OS X a Mach-O binary.|
+|**bits**       |Bitness of the binary. Commonly 32/64 bit nowadays.|
+|**canary**     |Does the binary have stack canary protection enabled.|
+|**class**      |Class of the binary|
+|**crypto**     | Boolean flag to tell if the binary is encrypted. This is a method in the binary protection.[This article from Phrack](https://grugq.github.io/docs/phrack-58-05.txt) is a great source to understand binary encryption and its background in more detail.|
+|**endian**     |Endianness of the binary. See [this Wiki page](https://en.wikipedia.org/wiki/Endianness) for more details, this is useful to understand later on when endianness can be reversed on some binaries.|
+|**havecode**   |Probably tells if the binary has debug symbols. I compiled the example binary with debug symbols enabled and disabled and this flag changed depending if debug symbols were enabled or not.|
+|**intrp**      |Some sources say this as ```INTERP```, file name of the dynamic linker - the interpreter of the program.|
+|**lang**       |Language which the binary was developed in.|
+|**linenum**    |This indicates the availability of a [line number section](http://www.vxdev.com/docs/vx55man/diab5.0ppc/x-elf_fo.htm#3001084) that allows mapping from source line numbers to machine code addresses.|
+|**lsyms**      |This indicates the availability of symbols list of a binary.|
+|**machine**    |Machine and architecture the binary was compiled on.|
+|**maxopsz**    |Maximum bit size of an operation the binary includes. (?)|
+|**minopsz**    |Minimum bit size of an operation the binary includes. (?)|
+|**nx**         |NX bit is related to executable space protection. This tells us if parts of the memory locations of the binary are marked as non-executable. Processor will then refuse to execute instructions in these memory locations.|
+|**os**         |Operating system kernel for which the binary has been compiled for.|
+|**pcalign**    |This is related to [data structure alignment](https://en.wikipedia.org/wiki/Data_structure_alignment). |
+|**pic**        |Is the binary [position-independent code](https://en.wikipedia.org/wiki/Position-independent_code). This means that the machine-code can be placed anywhere in the memory and it would execute regardless of its absolute address. This is common e.g. for shared libraries.|
+|**relocs**     |Possibly related to concept of [relocatable binary](https://en.wikipedia.org/wiki/Relocation_(computing)). Quite new concept for me. This is related to linking and loading, but how I understood this is that if the binary contains relocation section directives. A dynamically linked binary refers to functions that are located in shared library binaries for instance. Definitely needs further studying before I make too concrete much assumptions :P|
+|**relro**      |Now continuing the previous topic, this might be related to relocation read-only property of a binary file. This way linker resolves dynamically linked functions at the beginning of execution.|
+|**rpath**      |[Rpath](https://en.wikipedia.org/wiki/Rpath) can be a hard-coded value in binary headers that tell the path to find the required linked libraries, overriding or supplementing the system default paths.|
+|**static**     |A binary can be static or a dynamically linked binary. This tells us which one the binary is.|
+|**stripped**   |When a binary is stripped, it has the symbols table removed and results in a more compact binary. A non-stripped binary includes more information due to the included symbols table and possible also debug symbols as well.|
+|**subsys**     |Subsystem to be invoked for this executable.|
+|**va**         |Might be virtual address as a boolean? This could then mean that the binary includes or supports virtual addressing.|
 
+This was a section that single-handedly took most of the time of this post - studying binary headers - and I feel like I have not even barely scratched the surface of things to come. I am not completely certain of all these properties and I don't understand in depth how linkers and compilers work to safely assume all of these are correct. So, if there is any feedback related to these, I'd gladly fix my understanding of these.
 
 ## When software starts...
 
