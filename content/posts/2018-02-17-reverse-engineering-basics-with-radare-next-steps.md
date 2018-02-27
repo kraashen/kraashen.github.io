@@ -90,7 +90,7 @@ subsys   linux
 va       true
 ```
 
-This time, I'm going to attempt to explain further what the output of this command tells us about binaries. I didn't find really information what some of the abbreviations stand for so I'll try my best list them down based on sources I found.
+This time, I'm going to attempt to explain further what the output of this command tells us about binaries. I'll try my best list them down based on sources I found.
 
 |Term           |Explanation|
 |**arch**       |Architecture for which the binary has been assembled for.|
@@ -121,7 +121,11 @@ This time, I'm going to attempt to explain further what the output of this comma
 |**subsys**     |Subsystem to be invoked for this executable.|
 |**va**         |Might be virtual address as a boolean? This could then mean that the binary includes or supports virtual addressing.|
 
-This was a section that single-handedly took most of the time of this post - studying binary headers - and I feel like I have not even barely scratched the surface of things to come. I am not completely certain of all these properties and I don't understand in depth how linkers and compilers work to safely assume all of these are correct. So, if there is any feedback related to these, I'd gladly fix my understanding of these.
+This was a section that single-handedly took most of the time of this post - studying binary headers. I feel like I have not even barely scratched the surface of things to come. I don't understand in depth how linkers and compilers work to safely assume all of these are correct. So, if there is any feedback related to these, I'd gladly fix my understanding of these.
+
+## Frames and symbols
+
+* Describe frames and symbols
 
 ## When software starts...
 
@@ -170,7 +174,7 @@ Okay, so here we seem to have some brand new information. Lets go through this a
 |           0x00400550      31ed           xor ebp, ebp
 ```
 
-The base pointer register is zeroed at the initialization. Performing a XOR operation with the same value sets the value to zero. If you don't know what is happening at this point, it might be better to read some boolean algebra before continuing forward!
+The base pointer register is zeroed at the initialization. This is the point where the outermost frame of the application is marked. Performing a XOR operation with the same value sets the value to zero. If you don't know what is happening at this point, it might be better to read some boolean algebra before continuing forward!
 
 ```
 |           0x00400552      4989d1         mov r9, rdx
@@ -183,23 +187,34 @@ The base pointer register is zeroed at the initialization. Performing a XOR oper
 |           0x00400566      48c7c1f00640.  mov rcx, sym.__libc_csu_init ; 0x4006f0 ; "AWAVA\x89\xffAUATL\x8d%\x0e\x07 "
 ```
 
-Descriptions, descriptions...
-* Register values moved around
-* Source index register popped. Why? And where did the value come from? Probably some architecture related stuff.
-* Stack pointer value, uh, put to the... top. Yes.
-* rax and rsp pushed to the initialized stack.
+This section will be strongly focused on Linux-spesific startup of a software. [This website](http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html) by Patrick Horgan was a great source to study more about the beginning of software execution.
+
+To summarize it in our context, in this phase, data is first initialized to registers. Then, the value from the top of the stack, which is ```argc``` (argument count), is popped to ```rsi``` register. Now, as we know, binaries also have argument values. As the argument count was popped from the stop of the stack, the stack pointer is pointing to ```argv``` (argument vector). The address of these is moved to ```rdx``` data register and ```rsp``` is not moved. Remember how stack works? If you need to fresh your memory, check the [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics)!
+
+Next, the stack pointer is masked with a long mask, clearing the lowest 4 bits. This is done to align the stack pointer for memory and cache efficiency, and certain operations.
+
+Then, couple of pushes. The values from the ```rax``` is pushed to the stack along with the stack pointer ```rsp``` to store the return address after the main function is executed.
+
+```__libc_csu_fini``` is the destructor of the application. ```__libc_csu_init``` is the constructor of our application. C level constructor and destructor to be exact. These are methods that are executed both before and after the our application finishes by the ```__libc_start_main``` which will come next.  
 
 ```
 |           0x0040056d      48c7c7510640.  mov rdi, sym.main           ; 0x400651
 \           0x00400574      e897ffffff     call sym.imp.__libc_start_main ; int __libc_start_main(func main, int argc, char **ubp_av, func init, func fini, func rtld_fini, void *stack_end)
 ```
 
-Here, the address of our main function is loaded to the destination index register, which is picked by this function ```__libc_start_main```. 
+Here, the address of the main function is moved to ```rdi```. Based on this, the ```__libc_start_main``` will load the arguments for it - destructor, constructor, aligned stack pointer, and main function - from the registers. Like it was explained before, it depends e.g. on the architecture if function arguments are passed using the stack or the registers.
 
+Finally, the ```__libc_start_main``` is called and our main function will be executed. This low-level C function handles things such as:
+
+* Registering constructor and destructor for the application
+* Calls the ```main()``` with the corresponding arguments
+* Calls exit when the main function returns
+
+What next? Lets check out how we can navigate further in the disassembled codespace.
 
 ## Navigating around - Flags and strings in Radare
 
-* iz
+* iz <- tell at the end :P
 * ih
 * is
 * ic
@@ -280,6 +295,8 @@ Well, there it is! Now you should have some basic understanding of basics of com
 * Rust binaries seemed interesting and based on a quick look they can be readable with minor effort as well.
 * Use your favourite search engine to look for capture-the-flag exercises and challenges, as well as Radare tutorials. CTF challenges are good way to start prepping your puzzle skills together with binary analysis and can really twist your brain around. 
 
-I'll try to post more detailed findings here as well if they appear to be generic related to use of Radare.
+I'll try to post more detailed findings or peculiar things of Radare when I see them.
 
 Good hunting :-)
+
+## References
