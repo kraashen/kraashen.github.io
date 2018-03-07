@@ -269,6 +269,12 @@ sym.main 0x400683 [call] call sym.imp.__isoc99_scanf
 
 Here we can see that the main function is handling pretty much all that have been imported to the application.
 
+## Visual Graphs
+
+Radare has a visual mode ```VV```, which is a user-friendlier way of exploring the binary data. It uses ```HJKL``` keys for navigation in the data and code. If you have used Vim, you'll be comfortable with the key bindings. You can always exit back to command line using ```q``` key. To navigate between different visual views, use ```p/P``` keys to go to the next/previous view. In one view, you can also have an ASCII flowchart of the binary logic.
+
+[insert screenshot here combining the views]
+
 ## Disassembled code
 
 Time to dive into the original challenge! Lets seek to the main function and print its disassembled form.
@@ -339,6 +345,14 @@ Seems like a small application can have much happening, so lets break it down to
 |              ; DATA XREF from 0x0040056d (entry0)
 ```
 
+This comment section in the beginning of the disassembled main function tells us that the function has three local variables that are in the scope of the function, indicated by the ```local_``` prefix. They are located in the stack at offset of ```-0x[hexvalue]```. Also the ```DATA XREF``` tell that the function was cross referenced from the given address. 
+
+```
+> pdf @ 0x0040056d
+``` 
+
+which outputs the entrypoint function we analyzed earlier. You can read more about cross references from [here](http://resources.infosecinstitute.com/ida-cross-references-xrefs/).
+
 ```asm
 |           0x00400651      55             push rbp
 |           0x00400652      4889e5         mov rbp, rsp
@@ -347,6 +361,8 @@ Seems like a small application can have much happening, so lets break it down to
 |           0x00400662      488945f8       mov qword [local_8h], rax
 |           0x00400666      31c0           xor eax, eax
 ```
+
+Nothing unusual here. Base pointer address is pushed to the stack to store the point where to resume the execution from and previous stack pointer address is put into to the base pointer address. Then, stack pointer is moved to reserve space for the upcoming variables (remember, stack "grows" downwards in the address space - hence the reduction). This is common way of function "prologues" in assembly.
 
 ```asm
 |       .-> 0x00400668      bf83074000     mov edi, str.Enter_password: ; 0x400783 ; "Enter password: "
@@ -387,12 +403,6 @@ Seems like a small application can have much happening, so lets break it down to
 |     `---> 0x004006df      c9             leave
 \           0x004006e0      c3             ret
 ```
-
-## Visual Graphs
-
-Radare has a visual mode ```VV```, which is a user-friendlier way of exploring the binary data. It uses ```HJKL``` keys for navigation in the data and code. If you have used Vim, you'll be comfortable with the key bindings. You can always exit back to command line using ```q``` key. To navigate between different visual views, use ```p/P``` keys to go to the next/previous view. In one view, you can also have an ASCII flowchart of the binary logic.
-
-[insert screenshot here combining the views]
 
 ## Function calls and flow
 
@@ -448,7 +458,7 @@ Still, this can be a very useful command to remember as well when debugging or r
 
 ## Extra: Stack canaries?
 
-In the original lab exercise, one thing caughy my eye: it was compiled with stack protection enabled, which is used by e.g. as a gcc flag ```-fstack-protect-all```. What are stack canaries? [This blog post](https://xorl.wordpress.com/2010/10/14/linux-glibc-stack-canary-values/) was an excellent wrap-up of the topic.
+In the original lab exercise, one thing caught my eye: it was compiled with stack protection enabled, which is used by e.g. as a gcc flag ```-fstack-protect-all```. This resulted in an interesting program initialization assembly. What are stack canaries? [This blog post](https://xorl.wordpress.com/2010/10/14/linux-glibc-stack-canary-values/) was an excellent wrap-up of the topic.
 
 ## Conclusions
 
