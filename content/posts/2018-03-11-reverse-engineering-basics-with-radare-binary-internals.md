@@ -19,12 +19,12 @@ The goal is to reverse engineer a simple binary and understanding of the flow of
 
 ## Setup
 
-I have put the C code of this exercise to Gist. You can go and compile it yourself 
+The C code of this exercise is [available on Gist](https://gist.github.com/anerani/4dc0d684d2f22939eb63bc76cf591e49). You can go and compile it yourself 
 or you can download the provided binary first which I have included to this post. This exercise is actually based on one [Lab exercise I found from Github](https://github.com/s4n7h0/Practical-Reverse-Engineering-using-Radare2/). 
 I decided to do a quick copy and a bit of rewriting of the Lab task as I wanted to avoid sploiling the 
 original Lab exercise. So after reading, you can also check them out as well. :-) But for now, I'll focus on keeping the binary as black box'ish.
 
-[Download the binary](./exercise.bin)
+[Download the binary](/examples/exercise.bin)
 
 ## Information - ra2bin and iI output
 
@@ -196,7 +196,9 @@ Finally, the ```__libc_start_main``` is called and our main function will be exe
 
 What next? Lets check out how we can navigate further in the disassembled codespace.
 
-## Navigating around - Flags and info in Radare
+## Navigating around
+
+### Flags and info in Radare
 
 Now that we know what is happening in the entrypoint of the application. The previously presented entrypoint is rather common for ELF binaries. Next steps would be to analyze a bit what our binary has eaten. There are various commands where to start from, and here we'll go through only couple of them.
 
@@ -251,13 +253,15 @@ sym.main 0x400683 [call] call sym.imp.__isoc99_scanf
 
 Here we can see that the main function is handling pretty much all that have been imported to the application.
 
-## Visual Graphs
+### Visual Graphs
 
-Radare has a visual mode ```VV```, which is a user-friendlier way of exploring the binary data. It uses ```HJKL``` keys for navigation in the data and code. If you have used Vim, you'll be comfortable with the key bindings. You can always exit back to command line using ```q``` key. To navigate between different visual views, use ```p/P``` keys to go to the next/previous view. In one view, you can also have an ASCII flowchart of the binary logic.
+Radare has a visual mode ```VV``` and ```V```, which are user-friendlier ways of exploring the binary data. It uses ```HJKL``` keys for navigation in the data and code. If you have used Vim, you'll be comfortable with the key bindings. You can always exit back to command line using ```q``` key. To navigate between different visual views, use ```p/P``` keys to go to the next/previous view. In one view, you can also have an ASCII flowchart of the binary logic showing also conditional branching logic between different sections of the code.
 
-[insert screenshot here combining the views]
+![](/img/Vflow1.PNG)
+![](/img/Vflow2.PNG)
+![](/img/VVflow1.PNG)
 
-## Disassembled code
+## Disassembled main function
 
 Time to dive into the main function! Lets seek to it and print its disassembled form.
 
@@ -355,7 +359,7 @@ Alright, onwards.
 
 Base pointer is pushed to the stack to store the point where to resume the execution from and previous stack pointer value is put into to the base pointer register. Then, stack pointer is moved to reserve space for the upcoming variables (remember, stack "grows" downwards in the address space - hence the reduction). This is common way of function "prologues" in assembly.
 
-Also it seems that a value from ```fs``` offset ```0x28``` is moved to ```rax```. ```qword``` means that this operand is an address size of a quad-word (word is 2 bytes = 8 bytes long). Then, the value at ```rax``` is loaded to local variable. What do the brackets mean? Effectively with ```mov``` opcodes, brackets mean that "dereference the value at the given address". Finally, the ```eax``` register is zeroed.
+Also it seems that a value from ```fs``` offset ```0x28``` is moved to ```rax```. ```qword``` means that this operand has a size of a quad-word (word is 2 bytes = 8 bytes long). Then, the value at ```rax``` is loaded to local variable. What do the brackets mean? Effectively with ```mov``` opcodes, brackets mean that "dereference the value at the given address". Finally, the ```eax``` register is zeroed.
 
 ```asm
 |       .-> 0x00400668      bf83074000     mov edi, str.Enter_password: ; 0x400783 ; "Enter password: "
@@ -479,9 +483,9 @@ What are stack canaries? [This blog post](https://xorl.wordpress.com/2010/10/14/
 
 ## Conclusions
 
-Well, there it is! Now you should have some basic understanding of basics of computer architectures, memory handling in assembly, and how to navigate around Radare, so that you can start doing reverse engineering on software binaries!
+Well, there it is! Understanding of basics of computer architectures, memory handling in assembly were visited, and how to navigate and use basic functionalities of Radare. Time to dive into reverse engineering on real-world software binaries or write some own to practice with!
 
-You could for example use your favourite search engine to look for capture-the-flag exercises and challenges, as well as Radare tutorials. CTF challenges are good way to start prepping your puzzle skills together with binary analysis and can really twist your brain around.
+One options would be to look with a search engine for capture-the-flag exercises and challenges, as well as excellent Radare tutorials out there. CTF challenges are good way to start prepping puzzle skills hand-in-hand with binary analysis and can really twist your brains.
 
 ## References
 
