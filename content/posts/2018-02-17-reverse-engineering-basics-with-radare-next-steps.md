@@ -1,17 +1,17 @@
 ---
-title: "Reverse Engineering With Radare - Basic Steps Continued"
+title: "Reverse Engineering With Radare - Basic of binary internals"
 date: 2018-02-17
 draft: true
 ---
 
-In my [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics), basics and fundamentals for reverse engineering software were discussed. This time I thought about writing a bit more about getting a bit further in inspecting and understanding software binaries. In this post, we'll take a look at one password guess reverse engineering challenge using Radare.
+In the [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics), basics and fundamentals for reverse engineering software were discussed. This time I thought about writing a bit more about getting a bit further in inspecting and understanding software binaries. In this post, we'll take a look at one password guess reverse engineering challenge using Radare.
 
 ## Goals
 
 The goal is to reverse engineer a simple binary and understanding of the flow of disassembled code, how to read it, and understand how it works. We'll take a look at concepts such as:
 
 * The execution of a program: What happens when software is run?
-* A brief look at what are frames and symbols
+* A brief look at what are symbols, sections, and segments
 * Checking flags and strings in Radare
 * Understanding program flow and disassembled code
 * Visual graphs
@@ -19,7 +19,7 @@ The goal is to reverse engineer a simple binary and understanding of the flow of
 
 ## Setup
 
-I have put the C code of this exercise to Gist. You can go and check it out yourself 
+I have put the C code of this exercise to Gist. You can go and compile it yourself 
 or you can download the provided binary first which I have included to this post. This exercise is actually based on one [Lab exercise I found from Github](https://github.com/s4n7h0/Practical-Reverse-Engineering-using-Radare2/). 
 I decided to do a quick copy and a bit of rewriting of the Lab task as I wanted to avoid sploiling the 
 original Lab exercise. So after reading, you can also check them out as well. :-) But for now, I'll focus on keeping the binary as black box'ish.
@@ -28,7 +28,7 @@ original Lab exercise. So after reading, you can also check them out as well. :-
 
 ## Information - ra2bin and iI output
 
-As typical, lets check out some generic information about the binary we will be inspecting. Alternatively, you can run ```rabin2 -I [path_to_binary]``` on the command line to get similar information. **Rabin2** is a binary information extractor based on Radare. Within Radare, you can use ```iI``` command to get this information.
+As usual, let's check out some generic information about the binary we will be inspecting. Alternatively, you can run ```rabin2 -I [path_to_binary]``` on the command line to get similar information. **Rabin2** is a binary information extractor based on Radare. Within Radare, you can use ```iI``` command to get this information.
 
 ```
 [0x00000000]> iI
@@ -61,7 +61,7 @@ subsys   linux
 va       true
 ```
 
-This time, I'm going to attempt to explain further what the output of this command tells us about binaries. I'll try my best list them down based on sources I found.
+This time though, I'm going to attempt to explain further what the output of this command tells us about binaries. I'll try my best list them down based on sources I found.
 
 |Term|Explanation|
 |:--:|-----------|
@@ -99,7 +99,7 @@ I also put this one available to Gist as a cheat sheet: https://gist.github.com/
 
 ## Symbols, sections, and segments
 
-When you write software and compile it to a binary, the compiler assigns labels to parts of the code you have written. For instance, your functions are labeled. In this case, for instance, ```main``` is a label assigned to the binary representation of the code. These labels are called *symbols*. When these functions are called or being referenced to, they need to be looked up by the linker either by static linking (compile-time linking) or dynamic linking (while running the software). Symbols are needed for the linker to know where the code can be found.
+When you write software and compile it to a binary, the compiler assigns labels to parts of the code you have written. For instance, your functions are labeled. For instance, ```main``` is a label assigned to the binary representation of the code. These labels are called *symbols*. When these functions are called or being referenced to, they need to be looked up by the linker either by static linking (compile-time linking) or dynamic linking (while running the software). Symbols are needed for the linker to know where the code can be found.
 
 With ```iS``` command you can print the sections of the binary. Try it out! There are a handful of sections in the binary but let's list down some of the useful ones to understand to begin with:
 
@@ -173,13 +173,13 @@ The base pointer register is zeroed at the initialization. This is the point whe
 
 This section will be strongly focused on Linux-spesific startup of a software. [This website](http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html) by Patrick Horgan is a great source to study more about the beginning of software execution.
 
-To summarize it in our context, in this phase, data is first initialized to registers. Then, the value from the top of the stack, which is ```argc``` (argument count), is popped to ```rsi``` register. Now, as we know, binaries also have argument values. As the argument count was popped from the stop of the stack, the stack pointer is pointing to ```argv``` (argument vector). The address of these is moved to ```rdx``` data register and ```rsp``` is not moved. Remember how stack works? If you need to fresh your memory, check the [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics)!
+In this phase, data is first initialized to registers. Then, the value from the top of the stack, which is ```argc``` (argument count), is popped to ```rsi``` register. Binaries also have argument values. As the argument count was popped from the stop of the stack, the stack pointer is pointing to ```argv``` (argument vector). The address of these is moved to ```rdx``` data register and ```rsp``` is not moved. Remember how stack works? If you need to fresh your memory, check the [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics)!
 
 Next, the stack pointer is masked with a long mask, clearing the lowest 4 bits. This is done to align the stack pointer for memory and cache efficiency, and certain operations.
 
 Then, couple of pushes. The values from the ```rax``` is pushed to the stack along with the stack pointer ```rsp``` to store the return address after the main function is executed.
 
-```__libc_csu_fini``` is the destructor of the application. ```__libc_csu_init``` is the constructor of our application. C level constructor and destructor to be exact. These are methods that are executed both before and after the our application finishes by the ```__libc_start_main``` which will come next.  
+```__libc_csu_fini``` is the destructor of the application. ```__libc_csu_init``` is the constructor of our application. These are C-level constructor and destructor, to be exact. These are methods that are executed both before and after the our application finishes after the ```__libc_start_main``` which will come next.  
 
 ```
 |           0x0040056d      48c7c7510640.  mov rdi, sym.main           ; 0x400651
@@ -220,7 +220,7 @@ You can list the so called flag space with ```fs```
 4    6 * imports
 ```
 
-In Radare, semi-colon ```;``` can be used to combine multiple commands together. You could think it like UNIX pipes. Now we can pick a flag space and use plain ```f``` to list the flag in that specified flag space:
+In Radare, semi-colon ```;``` can be used to combine multiple commands to same line. Now we can pick a flag space and use plain ```f``` to list the flag in that specified flag space:
 
 ```
 > fs imports; f
@@ -259,7 +259,7 @@ Radare has a visual mode ```VV```, which is a user-friendlier way of exploring t
 
 ## Disassembled code
 
-Time to dive into the original challenge! Lets seek to the main function and print its disassembled form.
+Time to dive into the main function! Lets seek to it and print its disassembled form.
 
 ```asm
 > s main
@@ -327,7 +327,7 @@ Lets break it down to steps:
 |              ; DATA XREF from 0x0040056d (entry0)
 ```
 
-This comment section in the beginning of the disassembled main function tells us that the function has three local variables that are in the scope of the function, indicated by the ```local_``` prefix. They are located in the stack at offset of ```-0x[hexvalue]```. Also the ```DATA XREF``` tell that the function was cross referenced from the given address. 
+This comment section in the beginning of the disassembled main function tells us that the function has three local variables that are in the scope of the function, indicated by the ```local_``` prefix. They are located in the offset of ```rbp-0x[hexvalue]```. Also the ```DATA XREF``` tell that the function was cross referenced from the given address. 
 
 ```
 > pdf @ 0x0040056d
@@ -342,7 +342,7 @@ var local_20h = 0xffffffffffffffe0  0xffffffffffffffff   ........
 var local_24h = 0xffffffffffffffdc  0xffffffffffffffff   ........
 ```
 
-Next, lets get back to the main function.
+Alright, onwards.
 
 ```asm
 |           0x00400651      55             push rbp
@@ -353,9 +353,9 @@ Next, lets get back to the main function.
 |           0x00400666      31c0           xor eax, eax
 ```
 
-Base pointer is pushed to the stack to store the point where to resume the execution from and previous stack pointer address is put into to the base pointer address. Then, stack pointer is moved to reserve space for the upcoming variables (remember, stack "grows" downwards in the address space - hence the reduction). This is common way of function "prologues" in assembly.
+Base pointer is pushed to the stack to store the point where to resume the execution from and previous stack pointer value is put into to the base pointer register. Then, stack pointer is moved to reserve space for the upcoming variables (remember, stack "grows" downwards in the address space - hence the reduction). This is common way of function "prologues" in assembly.
 
-ALso it seems that a value from ```fs``` segment register offset ```0x28``` is moved to ```rax```. ```qword``` means that this operand is an address size of a quad-word (word is 2 bytes = 8 bytes long). Finally, the ```eax``` register is zeroed.
+Also it seems that a value from ```fs``` segment register offset ```0x28``` is moved to ```rax```. ```qword``` means that this operand is an address size of a quad-word (word is 2 bytes = 8 bytes long). Finally, the ```eax``` register is zeroed.
 
 ```asm
 |       .-> 0x00400668      bf83074000     mov edi, str.Enter_password: ; 0x400783 ; "Enter password: "
@@ -369,9 +369,9 @@ ALso it seems that a value from ```fs``` segment register offset ```0x28``` is m
 |       :   0x0040068d      e8b4ffffff     call sym.get_secret
 ```
 
-The string "Enter password: " is moved to ```edi``` and an imported function puts is called, which outputs the string in the stdout. Then, the computed address of a local variable is set in ```rax```. ```lea```, **l**oad **e**ffective **a**ddress works pretty much similarly as ```mov``` but instead of moving the value in the address, the calculated effective address is moved to the target register instead.
+The string "Enter password: " is moved to ```edi``` and an imported function puts is called, which outputs the string to the ```stdout```. Then, the computed address of a local variable is set in ```rax```. ```lea```, **l**oad **e**ffective **a**ddress works pretty much similarly as ```mov``` but instead of moving the value in the address, the calculated effective address is moved to the target register instead.
 
-At the end, ```scanf``` is called for user input and ```get_secret```, which seems to be interesting based on its name, is used to get some value. 
+At the end, ```scanf``` is called for user input. After that, ```get_secret``` is called, which seems to be interesting based on its name. 
 
 
 ```asm
@@ -419,7 +419,7 @@ Rest of the code should be now quite understandable based on some of the basic p
 
 ## Finding the secret
 
-Alright, now we have seen the main function and know how to navigate around a bit. There are multiple ways of doing this of course, but for practice lets check out what the ```get_secret()``` function does as it sounds interesting.
+Now we have seen the main function and know how to navigate around a bit. There are multiple ways of doing this of course, but for practice lets check out what the ```get_secret()``` function does as it sounds interesting.
 
 ```asm
 > s sym.get_secret
