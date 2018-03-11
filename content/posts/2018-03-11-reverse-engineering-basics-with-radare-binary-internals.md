@@ -1,6 +1,6 @@
 ---
-title: "Reverse Engineering With Radare - Basic of binary internals"
-date: 2018-02-17
+title: "Reverse Engineering With Radare - Binary internals"
+date: 2018-03-11
 draft: true
 ---
 
