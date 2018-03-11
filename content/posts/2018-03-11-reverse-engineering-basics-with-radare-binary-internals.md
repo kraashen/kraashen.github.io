@@ -21,7 +21,7 @@ The goal is to reverse engineer a simple binary and understanding of the flow of
 
 The C code of this exercise is [available on Gist](https://gist.github.com/anerani/4dc0d684d2f22939eb63bc76cf591e49). You can go and compile it yourself 
 or you can download the provided binary first which I have included to this post. This exercise is actually based on one [Lab exercise I found from Github](https://github.com/s4n7h0/Practical-Reverse-Engineering-using-Radare2/). 
-I decided to do a quick similar exervice and rewrite it a bitas I wanted to avoid sploiling the 
+I decided to do a similar exercise based on it and rewriting the original just a bit to avoid sploiling the 
 original Lab exercise if, for instance, you'd like to do it later yourself. So after reading, you can also check them out as well. :-) But for now, I'll focus on keeping the binary as black box'ish.
 
 [Download the binary](/examples/exercise.bin)
