@@ -494,7 +494,7 @@ One options would be to look with a search engine for capture-the-flag exercises
 * [Executable and Linking Format (ELF)](http://www.vxdev.com/docs/vx55man/diab5.0ppc/x-elf_fo.htm#3001084)
 * [Wikipedia: Data structure alignment](https://en.wikipedia.org/wiki/Data_structure_alignment)
 * [Wikipedia: Position-independent code](https://en.wikipedia.org/wiki/Position-independent_code)
-* [Wikipedia: Relocatable binary](https://en.wikipedia.org/wiki/Relocation_(computing)
+* [Wikipedia: Relocatable binary](https://en.wikipedia.org/wiki/Relocation_(computing))
 * [Wikipedia: Rpath](https://en.wikipedia.org/wiki/Rpath)
 * [Wikipedia: Endianness](https://en.wikipedia.org/wiki/Endianness)
 * [Wikipedia: Executable and Linkable Format](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format)
