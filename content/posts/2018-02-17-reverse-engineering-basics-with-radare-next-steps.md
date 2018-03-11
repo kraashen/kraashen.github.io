@@ -351,7 +351,16 @@ This comment section in the beginning of the disassembled main function tells us
 > pdf @ 0x0040056d
 ``` 
 
-which outputs the entrypoint function we analyzed earlier. You can read more about cross references from [here](http://resources.infosecinstitute.com/ida-cross-references-xrefs/).
+which outputs the entrypoint function we analyzed earlier. You can read more about cross references from [here](http://resources.infosecinstitute.com/ida-cross-references-xrefs/). With **a**nalyze **f**unction **v**ariable **d**isplay command, we could check out the values of the local variables e.g. when debugging the application and setting breakpoints during the process.
+
+```asm
+> afvd
+var local_8h = 0xfffffffffffffff8  0xffffffffffffffff   ........
+var local_20h = 0xffffffffffffffe0  0xffffffffffffffff   ........
+var local_24h = 0xffffffffffffffdc  0xffffffffffffffff   ........
+```
+
+Next, lets get back to the main function.
 
 ```asm
 |           0x00400651      55             push rbp
