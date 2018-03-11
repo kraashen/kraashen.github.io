@@ -373,7 +373,7 @@ Also it seems that a value from ```fs``` offset ```0x28``` is moved to ```rax```
 |       :   0x0040068d      e8b4ffffff     call sym.get_secret
 ```
 
-The string "Enter password: " is moved to ```edi``` and an imported function puts is called, which outputs the string to the ```stdout```. Then, the computed address of a local variable is set in ```rax```. ```lea```, **l**oad **e**ffective **a**ddress works pretty much similarly as ```mov``` but instead of loading or moving the value, the calculated effective address is moved to the target register instead, which can be dereferenced or moved later.
+The string "Enter password: " is moved to ```edi``` and an imported function puts is called, which outputs the string to the ```stdout```. Then, the computed address of a local variable is set in ```rax```. ```lea```, **l**oad **e**ffective **a**ddress works pretty much similarly as ```mov``` but instead of loading or moving the value, the calculated effective address is moved to the target register instead, which can be dereferenced later.
 
 At the end, ```scanf``` is called for user input. After that, ```get_secret``` is called, which seems to be interesting based on its name. 
 
