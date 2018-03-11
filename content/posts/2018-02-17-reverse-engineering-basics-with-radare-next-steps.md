@@ -355,7 +355,7 @@ Alright, onwards.
 
 Base pointer is pushed to the stack to store the point where to resume the execution from and previous stack pointer value is put into to the base pointer register. Then, stack pointer is moved to reserve space for the upcoming variables (remember, stack "grows" downwards in the address space - hence the reduction). This is common way of function "prologues" in assembly.
 
-Also it seems that a value from ```fs``` segment register offset ```0x28``` is moved to ```rax```. ```qword``` means that this operand is an address size of a quad-word (word is 2 bytes = 8 bytes long). Finally, the ```eax``` register is zeroed.
+Also it seems that a value from ```fs``` offset ```0x28``` is moved to ```rax```. ```qword``` means that this operand is an address size of a quad-word (word is 2 bytes = 8 bytes long). Then, the value at ```rax``` is loaded to local variable. What do the brackets mean? Effectively with ```mov``` opcodes, brackets mean that "dereference the value at the given address". Finally, the ```eax``` register is zeroed.
 
 ```asm
 |       .-> 0x00400668      bf83074000     mov edi, str.Enter_password: ; 0x400783 ; "Enter password: "
@@ -369,7 +369,7 @@ Also it seems that a value from ```fs``` segment register offset ```0x28``` is m
 |       :   0x0040068d      e8b4ffffff     call sym.get_secret
 ```
 
-The string "Enter password: " is moved to ```edi``` and an imported function puts is called, which outputs the string to the ```stdout```. Then, the computed address of a local variable is set in ```rax```. ```lea```, **l**oad **e**ffective **a**ddress works pretty much similarly as ```mov``` but instead of moving the value in the address, the calculated effective address is moved to the target register instead.
+The string "Enter password: " is moved to ```edi``` and an imported function puts is called, which outputs the string to the ```stdout```. Then, the computed address of a local variable is set in ```rax```. ```lea```, **l**oad **e**ffective **a**ddress works pretty much similarly as ```mov``` but instead of loading or moving the value, the calculated effective address is moved to the target register instead, which can be dereferenced or moved later.
 
 At the end, ```scanf``` is called for user input. After that, ```get_secret``` is called, which seems to be interesting based on its name. 
 
