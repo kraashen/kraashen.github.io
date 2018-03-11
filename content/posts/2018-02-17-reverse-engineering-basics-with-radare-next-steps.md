@@ -8,14 +8,13 @@ In my [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundam
 
 ## Goals
 
-The aim of this post is to reverse engineer yet again a simple binary and get going with understanding the flow of disassembled code and how to read it and understand how it works. We'll take a look at concepts such as:
+The goal is to reverse engineer a simple binary and understanding of the flow of disassembled code, how to read it, and understand how it works. We'll take a look at concepts such as:
 
-* The execution of a program
+* The execution of a program: What happens when software is run?
 * A brief look at what are frames and symbols
-* Flags, strings in Radare
+* Checking flags and strings in Radare
 * Understanding program flow and disassembled code
 * Visual graphs
-* Function calls and flow
 * Extra: What are stack canaries on Linux?
 
 ## Setup
@@ -26,35 +25,6 @@ I decided to do a quick copy and a bit of rewriting of the Lab task as I wanted 
 original Lab exercise. So after reading, you can also check them out as well. :-) But for now, I'll focus on keeping the binary as black box'ish.
 
 [Download the binary](./exercise.bin)
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-char* get_secret() {
-    return "s3cr37p455w0rd";
-}
-
-int main() {
-    char password[16];
-
-    while (1) {
-        
-        printf("Enter password: \n");
-        scanf("%s", password);
-
-        int is_correct = strcmp(password, get_secret());
-
-        if (is_correct == 0) {
-            printf("Correct!\n");
-            break;
-        } else {
-            printf("Wrong!\n");
-        }
-    }
-    return 0;
-}
-```
 
 ## Information - ra2bin and iI output
 
@@ -125,9 +95,21 @@ This time, I'm going to attempt to explain further what the output of this comma
 
 This was a section that single-handedly took most of the time of this post - studying binary headers. I feel like I have not even barely scratched the surface of things to come. I don't understand in depth how linkers and compilers work to safely assume all of these are correct. So, if there is any feedback related to these, I'd gladly fix my understanding of these.
 
-## Frames and symbols
+I also put this one available to Gist as a cheat sheet: https://gist.github.com/anerani/38fbb33edff32027ebabdda83a089769
 
-* Describe frames and symbols
+## Symbols, sections, and segments
+
+When you write software and compile it to a binary, the compiler assigns labels to parts of the code you have written. For instance, your functions are labeled. In this case, for instance, ```main``` is a label assigned to the binary representation of the code. These labels are called *symbols*. When these functions are called or being referenced to, they need to be looked up by the linker either by static linking (compile-time linking) or dynamic linking (while running the software). Symbols are needed for the linker to know where the code can be found.
+
+With ```iS``` command you can print the sections of the binary. Try it out! There are a handful of sections in the binary but let's list down some of the useful ones to understand to begin with:
+
+* **.interp**: The name of the linker.
+* **.text**: Code of the software is in this segment.
+* **.rodata**: Read-only data (e.g. initialized hard-coded variables)
+* **.data**: Initialized data, including variables that have pre-defined values and that can be modified.
+* **.bss**: Uninitialized data, including global and static variables that are initialized to zero or don't have explicit initialization.
+
+The key difference between a section and a segment is, that a section is used at link-time of the program and a section is used at run-time.
 
 ## When software starts...
 
@@ -189,7 +171,7 @@ The base pointer register is zeroed at the initialization. This is the point whe
 |           0x00400566      48c7c1f00640.  mov rcx, sym.__libc_csu_init ; 0x4006f0 ; "AWAVA\x89\xffAUATL\x8d%\x0e\x07 "
 ```
 
-This section will be strongly focused on Linux-spesific startup of a software. [This website](http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html) by Patrick Horgan was a great source to study more about the beginning of software execution.
+This section will be strongly focused on Linux-spesific startup of a software. [This website](http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html) by Patrick Horgan is a great source to study more about the beginning of software execution.
 
 To summarize it in our context, in this phase, data is first initialized to registers. Then, the value from the top of the stack, which is ```argc``` (argument count), is popped to ```rsi``` register. Now, as we know, binaries also have argument values. As the argument count was popped from the stop of the stack, the stack pointer is pointing to ```argv``` (argument vector). The address of these is moved to ```rdx``` data register and ```rsp``` is not moved. Remember how stack works? If you need to fresh your memory, check the [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics)!
 
@@ -333,7 +315,7 @@ Time to dive into the original challenge! Lets seek to the main function and pri
 \           0x004006e0      c3             ret
 ```
 
-Seems like a small application can have much happening, so lets break it down to steps:
+Lets break it down to steps:
 
 ```asm
             ;-- main:
@@ -371,7 +353,9 @@ Next, lets get back to the main function.
 |           0x00400666      31c0           xor eax, eax
 ```
 
-Nothing unusual here. Base pointer address is pushed to the stack to store the point where to resume the execution from and previous stack pointer address is put into to the base pointer address. Then, stack pointer is moved to reserve space for the upcoming variables (remember, stack "grows" downwards in the address space - hence the reduction). This is common way of function "prologues" in assembly.
+Base pointer is pushed to the stack to store the point where to resume the execution from and previous stack pointer address is put into to the base pointer address. Then, stack pointer is moved to reserve space for the upcoming variables (remember, stack "grows" downwards in the address space - hence the reduction). This is common way of function "prologues" in assembly.
+
+ALso it seems that a value from ```fs``` segment register offset ```0x28``` is moved to ```rax```. ```qword``` means that this operand is an address size of a quad-word (word is 2 bytes = 8 bytes long). Finally, the ```eax``` register is zeroed.
 
 ```asm
 |       .-> 0x00400668      bf83074000     mov edi, str.Enter_password: ; 0x400783 ; "Enter password: "
@@ -385,6 +369,11 @@ Nothing unusual here. Base pointer address is pushed to the stack to store the p
 |       :   0x0040068d      e8b4ffffff     call sym.get_secret
 ```
 
+The string "Enter password: " is moved to ```edi``` and an imported function puts is called, which outputs the string in the stdout. Then, the computed address of a local variable is set in ```rax```. ```lea```, **l**oad **e**ffective **a**ddress works pretty much similarly as ```mov``` but instead of moving the value in the address, the calculated effective address is moved to the target register instead.
+
+At the end, ```scanf``` is called for user input and ```get_secret```, which seems to be interesting based on its name, is used to get some value. 
+
+
 ```asm
 |       :   0x00400692      4889c2         mov rdx, rax
 |       :   0x00400695      488d45e0       lea rax, [local_20h]
@@ -394,6 +383,19 @@ Nothing unusual here. Base pointer address is pushed to the stack to store the p
 |       :   0x004006a4      8945dc         mov dword [local_24h], eax
 |       :   0x004006a7      837ddc00       cmp dword [local_24h], 0
 |      ,==< 0x004006ab      7521           jne 0x4006ce
+```
+
+Based on the four following instructions before ```strcmp``` call, seems like the value of the function ```get_secret``` is stored in ```rax``` and is moved to ```rdx```. The value of the user input on the other hand is stored in the local variable and its effective address is loaded to ```rax```. Then, the values to be compared are loaded to ```rsi``` and ```rdi``` respectively and ```strcmp``` is called to compare them. Result of this function call is stored in ```eax``` and then it is compared. Values of these comparisons are stored in flag registers that were discussed in the previous post. If the comparison failed, jne jumps to the specified memory address and following sequence is executed:
+
+```
+|    ||`--> 0x004006ce      bfa0074000     mov edi, str.Wrong          ; 0x4007a0 ; "Wrong!"
+|    || :   0x004006d3      e818feffff     call sym.imp.puts           ; int puts(const char *s)
+|    || `=< 0x004006d8      eb8e           jmp 0x400668
+```
+
+So a string "Wrong!" is printed to stdout and execution flow jumps to the given address, which is in the beginning of the main function.
+
+```asm
 |      |:   0x004006ad      bf97074000     mov edi, str.Correct        ; 0x400797 ; "Correct!"
 |      |:   0x004006b2      e839feffff     call sym.imp.puts           ; int puts(const char *s)
 |      |:   0x004006b7      90             nop
@@ -413,7 +415,7 @@ Nothing unusual here. Base pointer address is pushed to the stack to store the p
 \           0x004006e0      c3             ret
 ```
 
-## Function calls and flow
+Rest of the code should be now quite understandable based on some of the basic principles we learned on our way here. The left side arrows indicate the flow within the main function and ```je``` and ```jmp``` opcodes are defining the execution flow. When the user gives the correct string, the function leaves the loop and returns, effectively ending our main loop.
 
 ## Finding the secret
 
@@ -467,19 +469,19 @@ Still, this can be a very useful command to remember as well when debugging or r
 
 ## Extra: Stack canaries?
 
-In the original lab exercise, one thing caught my eye: it was compiled with stack protection enabled, which is used by e.g. as a gcc flag ```-fstack-protect-all```. This resulted in an interesting program initialization assembly. What are stack canaries? [This blog post](https://xorl.wordpress.com/2010/10/14/linux-glibc-stack-canary-values/) was an excellent wrap-up of the topic.
+In the original lab exercise, one thing caught my eye: it was compiled with stack protection enabled, which is used by e.g. as a gcc flag ```-fstack-protect-all```. This resulted in an interesting program initialization assembly:
+
+```asm
+|    `----> 0x004006da      e821feffff     call sym.imp.__stack_chk_fail ; void __stack_chk_fail(void)
+```
+
+What are stack canaries? [This blog post](https://xorl.wordpress.com/2010/10/14/linux-glibc-stack-canary-values/) was an excellent wrap-up of the topic. In short, a stack canary is a feature in binaries to protect from malicious buffer overflows on variables that have been allocated in stack.
 
 ## Conclusions
 
-Well, there it is! Now you should have some basic understanding of basics of computer architectures, memory handling in assembly, and how to navigate around Radare, so that you can start doing reverse engineering on software binaries! Some things I have noticed though:
+Well, there it is! Now you should have some basic understanding of basics of computer architectures, memory handling in assembly, and how to navigate around Radare, so that you can start doing reverse engineering on software binaries!
 
-* Golang binaries are a swamp to start with as a beginner. One reason to this is that they include the Go runtime with the binary. Don't go there yet if you're a beginner - you'll be overwhelmed.
-* Rust binaries seemed interesting and based on a quick look they can be readable with minor effort as well.
-* Use your favourite search engine to look for capture-the-flag exercises and challenges, as well as Radare tutorials. CTF challenges are good way to start prepping your puzzle skills together with binary analysis and can really twist your brain around. 
-
-I'll try to post more detailed findings or peculiar things of Radare when I see them.
-
-Good hunting :-)
+You could for example use your favourite search engine to look for capture-the-flag exercises and challenges, as well as Radare tutorials. CTF challenges are good way to start prepping your puzzle skills together with binary analysis and can really twist your brain around.
 
 ## References
 
