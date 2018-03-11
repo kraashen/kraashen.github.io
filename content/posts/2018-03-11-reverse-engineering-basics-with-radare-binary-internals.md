@@ -200,7 +200,7 @@ What next? Lets check out how we can navigate further in the disassembled codesp
 
 ### Flags and info in Radare
 
-Now that we know what is happening in the entrypoint of the application. The previously presented entrypoint is rather common for ELF binaries. Next steps would be to analyze a bit what our binary has eaten. There are various commands where to start from, and here we'll go through only couple of them.
+The previously presented entrypoint is rather common for ELF binaries. Next steps would be to analyze a bit what our binary has eaten. There are various commands where to start from, and here we'll go through only couple of them.
 
 * ```ih```: Print info about file headers
 * ```is```: List symbols of the binary.
