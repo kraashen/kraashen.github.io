@@ -11,3 +11,5 @@ description: Collection of my bookshelf on technology or something slightly rela
 * A Brief History of Time; Stephen Hawking
 * Spam Nation; Brian Krebs
 * Silence on the Wire; Michal Zalewski
+* Two Scoops of Django; Daniel Roy Greenfeld
+* Python Tricks; Dan Bader
