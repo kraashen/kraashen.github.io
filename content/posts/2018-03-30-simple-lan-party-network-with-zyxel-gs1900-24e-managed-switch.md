@@ -29,12 +29,12 @@ Management interface was sadly only available using the browser UI without telne
 Next up: Set up the IP address of the switch. I used following configs with static IP:
 
 * IP: ```192.168.1.x``` (any that was not in use with the router IP subnet prefix)
-* Mask: ```255.255.255.0/24```
+* Mask: ```255.255.255.0```
 * Gateway: [router IP]
 * DNS: 0.0.0.0
 * Alternative DNS: 0.0.0.0
 
-Now the switch should be able to connect both to the router and the Internet. You can verify this using ```ping```.
+Now the switch should be able to connect ou both to the router and the Internet. You can verify this e.g. ```ping```ing the router and an external IP address.
 
 ### VLANs
 
@@ -54,9 +54,9 @@ By definition:
 
 ![](/img/640px-Ethernet_802.1Q.png)
 
-What this means that based on this standard, network packets within a virtual LAN can be tagged with a 802.1Q header that includes a tag protocol identifier (TPID) and tag control information (TCI). TCI further also includes priority code, drop eligibility indicator, and a VLAN identifier.
+What this means that based on this standard, network packets within a virtual LAN can be "tagged" with a 802.1Q header that includes a tag protocol identifier (TPID) and tag control information (TCI). TCI further also includes priority code, drop eligibility indicator, and a VLAN identifier.
 
-This 802.1Q header is interpreted by the assigned VLAN trunk ports which determine that to which VLAN segment the packets belong to and directs the traffic to the hosts within that VLAN. An untagged VLAN packet does not include this information.
+This 802.1Q header is interpreted by assigned VLAN trunk ports which determine that to which VLAN segment the packets belong to and directs the traffic to the hosts within that VLAN. An untagged VLAN packet does not include this information.
 
 So, the reason why the ports where marked as untagged in the ```VLAN100``` is that no VLAN is available or created on the router side - there was no need for the router end to understand about the switch's VLAN segments as only local shallow isolation of the hosts was required in the switch network.
 
