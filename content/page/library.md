@@ -13,3 +13,4 @@ description: Collection of my bookshelf on technology or something slightly rela
 * Silence on the Wire; Michal Zalewski
 * Two Scoops of Django; Daniel Roy Greenfeld
 * Python Tricks; Dan Bader
+* The Pragmatic Programmer; Andy Hunt, Dave Thomas
