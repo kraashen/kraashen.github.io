@@ -6,7 +6,7 @@ draft: false
 
 ## Introduction
 
-We were about to have a LAN party during easter. Network setup was really simple: one consumer-grade `10/100/1000` router with connection to the Internet with a NATted network, one port for the host of the party, and extending this network behind a switch for everyone else. Originally we had only `10/100` capable switch, but as the location we were in had now also support for faster uplink, we needed to upgrade the switch to get everything out of the bandwidth available.
+We were about to have a LAN party during easter. Network setup was really simple: one consumer-grade `10/100/1000` router with a connection to the Internet with a NATted network, one port for the host of the party, and extending this network from another interface behind a switch for everyone else. Originally we had only `10/100` capable switch, but as the location we were in had now also support for faster uplink, we needed to upgrade the switch to get everything out of the bandwidth available.
 
 Zyxel describes their GS1900 series as entry-level and small office-grade products. From price-point of view, they are quite decently priced managed switches with 8-port managed switch being ~70 euros and 24-port ~110 euros at the time of writing of this post. Due to this, they seemed a tempting option also for simple small LAN party networks. It was also a nice investment for future LAN parties as well in case there will be >100Mbit/s connection available.
 
