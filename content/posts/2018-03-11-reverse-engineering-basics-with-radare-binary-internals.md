@@ -99,7 +99,7 @@ I also put this one available to Gist as a cheat sheet: https://gist.github.com/
 
 ## Symbols, sections, and segments
 
-When you write software and compile it to a binary, the compiler assigns labels to parts of the code you have written. For instance, your functions are labeled. For instance, ```main``` is a label assigned to the binary representation of the code. These labels are called *symbols*. When these functions are called or being referenced to, they need to be looked up by the linker either by static linking (compile-time linking) or dynamic linking (while running the software). Symbols are needed for the linker to know where the code can be found.
+When you write software and compile it to a binary, the compiler assigns labels to parts of the code you have written. For instance, your functions are labeled: ```main``` is a label assigned to the binary representation of the code. These labels are called *symbols*. When these functions are called or being referenced to, they need to be looked up by the linker either by static linking (compile-time linking) or dynamic linking (while running the software). Symbols are needed for the linker to know where the code can be found.
 
 With ```iS``` command you can print the sections of the binary. Try it out! There are a handful of sections in the binary but let's list down some of the useful ones to understand to begin with:
 
@@ -173,7 +173,7 @@ The base pointer register is zeroed at the initialization. This is the point whe
 
 This section will be strongly focused on Linux-spesific startup of a software. [This website](http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html) by Patrick Horgan is a great source to study more about the beginning of software execution.
 
-In this phase, data is first initialized to registers. Then, the value from the top of the stack, which is ```argc``` (argument count), is popped to ```rsi``` register. Binaries also have argument values. As the argument count was popped from the stop of the stack, the stack pointer is pointing to ```argv``` (argument vector). The address of these is moved to ```rdx``` data register and ```rsp``` is not moved. Remember how stack works? If you need to fresh your memory, check the [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics)!
+In this phase, data is first initialized to registers. Then, the value from the top of the stack, which is ```argc``` (argument count), is popped to ```rsi``` register. Binaries also have argument values. As the argument count was popped from the top of the stack, the stack pointer is pointing to ```argv``` (argument vector). The address of these is moved to ```rdx``` data register and ```rsp``` is not moved. Remember how stack works? If you need to fresh your memory, check the [previous post](./2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics)!
 
 Next, the stack pointer is masked with a long mask, clearing the lowest 4 bits. This is done to align the stack pointer for memory and cache efficiency, and certain operations.
 
