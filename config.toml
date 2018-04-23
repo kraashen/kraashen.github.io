@@ -37,10 +37,8 @@ titleSeparator = "•"
 
 [params.social]
 email = "erani@iki.fi"
-facebook = "tomijunt"
 github = "anerani"
 linkedin = "tomijuntunen"
-twitter = "tomihj"
 
 [params.social.config]
 platforms = ["github","facebook","twitter","email","linkedin"]
