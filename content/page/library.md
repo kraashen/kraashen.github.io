@@ -7,10 +7,11 @@ description: Collection of my bookshelf on technology or something slightly rela
 
 * Clean Code: A Handbook of Agile Software Craftsmanship; Robert C. Martin
 * The Clean Coder: A Code of Conduct for Professional Programmers; Rober C. Martin
+* The Pragmatic Programmer; Andy Hunt, Dave Thomas
 * Computer Networking and the Internet; Fred Halsall
 * A Brief History of Time; Stephen Hawking
 * Spam Nation; Brian Krebs
 * Silence on the Wire; Michal Zalewski
 * Two Scoops of Django; Daniel Roy Greenfeld
 * Python Tricks; Dan Bader
-* The Pragmatic Programmer; Andy Hunt, Dave Thomas
+* Fluent Python; Luciano Ramalho
