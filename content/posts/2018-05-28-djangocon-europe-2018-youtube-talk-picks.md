@@ -85,6 +85,28 @@ I find it fun and good to always to go back to basic principles and revise curre
 
 ### Banking with Django - how not lose your customer data
 
+[Link to the talk](https://www.youtube.com/watch?v=PEo7I8N8zlU)
+
+This presentation was from a Finnish payment service company called Holvi.
+They provide services for individuals (entrepreneurs) and companies for ecommerencing, billing,
+and money transfers - business accounts.
+
+Holvi uses Django extensively as their main backend, which makes this talk
+extremely interesting from many points of view: banking and money transfers require
+high availability, robustness, scalability, and reliability. Reasons why
+Django was picked as one of their main backends was the supportive community and large ecosystem,
+and Django was highlighted being proven software with a successful track record and 
+reliable long-term support.
+
+In the talk, separation between core and customer facing services, reliability
+and service sanity checks, and service segregation is
+also discussed. Different models and techniques on asynchronous tasks are introduced with "Inbox & Outbox" model
+using Django, where senders and receiver ends utilize Celery for asynchronous operations,
+and how to guarantee idempotency and service-to-service reconciliation of data contents.
+
+If you want to get a brief surface on how Django can be utilized in backing setups
+on smaller startup scale to enterprise level, check out this talk.
+
 ### Building real time applications with Django
 
 ### Taking channels async
