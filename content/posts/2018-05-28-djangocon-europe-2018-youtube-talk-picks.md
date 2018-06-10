@@ -112,3 +112,17 @@ on smaller startup scale to enterprise level, check out this talk.
 ### Taking channels async
 
 ### Making smarter queries with advanced ORM resources
+
+[Link to the talk](https://www.youtube.com/watch?v=eUM3b2q27pI)
+
+In this video, the advantages and disadvantages of advanced ORM resources of Django are explored.
+They are compared to the more usual ones in terms of performance and readability, and how 
+more advanced ORM resources can be utilized to process data in more performing manner.
+
+Talk discusses, how SQL can help writing complex (move processing more to the database etc.)
+that are hard to implement in django, and how they can be fit together using these more advanced ORM resources.
+These include `prefetch_related`, `select_related`, `only`, `defer`, `values`, `values_list`, and database
+caching. Also the use of `assertNumQueries` with unit tests is discussed and how it can help you debugging on how expensive 
+your database queries can be on your database in terms of the number of commands executed by your ORM. This
+might provide visibility and insight on improving your ORM queries to minimize the amount of executed consecutive commands,
+and it wraps it well together with prefetch queries in retrieving relataed objects by context and subqueries.
