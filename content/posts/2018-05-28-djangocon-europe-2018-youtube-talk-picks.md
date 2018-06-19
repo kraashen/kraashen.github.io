@@ -107,9 +107,37 @@ and how to guarantee idempotency and service-to-service reconciliation of data c
 If you want to get a brief surface on how Django can be utilized in backing setups
 on smaller startup scale to enterprise level, check out this talk.
 
+### Taking channels async
+
+[Link to the talk](https://www.youtube.com/watch?v=qSsM97u-Cc8)
+
+Ever interested in how Django manages asynchronous communication or have had
+need for real-time applications with Django? Recently, version 2 was released of
+Django channels. This speech focuses on the core features and presenting 
+the channels on a high level. The following speech *Building real time applications with Django*
+dives more to the implementations with demos.
+
+This is a great presentation to each especially just before the hands-on tech-focused
+talk on channels. The presenter goes through the rationale and reason why channels
+were introduced to Django, what is ASGI, how channels' purpose was to take them asyncio-native
+inside out the Django framework, and discusses how the complexity that async operations
+can introduce can be kept clean and understandable while finding a balance between them.
+
 ### Building real time applications with Django
 
-### Taking channels async
+[Link to the talk](https://www.youtube.com/watch?v=bhW7wDRtFEY)
+
+Today's Internet is not more pure request-response based web. This talk dives into
+implementation details on how to use the event-driven approach using 
+channels 2.0 in your Django projects. Topics such as ASGI protocol is discussed, how the 
+application handles the requests from the
+protocol server and network communication handling all the way to the app and routing
+messages to the consumers. Also design of these layers is demoed and discussed.
+Core thought from this talk is on how channels make doing async easier and flexible,
+and how it allows to interact with Django framework APIs.
+
+Note: Might be also worth checking out `aiohttp`, which is a bit lower-level framework
+for creating asynchronous HTTP servers and client applications.
 
 ### Making smarter queries with advanced ORM resources
 
