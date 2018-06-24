@@ -1,16 +1,43 @@
 ---
-title: "Djangocon Europe 2018 - Talk picks"
-date: 2018-05-27
-draft: true 
+title: "Djangocon Europe 2018 - A collection of some of the presentations"
+date: 2018-06-24
+draft: false 
 ---
 
-Djangocon was arranged last week in Europe. All the talk recording were released
+Djangocon was arranged last month in Europe. All the talk recording were released
 in their [YouTube channel](https://www.youtube.com/user/djangoconeurope/videos).
-Having done projects recently with Django, I was curious to dive in and check out
+Having done projects recently with Django and even if I didn't attend myself,
+I was curious to dive in and check out
 some of the recent developments and applications of Django and what kind of 
 other technologies have been built around it.
 
 ### Keynote
+
+[https://www.youtube.com/watch?v=Wo21oPhfhFg](Link to the talk)
+
+Keynotes in general are inspirational and thought-giving. Personally I enjoy
+watching them as well. The keynote in Djangocon this year was "**The Naïve Programmer**". The talk focuses
+on topics on what it means to be a software engineer as a professional. It is discussed 
+how engineering is not a linear craft but has multiple dimensions such as technique,
+creativity, judgement, and sophistication and how it is important to grow these areas
+to also grow as an engineer.
+
+Links between arts, artists, and software development are presented in a form of
+sophistication. Key points from the arts and what is a software professional are
+critical thinking, ability to consider wide topics deeply, how a professional is versatile and 
+sees connections between ideas and concepts which may come even from other disciplines as well,
+and who understands their own limitations.
+
+It is also highlighted how it is important to see part the sophistication, as the counterpart
+of it - naïvety - can bring visions and also new inspirations. After all, the field is
+about solving technical problems via programming after all. Still, the importance to grow 
+towards the professionalism and sophistication is highlighted, and how education 
+(let it be either peer reviewing, formal education, feedback) is part of it but 
+how also willingness to grow is also a fundamental part of it.
+
+Good keynote to watch if you are interested in personal professional development in general
+to give inspiration and ideas on how to progress further in the field of software engineering
+as a craft.
 
 ### GraphQL in Python and Django
 
@@ -58,7 +85,7 @@ Ah, GDPR. The European Union legistalion that regulates the processing of person
 This talk discusses the new regulation and its effects on software industry in a humorous
 and informational way. As the talk mentions, there was another similar directive in 1995, 
 but the scope and enforcement of this has changed dramatically after the introduction of
-GDPR (loved the meteorite reference). 
+GDPR.
 
 Very good and informational talk to watch to understand the biggest changes affecting the software 
 industry: terminology, what is personal data, how it applies to company developers and freelancers,
@@ -89,7 +116,7 @@ I find it fun and good to always to go back to basic principles and revise curre
 
 This presentation was from a Finnish payment service company called Holvi.
 They provide services for individuals (entrepreneurs) and companies for ecommerencing, billing,
-and money transfers - business accounts.
+and money transfers - business accounts so to say.
 
 Holvi uses Django extensively as their main backend, which makes this talk
 extremely interesting from many points of view: banking and money transfers require
