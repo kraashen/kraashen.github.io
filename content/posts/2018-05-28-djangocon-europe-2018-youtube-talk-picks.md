@@ -13,7 +13,7 @@ other technologies have been built around it.
 
 ### Keynote
 
-(https://www.youtube.com/watch?v=Wo21oPhfhFg)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=Wo21oPhfhFg)
 
 Keynotes in general are inspirational and thought-giving. Personally I enjoy
 watching them as well. The keynote in Djangocon this year was "**The Naïve Programmer**". The talk focuses
@@ -41,7 +41,7 @@ as a craft.
 
 ### GraphQL in Python and Django
 
-(https://www.youtube.com/watch?v=ix_DSdxgoK0)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=ix_DSdxgoK0)
 
 Having some earlier experience with Flask and GraphQL, I was curious to see how
 `graphene` (GraphQL module for Python) can be integrated together with Django. 
@@ -78,7 +78,7 @@ nesting limits, query cost counting, and static queries.
 
 ### Protecting Personal Data with Django
 
-(https://www.youtube.com/watch?v=b6KEoNVKFxM)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=b6KEoNVKFxM)
 
 Ah, GDPR. The European Union legistalion that regulates the processing of personal data.
 
@@ -97,7 +97,7 @@ the data storage using Djangos `views` and field handlers.
 
 ### Creating Solid APIs
 
-(https://www.youtube.com/watch?v=1pgQXzoUcgk)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=1pgQXzoUcgk)
 
 When designing APIs and their documentation, how often are humans being thought of 
 who are the first ones that interact with your API after all? 
@@ -112,7 +112,7 @@ I find it fun and good to always to go back to basic principles and revise curre
 
 ### Banking with Django - how not lose your customer data
 
-(https://www.youtube.com/watch?v=PEo7I8N8zlU)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=PEo7I8N8zlU)
 
 This presentation was from a Finnish payment service company called Holvi.
 They provide services for individuals (entrepreneurs) and companies for ecommerencing, billing,
@@ -136,7 +136,7 @@ on smaller startup scale to enterprise level, check out this talk.
 
 ### Taking channels async
 
-(https://www.youtube.com/watch?v=qSsM97u-Cc8)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=qSsM97u-Cc8)
 
 Ever interested in how Django manages asynchronous communication or have had
 need for real-time applications with Django? Recently, version 2 was released of
@@ -152,7 +152,7 @@ can introduce can be kept clean and understandable while finding a balance betwe
 
 ### Building real time applications with Django
 
-(https://www.youtube.com/watch?v=bhW7wDRtFEY)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=bhW7wDRtFEY)
 
 Today's Internet is not more pure request-response based web. This talk dives into
 implementation details on how to use the event-driven approach using 
@@ -168,7 +168,7 @@ for creating asynchronous HTTP servers and client applications.
 
 ### Making smarter queries with advanced ORM resources
 
-(https://www.youtube.com/watch?v=eUM3b2q27pI)[Link to the talk]
+[Link to the talk](https://www.youtube.com/watch?v=eUM3b2q27pI)
 
 In this video, the advantages and disadvantages of advanced ORM resources of Django are explored.
 They are compared to the more usual ones in terms of performance and readability, and how 
