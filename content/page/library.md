@@ -22,3 +22,4 @@ description: Collection of my bookshelf on technology or something slightly rela
 
 * Building Microservices: Designing Fine-Grained Systems; Sam Newman
 * Security Engineering; Ross Anderson
+* APIs: A Strategy Guide; Dan Woods, Daniel Jacobson, Greg Brail
