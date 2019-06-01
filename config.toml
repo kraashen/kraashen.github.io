@@ -37,9 +37,10 @@ titleSeparator = "•"
 
 [params.social]
 email = "erani@iki.fi"
+github = "anerani"
 
 [params.social.config]
-platforms = ["email"]
+platforms = ["email", "github"]
 
 [taxonomies]
 author = "authors"
