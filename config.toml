@@ -1,19 +1,35 @@
-baseURL = "https://pixl.dy.fi/"
-languageCode = "en-us"
+baseURL = "https://pixl.dy.fi"
 title = "tracing bytes"
+# for smart copyright line, leave this blank and check [params.copyright]
+copyright = ""
+
 theme = "minimo"
+
+disqusShortname = ""
+googleAnalytics = ""
 
 Paginate = 10
 preserveTaxonomyNames = true
 
 enableRobotsTXT = true # generate robots.txt
+
+# Syntax Highlighting ( https://gohugo.io/content-management/syntax-highlighting/ )
 pygmentsCodefences = true
 
+enableEmoji = true
+
+# Missing translations will default to this content language
 defaultContentLanguage = "en"
 
 [params.info]
 description = "programming and tech journeys, stack traces, and bits of bytes"
 title404 = "Oh my! You took a wrong turn I guess. :("
+
+[params.assets]
+favicon = "favicon.ico"
+customCSS = ["css/custom.css"]
+customJS = ["js/custom.js"]
+gopher = "" # used in 404 template ( Generator: https://gopherize.me )
 
 [params.copyright]
 prefix = ""
@@ -22,33 +38,55 @@ startYear = "2017"
 suffix = ""
 
 [params.settings]
+# date & time format: https://golang.org/pkg/time/
 dateFormat = "2006, Jan 02"
 listDateFormat = "2006, Jan 02"
+archiveDateFormat = "Jan 02"
 hideEntryNavigation = ["page"] # boolean / array of sections
-hideSocialMenu = false
-showReadingTime = false
+hideEntryMeta = ["page"] # boolean / array of sections
+taxonomyCloudShuffle = true
+accentColor = "#ffcd00"
+hideMainMenu = false
+rtl = false
 
-[params.opengraph.twitter]
-page = "tomihj" # Twitter page username
+[params.sidebar]
+enable = true
 
-[params.seo]
-# Title Separator: - – — · • * ⋆ | ~ « » < >
-titleSeparator = "•"
+[params.widgets]
+header = ["breadcrumbs"]
+homepage = ["recent_posts"]
+sidebar = ["sidebar_menu","taxonomy_cloud"]
+footer = ["social_menu"]
 
 [params.social]
 email = "erani@iki.fi"
 github = "anerani"
 
-[params.social.config]
-platforms = ["email", "github"]
+[params.comments]
+enable = false
+
+# Isso: https://posativ.org/isso/
+[params.comments.isso]
+enable = false
+scriptSrc = "" # "https://isso.example.com/js/embed.min.js"
+dataAttrs = "" # "data-isso='https://isso.example.com' data-isso-require-author='true'"
+
+# Utterances: https://utteranc.es
+[params.comments.utterances]
+enable = false
+issueTerm = "pathname" # pathname / url / title
 
 [taxonomies]
 author = "authors"
 category = "categories"
+series = "series"
 tag = "tags"
 
 [permalinks]
 page = "/:slug/"
+
+[blackfriday]
+hrefTargetBlank = true
 
 [languages]
 # edit this block for your own language
