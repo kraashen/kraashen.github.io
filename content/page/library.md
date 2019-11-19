@@ -8,7 +8,10 @@ description: Collection of my bookshelf on technology or something slightly rela
 ## My Tech Bookshelf
 
 * Clean Code: A Handbook of Agile Software Craftsmanship; Robert C. Martin
-* The Clean Coder: A Code of Conduct for Professional Programmers; Rober C. Martin
+* The Clean Coder: A Code of Conduct for Professional Programmers; Rober C. 
+Martin
+* Clean Architecture: A Craftman's Guide to Software Structure and Design; 
+Robert C. Martin
 * The Pragmatic Programmer; Andy Hunt, Dave Thomas
 * Computer Networking and the Internet; Fred Halsall
 * A Brief History of Time; Stephen Hawking
