@@ -1,4 +1,4 @@
-baseURL = "https://pixl.dy.fi"
+baseURL = "https://erani.kapsi.fi"
 title = "tracing bytes"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
@@ -71,9 +71,10 @@ enable = false
 scriptSrc = "" # "https://isso.example.com/js/embed.min.js"
 dataAttrs = "" # "data-isso='https://isso.example.com' data-isso-require-author='true'"
 
+
 # Utterances: https://utteranc.es
 [params.comments.utterances]
-enable = false
+enable = false 
 issueTerm = "pathname" # pathname / url / title
 
 [taxonomies]

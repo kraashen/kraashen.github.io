@@ -2,6 +2,10 @@
 title: "Simple LAN party network with Zyxel GS1900-24E managed switch"
 date: 2018-03-30
 draft: false
+tags:
+    - network
+    - mikrotik
+    - tweaking
 ---
 
 ## Introduction

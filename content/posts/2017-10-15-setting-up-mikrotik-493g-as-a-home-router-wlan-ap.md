@@ -2,6 +2,10 @@
 title: "Setting up MikroTik 493G as a home router (+WLAN AP)"
 date: 2017-10-15T23:39:06+03:00
 draft: false
+tags:
+    - mikrotik
+    - network
+    - tweaking
 ---
 
 MikroTik is a company that sells e.g. configurable network appliances for a decent price point. I thought that their routerboard could be great for both casual and home lab use, so I went and bought a second-hand routerboard to tinker with. It felt it would be a nice change and an addition to get hands-on and acquainted with setting up computer networks from the scratch besides looking at tcpdumps/whatnot

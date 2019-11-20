@@ -2,6 +2,10 @@
 title: "Reverse Engineering With Radare - Fundamentals and Basics"
 date: 2018-01-22
 draft: false
+tags:
+    - reverse engineering
+    - radare
+    - studying
 ---
 
 As I got more and more curious on how software works, I felt it essential as a software and systems engineer to start understanding deeper low-level internals of software. So I thought about diving more into the topic of reverse engineering from software developer's perspective using an open source tool called Radare. There are plenty of extremely well written Radare tutorials on reverse engineering which may include topics such as finding hidden passwords and injection techniques. However, I did not find so many articles on how to analyze binaries in general and at the same time understand it together with the knowledge of computer architectures and their murky innards.

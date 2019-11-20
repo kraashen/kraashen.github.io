@@ -2,6 +2,9 @@
 title: "Djangocon Europe 2018 - A collection of some of the presentations"
 date: 2018-06-24
 draft: false 
+tags:
+    - Python
+    - Django
 ---
 
 Djangocon was arranged last month in Europe. All the talk recording were released

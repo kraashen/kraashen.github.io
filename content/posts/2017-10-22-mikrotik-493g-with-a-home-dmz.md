@@ -2,6 +2,10 @@
 title: "Mikrotik 493G with a Home DMZ"
 date: 2017-10-22T02:37:22+03:00
 draft: false
+tags:
+    - mikrotik
+    - network
+    - tweaking
 ---
 
 In the [previous post](../2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/) I showed one way to set up a home network using Mikrotik Routerboard. Next up in my project list was to set up a Raspberry Pi web server to host my own website and a blog (this one in fact). This required some tweaks to my home network set up as I needed to allow access to a device in my network from the public Internet. As Mikrotik allows nice configurability to do this kind of set ups, I dove into some of Mikrotik's own manuals to start up with. One solution to this could be a DMZ, for instance.

@@ -2,6 +2,8 @@
 title: "Follow-up: Android privacy tools best served fresh"
 date: 2015-04-14T05:49:01+03:00
 draft: false
+tags:
+    - android
 ---
 
 Recently, there was a study published on OpenSSL versions used by privacy conscious software recommended in the Privacytools.io guide [1]. This study took a stance on not only the OpenSSL crypto library, but the components used by software critical to privacy and safety. The study revealed that many applications are using outdated components. As mobile world is becoming a significant part of how we communicate with people and mobile malware development in Q1 2014 continues to focus exclusively on the Android platform [2], this follow-up study focuses on Android applications mentioned in the study.

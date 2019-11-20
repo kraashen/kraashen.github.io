@@ -2,6 +2,8 @@
 title: "Component analysis of popular free Android software"
 date: 2015-04-23T18:23:01+03:00
 draft: false
+tags:
+    - android
 ---
 
 In my previous post I took a look at some of the Privacytools.io guide's Android applications and their respective OpenSSL versions due to an inspiration that a study gave me [1]. I also thought to continue this as a follow-up and take a look into some of the popular free Android software available on Google Play and tried to study what they are built upon.

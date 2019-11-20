@@ -2,6 +2,9 @@
 title: "Thoughts from reading: The Clean Code"
 date: 2017-12-31
 draft: false
+tags:
+    - books
+    - programming
 ---
 
 The Clean Code is a book written by Robert Martin. It goes through sets of principles, patterns, examples, case studies, and discussion on what is clean code and how to write it. I received a recommendation from a colleague about the author so I decided to dive in to his book series. At the moment it consists of Clean Code, Clean Coder, and Clean Architecture. Right now I've read the first two, of which Clean Code has been tempted me to read it already twice.

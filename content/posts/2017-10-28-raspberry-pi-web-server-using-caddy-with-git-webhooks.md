@@ -2,6 +2,9 @@
 title: "Raspberry Pi Web Server Using Caddy and Github Webhooks"
 date: 2017-10-28T16:57:26+03:00
 draft: false
+tags:
+    - raspberrypi
+    - tweaking
 ---
 
 After setting up the DMZ in my home network, it was time to get hands on with the actual server. I heard of a web server called Caddy, which is a HTTP/2 HTTPS-by-default web server written in Go. I got into Go as a programming language some time ago recently and I was a bit excited about a possibility of running a production capable web server with it on a Raspberry Pi. 
