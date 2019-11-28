@@ -20,6 +20,7 @@ Robert C. Martin
 * Two Scoops of Django; Daniel Roy Greenfeld
 * Python Tricks; Dan Bader
 * Fluent Python; Luciano Ramalho
+* Let's Go! Professional Web Applications with Go; Alex Edwards
 
 ## Tech books borrowed
 
