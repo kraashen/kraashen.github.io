@@ -6,11 +6,14 @@ tags:
     - flutter
 ---
 
-Flutter offline documentations are handily available in [https://master-api.flutter.dev/offline/flutter.docset.tar.gz].
+Flutter offline documentations are handily available in:
+
+https://master-api.flutter.dev/offline/flutter.docset.tar.gz    
 
 ```bash
 
-wget -qO - --show-progress https://master-api.flutter.dev/offline/flutter.docset.tar.gz | \
+wget -qO - --show-progress \
+    https://master-api.flutter.dev/offline/flutter.docset.tar.gz | \
     tar xfz - -C .
 
 ```
