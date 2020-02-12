@@ -21,6 +21,8 @@ Robert C. Martin
 * Python Tricks; Dan Bader
 * Fluent Python; Luciano Ramalho
 * Let's Go! Professional Web Applications with Go; Alex Edwards
+* Testing Java Microservices; Alex Soto Bueno, Andy Gumbrecht, and Jason Porter
+* Wicked Cool Shell Scripts; Dave Taylor & Brandon Perry
 
 ## Tech books borrowed
 
