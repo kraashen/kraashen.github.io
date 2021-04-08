@@ -1,6 +1,6 @@
 ---
 title: "Manual IP Config During Arch Install"
-date: 2021-01-04
+date: 2021-04-01
 draft: false
 tags:
     - linux
