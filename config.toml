@@ -60,7 +60,7 @@ footer = ["social_menu"]
 
 [params.social]
 email = "erani@iki.fi"
-github = "anerani"
+github = "eranii"
 
 [params.comments]
 enable = false
