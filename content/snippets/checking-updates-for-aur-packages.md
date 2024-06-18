@@ -19,7 +19,10 @@ Arch wiki states, that it is recommended to use and understand the manual
 flow first before diving into AUR tooling. So, what could be more fun than...
 making own yet-another-aur-management-tool?
 
-Process for installing and updating AUR packages is described in
+For tooling in this case, I chose shell scripting due to just pretty much
+to use uxisting tooling to automate the flow as if cloning the PKGBUILD
+repos, compiling, and installing them manually. Process for installing
+and updating AUR packages is described in
 [Arch Wiki](https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_and_upgrading_packages),
 so with few lines of shell script (tm) we can automate both checking safely for updates
 similarly as `checkupdates` tool from `pacman-contrib` package and updating

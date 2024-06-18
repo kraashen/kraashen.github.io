@@ -1,5 +1,5 @@
 ---
-title: Useful tools to remember
+title: <List> Cool tools to remember
 date: 2022-09-05
 draft: false
 tags:
@@ -9,7 +9,8 @@ tags:
 ---
 
 Collection of notes about some of my favourite or otherwise great tools encountered.
-Some I have used, some only encountered yet / read about but heard good things about.
+Some I have used, some only encountered, heard good things about or otherwise read about,
+and adding to the list to be checked out later.
 
 💡 = "note to self" for curiosity, to be checked out
 

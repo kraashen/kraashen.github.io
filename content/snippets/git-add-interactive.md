@@ -1,6 +1,6 @@
 ---
 title: Git add with interactive mode
-date: 2022-09-06
+date: 2022-09-05
 draft: false
 tags:
     - cli
@@ -8,7 +8,7 @@ tags:
     - tools
 ---
 
-Stuck on situation where you have multiple files with many changes but want to commit some part of the
+Stuck on a situation with multiple files with many changes but want to commit some part of the
 changes as separate commits?
 
 Git patch feature to the rescue! There are two quick options: `git add --patch` and patching interactively via `git add -i` .
@@ -63,4 +63,3 @@ e - manually edit the current hunk
 ? - print help
 ```
 
-Manpages are always great resources, so check out `man git-add` for more!

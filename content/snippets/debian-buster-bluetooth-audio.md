@@ -7,7 +7,7 @@ tags:
     - linux
 ---
 
-`pulseaudio-module-bluetooth` package needs to be installed for being able to use bluetooth speakers and probably also headsets.
+`pulseaudio-module-bluetooth` package needs to be installed for being able to use bluetooth audio devices.
 
 ```
 apt install pulseaudio-module-bluetooth

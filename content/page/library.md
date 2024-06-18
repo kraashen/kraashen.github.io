@@ -2,7 +2,7 @@
 Title: "My library"
 menu: main
 weight: 100
-description: Collection of my bookshelf on technology or something slightly related. Maybe thoughts of them as well someday.
+description: Collection of my bookshelf on technology or something slightly related.
 ---
 
 ## My Tech Bookshelf
@@ -29,3 +29,13 @@ Robert C. Martin
 * Building Microservices: Designing Fine-Grained Systems; Sam Newman
 * Security Engineering; Ross Anderson
 * APIs: A Strategy Guide; Dan Woods, Daniel Jacobson, Greg Brail
+
+## Blogs and Sites
+
+Personal favourites of blogs and sites I like to read. Inspiring people to follow.
+ 
+* [Julia Evans](https://jvns.ca/) - Learning by asking TONS of questions. Pure curiosity and positivity, one of the best and thorough computer engineering blogs in the Internet.
+* [Filippo Valsorda](https://words.filippo.io/) - Computer engineering and cryptography.
+* [Schneier on Security](https://www.schneier.com/) - Discussions and topics on various security topics. 
+* [Simone Giertz](https://www.youtube.com/simonegiertz) - Engineering and creativity goodness and spirit.
+* [Foodgeek](https://foodgeek.dk/en/) - Geeking around with food and baking.

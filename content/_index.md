@@ -5,4 +5,9 @@ weight: -270
 ---
 > 💭🖥🖱⌨🐧🕹📖 
 
-> Software developer and systems engineer from cloud to baremetal. Also a nerd and enthusiastic about tech, gaming, and science. Interests include sourdough baking, infosec, software, Linux, and everything open source. In this blog are some of my journeys and thoughts of programming, eternal procrastination and pet projects, and technology in general. Maybe also something off-topic.
+> Software developer and systems engineer oscillating between cloud and baremetal.
+> Enthusiastic about technology, tinkering with computer systems, and software.
+> Interests include also infosec, games, Linux, baking, and things open source.
+
+> This dumpster fire contains posts and notes about programming, studying,
+> as well as joys and enthusiasm about tech things in general. Sometimes things off-topic.
