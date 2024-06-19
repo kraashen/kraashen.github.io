@@ -1,5 +1,5 @@
 ---
-title: <List> Cool tools to remember
+title: Cool tools to remember
 date: 2022-09-05
 draft: false
 tags:

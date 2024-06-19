@@ -12,14 +12,15 @@ Hopefully with lots of great things along the way.
 
 ## Certifications
 
-GIAC Certified Incident Handler [Credly](https://www.credly.com/badges/390d4d42-3f73-4242-bc56-2833dd2f9496/public_url)
+- AWS Solutions Architect Associate (2023) [Credly](https://www.credly.com/badges/54a9baee-8e73-45d3-8a87-73588211b46e/public_url)
+- GIAC Certified Incident Handler (2022) [Credly](https://www.credly.com/badges/390d4d42-3f73-4242-bc56-2833dd2f9496/public_url)
 
 ## Online courses & MOOCs
 
-* Coursera: Cryptography I (2013)
-* Elements of AI: Introduction to AI (2018)
-* Elements of AI: Building AI (2021)
 * Ethics of AI (2021)
+* Elements of AI: Building AI (2021)
+* Elements of AI: Introduction to AI (2018)
+* Coursera: Cryptography I (2013)
 
 ## Non-tech Stuff
 

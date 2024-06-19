@@ -1,6 +1,5 @@
 ---
 title: Snippets
-linkTitle: snippets
 menu:
     main
 slug: snippets

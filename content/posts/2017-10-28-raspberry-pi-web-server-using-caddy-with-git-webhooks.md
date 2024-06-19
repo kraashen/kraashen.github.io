@@ -28,7 +28,7 @@ I divided the process of the setup into couple of phases:
 
 ### Networking and interfaces
 
-As the server will be hosting a website, it will need a static IP address [Finnish DynDNS dy.fi]([https://www.dy.fi]). In Raspbian, there is a client called ```dhcpcd``` DHCP client enabled by default, and there are couple of ways handling the static IP addressing of the server. One way would be to just disable the *dhcpcd* and use ```/etc/network/interfaces``` instead or configure *dhcpcd* to use static IP address instead. Running a DHCP client to get a static IP address was not needed in this kind of wired environment, so I went with the interfaces way for my case.
+As the server will be hosting a website, it will need a static IP address [Finnish DynDNS](https://www.dy.fi). In Raspbian, there is a client called ```dhcpcd``` DHCP client enabled by default, and there are couple of ways handling the static IP addressing of the server. One way would be to just disable the *dhcpcd* and use ```/etc/network/interfaces``` instead or configure *dhcpcd* to use static IP address instead. Running a DHCP client to get a static IP address was not needed in this kind of wired environment, so I went with the interfaces way for my case.
 
 ```
 /etc/network/interfaces:
@@ -217,7 +217,7 @@ It was also interesting to notice that while using a system account feels a bit 
 
 ## Further reading
 
-[Freedesktop.org: Predictable Network Interface Names]((https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/))
+[Freedesktop.org: Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/)
 
 [Debian: Network Configuration](https://wiki.debian.org/NetworkConfiguration#Predictable_Network_Interface_Names)
 

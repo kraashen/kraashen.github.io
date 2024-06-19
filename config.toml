@@ -1,25 +1,23 @@
 baseURL = "https://kraashen.github.io"
 title = "tracing bytes"
-# for smart copyright line, leave this blank and check [params.copyright]
-copyright = ""
+theme = "PaperMod"
 
-theme = "minimo"
-
-disqusShortname = ""
-googleAnalytics = ""
+enableInlineShortcodes = true
+enableRobotsTXT = true
+buildDrafts = true
+enableEmoji = true
+pygmentsUseClasses = true
+mainsections = ["pages", "snippets"]
 
 Paginate = 10
 preserveTaxonomyNames = true
-
-enableRobotsTXT = true # generate robots.txt
-
 # Syntax Highlighting ( https://gohugo.io/content-management/syntax-highlighting/ )
 pygmentsCodefences = true
-
-enableEmoji = true
-
 # Missing translations will default to this content language
 defaultContentLanguage = "en"
+
+[minify]
+disableXML = true
 
 [params.info]
 description = "programming and tech journeys, stack traces, and bits of bytes"
@@ -45,22 +43,8 @@ archiveDateFormat = "Jan 02"
 hideEntryNavigation = ["page"] # boolean / array of sections
 hideEntryMeta = ["page"] # boolean / array of sections
 taxonomyCloudShuffle = true
-accentColor = "#ffcd00"
 hideMainMenu = false
 rtl = false
-
-[params.sidebar]
-enable = true
-
-[params.widgets]
-header = ["breadcrumbs"]
-homepage = ["recent_posts", "recent_snippets"]
-sidebar = ["sidebar_menu","taxonomy_cloud"]
-footer = ["social_menu"]
-
-[params.social]
-email = "erani@iki.fi"
-github = "eranii"
 
 [params.comments]
 enable = false
@@ -79,7 +63,7 @@ hrefTargetBlank = true
 
 [languages]
 # edit this block for your own language
-[languages.en]
+[languages.en.params]
 lang = "en"
 languageName = "English"
 weight = 1

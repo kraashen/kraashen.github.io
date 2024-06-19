@@ -1,5 +1,5 @@
 ---
-Title: "My library"
+Title: "My Library"
 menu: main
 weight: 100
 description: Collection of my bookshelf on technology or something slightly related.
