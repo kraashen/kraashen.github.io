@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Arch on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/arch/</link>
+    <description>Recent content in Arch on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/arch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Checking Updates and Updating AUR Packages by Scripting</title>
+      <link>https://kraashen.github.io/snippets/checking-updates-for-aur-packages/</link>
+      <pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/checking-updates-for-aur-packages/</guid>
+      <description>AUR packages by default are managed as Git repositories that contain PKGBUILD package descriptions. These description files allow users to compile packages from sources with makepkg, and then installing them using pacman.
+To help managing these packages as your collection inevitably grows, various wrapper tools exist, such as an excellent Go-based tool named yay.
+Arch wiki states, that it is recommended to use and understand the manual flow first before diving into AUR tooling.</description>
+    </item>
+    <item>
+      <title>Manual IP Config During Arch Install</title>
+      <link>https://kraashen.github.io/snippets/manual-ip-config-during-arch-install/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/manual-ip-config-during-arch-install/</guid>
+      <description>Note to self: How to set up ip config manually after forgetting to install DHCP client while installing Arch and rebooting fresh install before doing so:
+ip link # get the interface device &amp;lt;dev&amp;gt; ip link up &amp;lt;dev&amp;gt; ip address add &amp;lt;host ip&amp;gt;/&amp;lt;mask&amp;gt; broadcast + dev &amp;lt;dev&amp;gt; ip route add default via &amp;lt;gw&amp;gt; dev &amp;lt;dev&amp;gt; echo &amp;#34;nameserver 8.8.8.8&amp;#34; &amp;gt;&amp;gt; /etc/resolv.conf # (or any other) </description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gaming on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/gaming/</link>
+    <description>Recent content in Gaming on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/gaming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Update GE Proton</title>
+      <link>https://kraashen.github.io/snippets/update-ge-proton/</link>
+      <pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/update-ge-proton/</guid>
+      <description>A snippet to upgrade GloriousEggroll Proton variant to latest version.
+#!/bin/zsh # -------------------------------------------------------------------------------------- # --- Local path definitions # -------------------------------------------------------------------------------------- SteamPath=&amp;#34;$HOME/.steam&amp;#34; CompatibilityToolsPath=&amp;#34;$SteamPath/compatibilitytools.d&amp;#34; if [ ! -d &amp;#34;$SteamPath&amp;#34; ] ; then echo &amp;#34;Steam not found from $SteamPath&amp;#34; &amp;gt;&amp;amp;2 exit 1 fi if [ ! -d &amp;#34;$CompatibilityToolsPath&amp;#34; ] ; then echo &amp;#34;Compatibility tools path not found from $CompatibilityToolsPath&amp;#34; &amp;gt;&amp;amp;2 exit 1 fi # -------------------------------------------------------------------------------------- # --- Github API definitions # -------------------------------------------------------------------------------------- GithubAPI=&amp;#34;https://api.github.com/repos&amp;#34; GEProtonPath=&amp;#34;GloriousEggroll/proton-ge-custom&amp;#34; GEProtonReleases=&amp;#34;${GithubAPI}/${GEProtonPath}/releases&amp;#34; GEProtonLatestRelease=&amp;#34;${GEProtonReleases}/latest&amp;#34; # -------------------------------------------------------------------------------------- # --- CLI tools definitions # -------------------------------------------------------------------------------------- Curl=$(which curl) Ls=$(which ls) Jq=$(which jq) if [ $?</description>
+    </item>
+    <item>
+      <title>FFXIV Linux Setup</title>
+      <link>https://kraashen.github.io/snippets/ffxiv-linux/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/ffxiv-linux/</guid>
+      <description>Get and install GE Proton. Confirmed working version at the time of writing was 4.19-GE-1.
+Based on reports, for some reason the game has issues with the cutscene opening when opening the game client. Open to edit FFXIV.cfg. File is located in .steam/steam/steamapps/compatdata/39210/pfx/drive_c/users/steamuser/My Documents/My Games/FINAL FANTASY XIV - A Realm Reborn
+# Update CutsceneMovieopening value ... CutsceneMovieopening 1 ... Save and run the game &amp;lt;3.</description>
+    </item>
+  </channel>
+</rss>

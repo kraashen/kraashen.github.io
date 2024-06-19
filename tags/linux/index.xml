@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/linux/</link>
+    <description>Recent content in Linux on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 05 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cool tools to remember</title>
+      <link>https://kraashen.github.io/snippets/cli-tools/</link>
+      <pubDate>Mon, 05 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/cli-tools/</guid>
+      <description>Collection of notes about some of my favourite or otherwise great tools encountered. Some I have used, some only encountered, heard good things about or otherwise read about, and adding to the list to be checked out later.
+💡 = &amp;ldquo;note to self&amp;rdquo; for curiosity, to be checked out
+UX^2 fzf: Reverse search goodness. Cannot live without this. ripgrep: Recursive grepping with pretty outputs. Shell things powerline10k: Zsh supercharger zsh-autosuggestions: Makes zsh more fish&amp;rsquo;y.</description>
+    </item>
+    <item>
+      <title>Checking Updates and Updating AUR Packages by Scripting</title>
+      <link>https://kraashen.github.io/snippets/checking-updates-for-aur-packages/</link>
+      <pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/checking-updates-for-aur-packages/</guid>
+      <description>AUR packages by default are managed as Git repositories that contain PKGBUILD package descriptions. These description files allow users to compile packages from sources with makepkg, and then installing them using pacman.
+To help managing these packages as your collection inevitably grows, various wrapper tools exist, such as an excellent Go-based tool named yay.
+Arch wiki states, that it is recommended to use and understand the manual flow first before diving into AUR tooling.</description>
+    </item>
+    <item>
+      <title>Manual IP Config During Arch Install</title>
+      <link>https://kraashen.github.io/snippets/manual-ip-config-during-arch-install/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/manual-ip-config-during-arch-install/</guid>
+      <description>Note to self: How to set up ip config manually after forgetting to install DHCP client while installing Arch and rebooting fresh install before doing so:
+ip link # get the interface device &amp;lt;dev&amp;gt; ip link up &amp;lt;dev&amp;gt; ip address add &amp;lt;host ip&amp;gt;/&amp;lt;mask&amp;gt; broadcast + dev &amp;lt;dev&amp;gt; ip route add default via &amp;lt;gw&amp;gt; dev &amp;lt;dev&amp;gt; echo &amp;#34;nameserver 8.8.8.8&amp;#34; &amp;gt;&amp;gt; /etc/resolv.conf # (or any other) </description>
+    </item>
+    <item>
+      <title>Debian Buster and Bluetooth Audio</title>
+      <link>https://kraashen.github.io/snippets/debian-buster-bluetooth-audio/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/debian-buster-bluetooth-audio/</guid>
+      <description>pulseaudio-module-bluetooth package needs to be installed for being able to use bluetooth audio devices.
+apt install pulseaudio-module-bluetooth pulseaudio -k &amp;amp;&amp;amp; pulseaudio --start </description>
+    </item>
+    <item>
+      <title>Debian Buster with AMD Ryzen 3700X and NVIDIA GFX Boot Fix</title>
+      <link>https://kraashen.github.io/snippets/debian-buster-with-amd-ryzen-3700x-and-nvidia-graphics-boot-fix/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/debian-buster-with-amd-ryzen-3700x-and-nvidia-graphics-boot-fix/</guid>
+      <description>After fresh install of Debian 10 (Buster), booting to desktop failed to to an error:
+sev command 0x4 timed out, disabling PSP SEV: failed to get status. Error: 0x0 Now, it is still possible to login to a new terminal session with ctrl+alt+fN. After login, enabling non-free to sources.list for AMD graphics firmware and buster-backports for NVIDIA drivers and then installing packages firmware-amd-graphics and nvidia-driver seemed to work for the issue.</description>
+    </item>
+    <item>
+      <title>Update GE Proton</title>
+      <link>https://kraashen.github.io/snippets/update-ge-proton/</link>
+      <pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/update-ge-proton/</guid>
+      <description>A snippet to upgrade GloriousEggroll Proton variant to latest version.
+#!/bin/zsh # -------------------------------------------------------------------------------------- # --- Local path definitions # -------------------------------------------------------------------------------------- SteamPath=&amp;#34;$HOME/.steam&amp;#34; CompatibilityToolsPath=&amp;#34;$SteamPath/compatibilitytools.d&amp;#34; if [ ! -d &amp;#34;$SteamPath&amp;#34; ] ; then echo &amp;#34;Steam not found from $SteamPath&amp;#34; &amp;gt;&amp;amp;2 exit 1 fi if [ ! -d &amp;#34;$CompatibilityToolsPath&amp;#34; ] ; then echo &amp;#34;Compatibility tools path not found from $CompatibilityToolsPath&amp;#34; &amp;gt;&amp;amp;2 exit 1 fi # -------------------------------------------------------------------------------------- # --- Github API definitions # -------------------------------------------------------------------------------------- GithubAPI=&amp;#34;https://api.github.com/repos&amp;#34; GEProtonPath=&amp;#34;GloriousEggroll/proton-ge-custom&amp;#34; GEProtonReleases=&amp;#34;${GithubAPI}/${GEProtonPath}/releases&amp;#34; GEProtonLatestRelease=&amp;#34;${GEProtonReleases}/latest&amp;#34; # -------------------------------------------------------------------------------------- # --- CLI tools definitions # -------------------------------------------------------------------------------------- Curl=$(which curl) Ls=$(which ls) Jq=$(which jq) if [ $?</description>
+    </item>
+    <item>
+      <title>FFXIV Linux Setup</title>
+      <link>https://kraashen.github.io/snippets/ffxiv-linux/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/ffxiv-linux/</guid>
+      <description>Get and install GE Proton. Confirmed working version at the time of writing was 4.19-GE-1.
+Based on reports, for some reason the game has issues with the cutscene opening when opening the game client. Open to edit FFXIV.cfg. File is located in .steam/steam/steamapps/compatdata/39210/pfx/drive_c/users/steamuser/My Documents/My Games/FINAL FANTASY XIV - A Realm Reborn
+# Update CutsceneMovieopening value ... CutsceneMovieopening 1 ... Save and run the game &amp;lt;3.</description>
+    </item>
+    <item>
+      <title>Ubuntu ja tekstimuokkaimen päivämääräformaatti</title>
+      <link>https://kraashen.github.io/snippets/ubuntu-kate/</link>
+      <pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/ubuntu-kate/</guid>
+      <description>%A %-d. %Bta %Y näkyy esim. perjantai 1. marraskuuta 2019 </description>
+    </item>
+    <item>
+      <title>Ubuntu 19.10 and hiding mounts from dock</title>
+      <link>https://kraashen.github.io/snippets/ubuntu-dock-hide-mounts/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/ubuntu-dock-hide-mounts/</guid>
+      <description>gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false </description>
+    </item>
+    <item>
+      <title>Kapsi &lt;3 Miniflux RSS</title>
+      <link>https://kraashen.github.io/snippets/kapsi-miniflux/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/kapsi-miniflux/</guid>
+      <description>Oletusarvoisesti tämä koskee https://nick.kapsi.fi/miniflux -polkua asennukseen.
+.htaccess --- RewriteEngine On RewriteCond %{REQUEST_URI} ^/miniflux(.*)$ RewriteRule ^index\.html$ http://webapp1.n.kapsi.fi:port/ [P] RewriteRule ^(.*)$ http://webapp1.n.kapsi.fi:port/$1 [P] webapp1.kapsi.fi 0600 ~/.local/etc/miniflux/miniflux.conf --- DATABASE_URL=postgresql://nick:pass@db1.n.kapsi.fi/nick PORT=port BASE_URL=https://nick.kapsi.fi/miniflux/ # jos konffattu johonkin alipolkuun .htaccessissa run-miniflux.sh --- #!/usr/bin/env bash flock \ --exclusive \ --nonblock \ --conflict-exit-code 0 \ ~/.lock/miniflux.lock \ ~/sites/nick.kapsi.fi/miniflux/miniflux -c ~/.local/etc/miniflux/miniflux.conf </description>
+    </item>
+  </channel>
+</rss>

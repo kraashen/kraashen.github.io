@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Home on tracing bytes</title>
+    <link>https://kraashen.github.io/</link>
+    <description>Recent content in Home on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 05 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Library</title>
+      <link>https://kraashen.github.io/my-library/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/my-library/</guid>
+      <description>Collection of my bookshelf on technology or something slightly related.</description>
+    </item>
+    <item>
+      <title>Interests</title>
+      <link>https://kraashen.github.io/interests/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/interests/</guid>
+      <description>Super-professional list of random interests and curiosities. Also non-tech.</description>
+    </item>
+    <item>
+      <title>Cool tools to remember</title>
+      <link>https://kraashen.github.io/snippets/cli-tools/</link>
+      <pubDate>Mon, 05 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/cli-tools/</guid>
+      <description>Collection of notes about some of my favourite or otherwise great tools encountered. Some I have used, some only encountered, heard good things about or otherwise read about, and adding to the list to be checked out later.
+💡 = &amp;ldquo;note to self&amp;rdquo; for curiosity, to be checked out
+UX^2 fzf: Reverse search goodness. Cannot live without this. ripgrep: Recursive grepping with pretty outputs. Shell things powerline10k: Zsh supercharger zsh-autosuggestions: Makes zsh more fish&amp;rsquo;y.</description>
+    </item>
+    <item>
+      <title>Git add with interactive mode</title>
+      <link>https://kraashen.github.io/snippets/git-add-interactive/</link>
+      <pubDate>Mon, 05 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/git-add-interactive/</guid>
+      <description>Stuck on a situation with multiple files with many changes but want to commit some part of the changes as separate commits?
+Git patch feature to the rescue! There are two quick options: git add --patch and patching interactively via git add -i . Each have some differences.
+With git add you get the interactive git terminal to go through your unstaged, staged, and untracked files, as well as to call patch (5) to interactively go through the unstaged changed from files.</description>
+    </item>
+    <item>
+      <title>Checking Updates and Updating AUR Packages by Scripting</title>
+      <link>https://kraashen.github.io/snippets/checking-updates-for-aur-packages/</link>
+      <pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/checking-updates-for-aur-packages/</guid>
+      <description>AUR packages by default are managed as Git repositories that contain PKGBUILD package descriptions. These description files allow users to compile packages from sources with makepkg, and then installing them using pacman.
+To help managing these packages as your collection inevitably grows, various wrapper tools exist, such as an excellent Go-based tool named yay.
+Arch wiki states, that it is recommended to use and understand the manual flow first before diving into AUR tooling.</description>
+    </item>
+    <item>
+      <title>Manual IP Config During Arch Install</title>
+      <link>https://kraashen.github.io/snippets/manual-ip-config-during-arch-install/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/manual-ip-config-during-arch-install/</guid>
+      <description>Note to self: How to set up ip config manually after forgetting to install DHCP client while installing Arch and rebooting fresh install before doing so:
+ip link # get the interface device &amp;lt;dev&amp;gt; ip link up &amp;lt;dev&amp;gt; ip address add &amp;lt;host ip&amp;gt;/&amp;lt;mask&amp;gt; broadcast + dev &amp;lt;dev&amp;gt; ip route add default via &amp;lt;gw&amp;gt; dev &amp;lt;dev&amp;gt; echo &amp;#34;nameserver 8.8.8.8&amp;#34; &amp;gt;&amp;gt; /etc/resolv.conf # (or any other) </description>
+    </item>
+    <item>
+      <title>Debian Buster and Bluetooth Audio</title>
+      <link>https://kraashen.github.io/snippets/debian-buster-bluetooth-audio/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/debian-buster-bluetooth-audio/</guid>
+      <description>pulseaudio-module-bluetooth package needs to be installed for being able to use bluetooth audio devices.
+apt install pulseaudio-module-bluetooth pulseaudio -k &amp;amp;&amp;amp; pulseaudio --start </description>
+    </item>
+    <item>
+      <title>Debian Buster with AMD Ryzen 3700X and NVIDIA GFX Boot Fix</title>
+      <link>https://kraashen.github.io/snippets/debian-buster-with-amd-ryzen-3700x-and-nvidia-graphics-boot-fix/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/debian-buster-with-amd-ryzen-3700x-and-nvidia-graphics-boot-fix/</guid>
+      <description>After fresh install of Debian 10 (Buster), booting to desktop failed to to an error:
+sev command 0x4 timed out, disabling PSP SEV: failed to get status. Error: 0x0 Now, it is still possible to login to a new terminal session with ctrl+alt+fN. After login, enabling non-free to sources.list for AMD graphics firmware and buster-backports for NVIDIA drivers and then installing packages firmware-amd-graphics and nvidia-driver seemed to work for the issue.</description>
+    </item>
+    <item>
+      <title>Flutter Offline Docs</title>
+      <link>https://kraashen.github.io/snippets/flutter-docs/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/flutter-docs/</guid>
+      <description>Flutter offline documentations are handily available in:
+https://master-api.flutter.dev/offline/flutter.docset.tar.gz
+wget -qO - --show-progress \ https://master-api.flutter.dev/offline/flutter.docset.tar.gz | \ tar xfz - -C . </description>
+    </item>
+    <item>
+      <title>Update GE Proton</title>
+      <link>https://kraashen.github.io/snippets/update-ge-proton/</link>
+      <pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/update-ge-proton/</guid>
+      <description>A snippet to upgrade GloriousEggroll Proton variant to latest version.
+#!/bin/zsh # -------------------------------------------------------------------------------------- # --- Local path definitions # -------------------------------------------------------------------------------------- SteamPath=&amp;#34;$HOME/.steam&amp;#34; CompatibilityToolsPath=&amp;#34;$SteamPath/compatibilitytools.d&amp;#34; if [ ! -d &amp;#34;$SteamPath&amp;#34; ] ; then echo &amp;#34;Steam not found from $SteamPath&amp;#34; &amp;gt;&amp;amp;2 exit 1 fi if [ ! -d &amp;#34;$CompatibilityToolsPath&amp;#34; ] ; then echo &amp;#34;Compatibility tools path not found from $CompatibilityToolsPath&amp;#34; &amp;gt;&amp;amp;2 exit 1 fi # -------------------------------------------------------------------------------------- # --- Github API definitions # -------------------------------------------------------------------------------------- GithubAPI=&amp;#34;https://api.github.com/repos&amp;#34; GEProtonPath=&amp;#34;GloriousEggroll/proton-ge-custom&amp;#34; GEProtonReleases=&amp;#34;${GithubAPI}/${GEProtonPath}/releases&amp;#34; GEProtonLatestRelease=&amp;#34;${GEProtonReleases}/latest&amp;#34; # -------------------------------------------------------------------------------------- # --- CLI tools definitions # -------------------------------------------------------------------------------------- Curl=$(which curl) Ls=$(which ls) Jq=$(which jq) if [ $?</description>
+    </item>
+    <item>
+      <title>Golang Development and Self-signed Cert</title>
+      <link>https://kraashen.github.io/snippets/golang-dev-self-signed-cert/</link>
+      <pubDate>Thu, 28 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/golang-dev-self-signed-cert/</guid>
+      <description>Easy way to create a self-signed cert for local development purposes. Handy e.g. for running HTTPS locally form the very start of the development.
+$ go run /usr/local/go/src/crypto/tls/generate_cert.go --help Usage of /tmp/go-build148491876/b001/exe/generate_cert: -ca whether this cert should be its own Certificate Authority -duration duration Duration that certificate is valid for (default 8760h0m0s) -ecdsa-curve string ECDSA curve to use to generate a key. Valid values are P224, P256 (recommended), P384, P521 -ed25519 Generate an Ed25519 key -host string Comma-separated hostnames and IPs to generate a certificate for -rsa-bits int Size of RSA key to generate.</description>
+    </item>
+    <item>
+      <title>FFXIV Linux Setup</title>
+      <link>https://kraashen.github.io/snippets/ffxiv-linux/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/ffxiv-linux/</guid>
+      <description>Get and install GE Proton. Confirmed working version at the time of writing was 4.19-GE-1.
+Based on reports, for some reason the game has issues with the cutscene opening when opening the game client. Open to edit FFXIV.cfg. File is located in .steam/steam/steamapps/compatdata/39210/pfx/drive_c/users/steamuser/My Documents/My Games/FINAL FANTASY XIV - A Realm Reborn
+# Update CutsceneMovieopening value ... CutsceneMovieopening 1 ... Save and run the game &amp;lt;3.</description>
+    </item>
+    <item>
+      <title>Golang ja jaettu logitus</title>
+      <link>https://kraashen.github.io/snippets/golang-logging-sample/</link>
+      <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/golang-logging-sample/</guid>
+      <description>Esimerkki sovelluskontekstissa jaetun Golang-loggeri(e)n luomiseen
+import ( &amp;#34;os&amp;#34; &amp;#34;log&amp;#34; // ... ) type appCtx struct { errorLogger *log.Logger infoLogger *log.Logger // ... } func main() { infoLogger := log.New(os.Stdout, &amp;#34;[INFO]\t&amp;#34;, log.Ldate|log.Ltime) errorLogger := log.New(os.Stderr, &amp;#34;[ERROR]\t&amp;#34;, log.Ldate|log.Ltime|log.Lshortfile) app := &amp;amp;appCtx{ errorLogger: errorLogger, infoLogger: infoLogger, // ... }	// jos ajelee vaikka serveriä niin voi tehdä s := &amp;amp;http.Server{ Addr: // ... ErrorLog: errorLogger, Handler: // ... } } </description>
+    </item>
+    <item>
+      <title>Ubuntu ja tekstimuokkaimen päivämääräformaatti</title>
+      <link>https://kraashen.github.io/snippets/ubuntu-kate/</link>
+      <pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/ubuntu-kate/</guid>
+      <description>%A %-d. %Bta %Y näkyy esim. perjantai 1. marraskuuta 2019 </description>
+    </item>
+    <item>
+      <title>Ubuntu 19.10 and hiding mounts from dock</title>
+      <link>https://kraashen.github.io/snippets/ubuntu-dock-hide-mounts/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/ubuntu-dock-hide-mounts/</guid>
+      <description>gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false </description>
+    </item>
+    <item>
+      <title>Kapsi &lt;3 Miniflux RSS</title>
+      <link>https://kraashen.github.io/snippets/kapsi-miniflux/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/kapsi-miniflux/</guid>
+      <description>Oletusarvoisesti tämä koskee https://nick.kapsi.fi/miniflux -polkua asennukseen.
+.htaccess --- RewriteEngine On RewriteCond %{REQUEST_URI} ^/miniflux(.*)$ RewriteRule ^index\.html$ http://webapp1.n.kapsi.fi:port/ [P] RewriteRule ^(.*)$ http://webapp1.n.kapsi.fi:port/$1 [P] webapp1.kapsi.fi 0600 ~/.local/etc/miniflux/miniflux.conf --- DATABASE_URL=postgresql://nick:pass@db1.n.kapsi.fi/nick PORT=port BASE_URL=https://nick.kapsi.fi/miniflux/ # jos konffattu johonkin alipolkuun .htaccessissa run-miniflux.sh --- #!/usr/bin/env bash flock \ --exclusive \ --nonblock \ --conflict-exit-code 0 \ ~/.lock/miniflux.lock \ ~/sites/nick.kapsi.fi/miniflux/miniflux -c ~/.local/etc/miniflux/miniflux.conf </description>
+    </item>
+    <item>
+      <title>Simple LAN party network with Zyxel GS1900-24E managed switch</title>
+      <link>https://kraashen.github.io/posts/2018-03-30-simple-lan-party-network-with-zyxel-gs1900-24e-managed-switch/</link>
+      <pubDate>Fri, 30 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/posts/2018-03-30-simple-lan-party-network-with-zyxel-gs1900-24e-managed-switch/</guid>
+      <description>Introduction We were about to have a LAN party during easter. Network setup was really simple: one consumer-grade 10/100/1000 router with a connection to the Internet with a NATted network, one port for the host of the party, and extending this network from another interface behind a switch for everyone else. Originally we had only 10/100 capable switch, but as the location we were in had now also support for faster uplink, we needed to upgrade the switch to get everything out of the bandwidth available.</description>
+    </item>
+    <item>
+      <title>Reverse Engineering With Radare - Binary internals</title>
+      <link>https://kraashen.github.io/posts/2018-03-11-reverse-engineering-basics-with-radare-binary-internals/</link>
+      <pubDate>Sun, 11 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/posts/2018-03-11-reverse-engineering-basics-with-radare-binary-internals/</guid>
+      <description>In the previous post, basics and fundamentals for reverse engineering software were discussed. This time I thought about writing a bit more about getting a bit further in inspecting and understanding software binaries. In this post, we&amp;rsquo;ll take a look at one password guess reverse engineering challenge using Radare.
+Goals The goal is to reverse engineer a simple binary and understanding of the flow of disassembled code, how to read it, and understand how it works.</description>
+    </item>
+    <item>
+      <title>Reverse Engineering With Radare - Fundamentals and Basics</title>
+      <link>https://kraashen.github.io/posts/2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/posts/2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics/</guid>
+      <description>As I got more and more curious on how software works, I felt it essential as a software and systems engineer to start understanding deeper low-level internals of software. So I thought about diving more into the topic of reverse engineering from software developer&amp;rsquo;s perspective using an open source tool called Radare. There are plenty of extremely well written Radare tutorials on reverse engineering which may include topics such as finding hidden passwords and injection techniques.</description>
+    </item>
+    <item>
+      <title>Raspberry Pi Web Server Using Caddy and Github Webhooks</title>
+      <link>https://kraashen.github.io/posts/2017-10-28-raspberry-pi-web-server-using-caddy-with-git-webhooks/</link>
+      <pubDate>Sat, 28 Oct 2017 16:57:26 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2017-10-28-raspberry-pi-web-server-using-caddy-with-git-webhooks/</guid>
+      <description>After setting up the DMZ in my home network, it was time to get hands on with the actual server. I heard of a web server called Caddy, which is a HTTP/2 HTTPS-by-default web server written in Go. I got into Go as a programming language some time ago recently and I was a bit excited about a possibility of running a production capable web server with it on a Raspberry Pi.</description>
+    </item>
+    <item>
+      <title>Mikrotik 493G with a Home DMZ</title>
+      <link>https://kraashen.github.io/posts/2017-10-22-mikrotik-493g-with-a-home-dmz/</link>
+      <pubDate>Sun, 22 Oct 2017 02:37:22 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2017-10-22-mikrotik-493g-with-a-home-dmz/</guid>
+      <description>In the previous post I showed one way to set up a home network using Mikrotik Routerboard. Next up in my project list was to set up a Raspberry Pi web server to host my own website and a blog (this one in fact). This required some tweaks to my home network set up as I needed to allow access to a device in my network from the public Internet. As Mikrotik allows nice configurability to do this kind of set ups, I dove into some of Mikrotik&amp;rsquo;s own manuals to start up with.</description>
+    </item>
+    <item>
+      <title>Setting up MikroTik 493G as a home router (&#43;WLAN AP)</title>
+      <link>https://kraashen.github.io/posts/2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/</link>
+      <pubDate>Sun, 15 Oct 2017 23:39:06 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/</guid>
+      <description>MikroTik is a company that sells e.g. configurable network appliances for a decent price point. I thought that their routerboard could be great for both casual and home lab use, so I went and bought a second-hand routerboard to tinker with. It felt it would be a nice change and an addition to get hands-on and acquainted with setting up computer networks from the scratch besides looking at tcpdumps/whatnot
+Routerboards have an operating system called RouterOS, which is developed by MikroTik and is based on Linux kernel.</description>
+    </item>
+    <item>
+      <title>Component analysis of popular free Android software</title>
+      <link>https://kraashen.github.io/posts/2015-04-23-component-analysis-of-popular-free-android-software/</link>
+      <pubDate>Thu, 23 Apr 2015 18:23:01 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2015-04-23-component-analysis-of-popular-free-android-software/</guid>
+      <description>In my previous post I took a look at some of the Privacytools.io guide&amp;rsquo;s Android applications and their respective OpenSSL versions due to an inspiration that a study gave me [1]. I also thought to continue this as a follow-up and take a look into some of the popular free Android software available on Google Play and tried to study what they are built upon.
+Study set up Choose target Android applications based on common popularity among people and Play Store lists of popular free applications Collect the Android Application Packages (APK) from the Google Play Store Applications were downloaded on 2015-04-15 Use BOMTotal[2] service for scanning the application components Collect the Bill of Materials URLs, tool version identification, and software components including their respective versions Focus was on OpenSSL and getting familiar with 3rd party ad components Collect OpenSSL version history from the OpenSSL release notes and use the release intervals for &amp;lsquo;best before dates&amp;rsquo; mentioned in the original study on Privacytools.</description>
+    </item>
+    <item>
+      <title>Follow-up: Android privacy tools best served fresh</title>
+      <link>https://kraashen.github.io/posts/2015-04-14-follow-up-android-privacy-tools-best-served-fresh/</link>
+      <pubDate>Tue, 14 Apr 2015 05:49:01 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2015-04-14-follow-up-android-privacy-tools-best-served-fresh/</guid>
+      <description>Recently, there was a study published on OpenSSL versions used by privacy conscious software recommended in the Privacytools.io guide [1]. This study took a stance on not only the OpenSSL crypto library, but the components used by software critical to privacy and safety. The study revealed that many applications are using outdated components. As mobile world is becoming a significant part of how we communicate with people and mobile malware development in Q1 2014 continues to focus exclusively on the Android platform [2], this follow-up study focuses on Android applications mentioned in the study.</description>
+    </item>
+  </channel>
+</rss>

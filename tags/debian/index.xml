@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Debian on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/debian/</link>
+    <description>Recent content in Debian on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 29 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debian Buster and Bluetooth Audio</title>
+      <link>https://kraashen.github.io/snippets/debian-buster-bluetooth-audio/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/debian-buster-bluetooth-audio/</guid>
+      <description>pulseaudio-module-bluetooth package needs to be installed for being able to use bluetooth audio devices.
+apt install pulseaudio-module-bluetooth pulseaudio -k &amp;amp;&amp;amp; pulseaudio --start </description>
+    </item>
+    <item>
+      <title>Debian Buster with AMD Ryzen 3700X and NVIDIA GFX Boot Fix</title>
+      <link>https://kraashen.github.io/snippets/debian-buster-with-amd-ryzen-3700x-and-nvidia-graphics-boot-fix/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/debian-buster-with-amd-ryzen-3700x-and-nvidia-graphics-boot-fix/</guid>
+      <description>After fresh install of Debian 10 (Buster), booting to desktop failed to to an error:
+sev command 0x4 timed out, disabling PSP SEV: failed to get status. Error: 0x0 Now, it is still possible to login to a new terminal session with ctrl+alt+fN. After login, enabling non-free to sources.list for AMD graphics firmware and buster-backports for NVIDIA drivers and then installing packages firmware-amd-graphics and nvidia-driver seemed to work for the issue.</description>
+    </item>
+  </channel>
+</rss>

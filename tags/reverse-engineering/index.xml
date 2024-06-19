@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Reverse Engineering on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/reverse-engineering/</link>
+    <description>Recent content in Reverse Engineering on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/reverse-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reverse Engineering With Radare - Binary internals</title>
+      <link>https://kraashen.github.io/posts/2018-03-11-reverse-engineering-basics-with-radare-binary-internals/</link>
+      <pubDate>Sun, 11 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/posts/2018-03-11-reverse-engineering-basics-with-radare-binary-internals/</guid>
+      <description>In the previous post, basics and fundamentals for reverse engineering software were discussed. This time I thought about writing a bit more about getting a bit further in inspecting and understanding software binaries. In this post, we&amp;rsquo;ll take a look at one password guess reverse engineering challenge using Radare.
+Goals The goal is to reverse engineer a simple binary and understanding of the flow of disassembled code, how to read it, and understand how it works.</description>
+    </item>
+    <item>
+      <title>Reverse Engineering With Radare - Fundamentals and Basics</title>
+      <link>https://kraashen.github.io/posts/2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/posts/2018-01-22-reverse-engineering-basics-with-radare-fundamentals-and-basics/</guid>
+      <description>As I got more and more curious on how software works, I felt it essential as a software and systems engineer to start understanding deeper low-level internals of software. So I thought about diving more into the topic of reverse engineering from software developer&amp;rsquo;s perspective using an open source tool called Radare. There are plenty of extremely well written Radare tutorials on reverse engineering which may include topics such as finding hidden passwords and injection techniques.</description>
+    </item>
+  </channel>
+</rss>

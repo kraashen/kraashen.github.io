@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Golang on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/golang/</link>
+    <description>Recent content in Golang on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang Development and Self-signed Cert</title>
+      <link>https://kraashen.github.io/snippets/golang-dev-self-signed-cert/</link>
+      <pubDate>Thu, 28 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/golang-dev-self-signed-cert/</guid>
+      <description>Easy way to create a self-signed cert for local development purposes. Handy e.g. for running HTTPS locally form the very start of the development.
+$ go run /usr/local/go/src/crypto/tls/generate_cert.go --help Usage of /tmp/go-build148491876/b001/exe/generate_cert: -ca whether this cert should be its own Certificate Authority -duration duration Duration that certificate is valid for (default 8760h0m0s) -ecdsa-curve string ECDSA curve to use to generate a key. Valid values are P224, P256 (recommended), P384, P521 -ed25519 Generate an Ed25519 key -host string Comma-separated hostnames and IPs to generate a certificate for -rsa-bits int Size of RSA key to generate.</description>
+    </item>
+    <item>
+      <title>Golang ja jaettu logitus</title>
+      <link>https://kraashen.github.io/snippets/golang-logging-sample/</link>
+      <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/golang-logging-sample/</guid>
+      <description>Esimerkki sovelluskontekstissa jaetun Golang-loggeri(e)n luomiseen
+import ( &amp;#34;os&amp;#34; &amp;#34;log&amp;#34; // ... ) type appCtx struct { errorLogger *log.Logger infoLogger *log.Logger // ... } func main() { infoLogger := log.New(os.Stdout, &amp;#34;[INFO]\t&amp;#34;, log.Ldate|log.Ltime) errorLogger := log.New(os.Stderr, &amp;#34;[ERROR]\t&amp;#34;, log.Ldate|log.Ltime|log.Lshortfile) app := &amp;amp;appCtx{ errorLogger: errorLogger, infoLogger: infoLogger, // ... }	// jos ajelee vaikka serveriä niin voi tehdä s := &amp;amp;http.Server{ Addr: // ... ErrorLog: errorLogger, Handler: // ... } } </description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Programming on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/programming/</link>
+    <description>Recent content in Programming on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang ja jaettu logitus</title>
+      <link>https://kraashen.github.io/snippets/golang-logging-sample/</link>
+      <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/golang-logging-sample/</guid>
+      <description>Esimerkki sovelluskontekstissa jaetun Golang-loggeri(e)n luomiseen
+import ( &amp;#34;os&amp;#34; &amp;#34;log&amp;#34; // ... ) type appCtx struct { errorLogger *log.Logger infoLogger *log.Logger // ... } func main() { infoLogger := log.New(os.Stdout, &amp;#34;[INFO]\t&amp;#34;, log.Ldate|log.Ltime) errorLogger := log.New(os.Stderr, &amp;#34;[ERROR]\t&amp;#34;, log.Ldate|log.Ltime|log.Lshortfile) app := &amp;amp;appCtx{ errorLogger: errorLogger, infoLogger: infoLogger, // ... }	// jos ajelee vaikka serveriä niin voi tehdä s := &amp;amp;http.Server{ Addr: // ... ErrorLog: errorLogger, Handler: // ... } } </description>
+    </item>
+  </channel>
+</rss>

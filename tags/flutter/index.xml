@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Flutter on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/flutter/</link>
+    <description>Recent content in Flutter on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flutter Offline Docs</title>
+      <link>https://kraashen.github.io/snippets/flutter-docs/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/flutter-docs/</guid>
+      <description>Flutter offline documentations are handily available in:
+https://master-api.flutter.dev/offline/flutter.docset.tar.gz
+wget -qO - --show-progress \ https://master-api.flutter.dev/offline/flutter.docset.tar.gz | \ tar xfz - -C . </description>
+    </item>
+  </channel>
+</rss>

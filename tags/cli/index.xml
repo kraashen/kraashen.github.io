@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cli on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/cli/</link>
+    <description>Recent content in Cli on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 05 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/cli/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cool tools to remember</title>
+      <link>https://kraashen.github.io/snippets/cli-tools/</link>
+      <pubDate>Mon, 05 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/cli-tools/</guid>
+      <description>Collection of notes about some of my favourite or otherwise great tools encountered. Some I have used, some only encountered, heard good things about or otherwise read about, and adding to the list to be checked out later.
+💡 = &amp;ldquo;note to self&amp;rdquo; for curiosity, to be checked out
+UX^2 fzf: Reverse search goodness. Cannot live without this. ripgrep: Recursive grepping with pretty outputs. Shell things powerline10k: Zsh supercharger zsh-autosuggestions: Makes zsh more fish&amp;rsquo;y.</description>
+    </item>
+    <item>
+      <title>Git add with interactive mode</title>
+      <link>https://kraashen.github.io/snippets/git-add-interactive/</link>
+      <pubDate>Mon, 05 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/git-add-interactive/</guid>
+      <description>Stuck on a situation with multiple files with many changes but want to commit some part of the changes as separate commits?
+Git patch feature to the rescue! There are two quick options: git add --patch and patching interactively via git add -i . Each have some differences.
+With git add you get the interactive git terminal to go through your unstaged, staged, and untracked files, as well as to call patch (5) to interactively go through the unstaged changed from files.</description>
+    </item>
+  </channel>
+</rss>

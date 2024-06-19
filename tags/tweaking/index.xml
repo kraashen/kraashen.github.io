@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tweaking on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/tweaking/</link>
+    <description>Recent content in Tweaking on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/tweaking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kapsi &lt;3 Miniflux RSS</title>
+      <link>https://kraashen.github.io/snippets/kapsi-miniflux/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/kapsi-miniflux/</guid>
+      <description>Oletusarvoisesti tämä koskee https://nick.kapsi.fi/miniflux -polkua asennukseen.
+.htaccess --- RewriteEngine On RewriteCond %{REQUEST_URI} ^/miniflux(.*)$ RewriteRule ^index\.html$ http://webapp1.n.kapsi.fi:port/ [P] RewriteRule ^(.*)$ http://webapp1.n.kapsi.fi:port/$1 [P] webapp1.kapsi.fi 0600 ~/.local/etc/miniflux/miniflux.conf --- DATABASE_URL=postgresql://nick:pass@db1.n.kapsi.fi/nick PORT=port BASE_URL=https://nick.kapsi.fi/miniflux/ # jos konffattu johonkin alipolkuun .htaccessissa run-miniflux.sh --- #!/usr/bin/env bash flock \ --exclusive \ --nonblock \ --conflict-exit-code 0 \ ~/.lock/miniflux.lock \ ~/sites/nick.kapsi.fi/miniflux/miniflux -c ~/.local/etc/miniflux/miniflux.conf </description>
+    </item>
+    <item>
+      <title>Simple LAN party network with Zyxel GS1900-24E managed switch</title>
+      <link>https://kraashen.github.io/posts/2018-03-30-simple-lan-party-network-with-zyxel-gs1900-24e-managed-switch/</link>
+      <pubDate>Fri, 30 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/posts/2018-03-30-simple-lan-party-network-with-zyxel-gs1900-24e-managed-switch/</guid>
+      <description>Introduction We were about to have a LAN party during easter. Network setup was really simple: one consumer-grade 10/100/1000 router with a connection to the Internet with a NATted network, one port for the host of the party, and extending this network from another interface behind a switch for everyone else. Originally we had only 10/100 capable switch, but as the location we were in had now also support for faster uplink, we needed to upgrade the switch to get everything out of the bandwidth available.</description>
+    </item>
+    <item>
+      <title>Raspberry Pi Web Server Using Caddy and Github Webhooks</title>
+      <link>https://kraashen.github.io/posts/2017-10-28-raspberry-pi-web-server-using-caddy-with-git-webhooks/</link>
+      <pubDate>Sat, 28 Oct 2017 16:57:26 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2017-10-28-raspberry-pi-web-server-using-caddy-with-git-webhooks/</guid>
+      <description>After setting up the DMZ in my home network, it was time to get hands on with the actual server. I heard of a web server called Caddy, which is a HTTP/2 HTTPS-by-default web server written in Go. I got into Go as a programming language some time ago recently and I was a bit excited about a possibility of running a production capable web server with it on a Raspberry Pi.</description>
+    </item>
+    <item>
+      <title>Mikrotik 493G with a Home DMZ</title>
+      <link>https://kraashen.github.io/posts/2017-10-22-mikrotik-493g-with-a-home-dmz/</link>
+      <pubDate>Sun, 22 Oct 2017 02:37:22 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2017-10-22-mikrotik-493g-with-a-home-dmz/</guid>
+      <description>In the previous post I showed one way to set up a home network using Mikrotik Routerboard. Next up in my project list was to set up a Raspberry Pi web server to host my own website and a blog (this one in fact). This required some tweaks to my home network set up as I needed to allow access to a device in my network from the public Internet. As Mikrotik allows nice configurability to do this kind of set ups, I dove into some of Mikrotik&amp;rsquo;s own manuals to start up with.</description>
+    </item>
+    <item>
+      <title>Setting up MikroTik 493G as a home router (&#43;WLAN AP)</title>
+      <link>https://kraashen.github.io/posts/2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/</link>
+      <pubDate>Sun, 15 Oct 2017 23:39:06 +0300</pubDate>
+      <guid>https://kraashen.github.io/posts/2017-10-15-setting-up-mikrotik-493g-as-a-home-router-wlan-ap/</guid>
+      <description>MikroTik is a company that sells e.g. configurable network appliances for a decent price point. I thought that their routerboard could be great for both casual and home lab use, so I went and bought a second-hand routerboard to tinker with. It felt it would be a nice change and an addition to get hands-on and acquainted with setting up computer networks from the scratch besides looking at tcpdumps/whatnot
+Routerboards have an operating system called RouterOS, which is developed by MikroTik and is based on Linux kernel.</description>
+    </item>
+  </channel>
+</rss>
