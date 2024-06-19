@@ -7,7 +7,7 @@ enableRobotsTXT = true
 buildDrafts = true
 enableEmoji = true
 pygmentsUseClasses = true
-mainsections = ["pages", "snippets"]
+mainsections = ["posts"]
 
 Paginate = 10
 preserveTaxonomyNames = true
