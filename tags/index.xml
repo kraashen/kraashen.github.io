@@ -6,8 +6,22 @@
     <description>Recent content in Tags on tracing bytes</description>
     <generator>Hugo -- 0.127.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 05 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kraashen.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Network</title>
+      <link>https://kraashen.github.io/tags/network/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/tags/network/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tailscale</title>
+      <link>https://kraashen.github.io/tags/tailscale/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/tags/tailscale/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cli</title>
       <link>https://kraashen.github.io/tags/cli/</link>
@@ -104,13 +118,6 @@
       <link>https://kraashen.github.io/tags/mikrotik/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://kraashen.github.io/tags/mikrotik/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Network</title>
-      <link>https://kraashen.github.io/tags/network/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://kraashen.github.io/tags/network/</guid>
       <description></description>
     </item>
     <item>

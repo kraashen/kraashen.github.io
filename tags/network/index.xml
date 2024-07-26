@@ -6,8 +6,16 @@
     <description>Recent content in Network on tracing bytes</description>
     <generator>Hugo -- 0.127.0</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kraashen.github.io/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Homelab on the go with Tailscale</title>
+      <link>https://kraashen.github.io/posts/2024-07-26-homelab-on-the-go-with-tailscale/</link>
+      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/posts/2024-07-26-homelab-on-the-go-with-tailscale/</guid>
+      <description>Home Lab on the Go with Tailscale Introduction Having a home lab and services such as PiHole, RSS reader, K3s, Home Assistant, and more is fun and all at home, but how to access them when leaving the house without opening up parts of the home network to the Internet?
+One option is to use a VPN service to access them, but they can be bunch of work to set up on your own.</description>
+    </item>
     <item>
       <title>Simple LAN party network with Zyxel GS1900-24E managed switch</title>
       <link>https://kraashen.github.io/posts/2018-03-30-simple-lan-party-network-with-zyxel-gs1900-24e-managed-switch/</link>
