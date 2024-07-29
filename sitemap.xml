@@ -3,25 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kraashen.github.io/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kraashen.github.io/posts/</loc>
     <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kraashen.github.io/snippets/</loc>
-    <lastmod>2022-09-05T00:00:00+00:00</lastmod>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kraashen.github.io/my-library/</loc>
   </url><url>
     <loc>https://kraashen.github.io/interests/</loc>
   </url><url>
+    <loc>https://kraashen.github.io/tags/backup/</loc>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kraashen.github.io/tags/linux/</loc>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kraashen.github.io/snippets/restic-backups-with-systemd-timers/</loc>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kraashen.github.io/tags/systemd/</loc>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kraashen.github.io/tags/</loc>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://kraashen.github.io/posts/2024-07-26-homelab-on-the-go-with-tailscale/</loc>
     <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kraashen.github.io/tags/network/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://kraashen.github.io/tags/</loc>
     <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kraashen.github.io/tags/tailscale/</loc>
@@ -37,9 +49,6 @@
     <lastmod>2022-09-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kraashen.github.io/snippets/git-add-interactive/</loc>
-    <lastmod>2022-09-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://kraashen.github.io/tags/linux/</loc>
     <lastmod>2022-09-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kraashen.github.io/tags/tools/</loc>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Backup on tracing bytes</title>
+    <link>https://kraashen.github.io/tags/backup/</link>
+    <description>Recent content in Backup on tracing bytes</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kraashen.github.io/tags/backup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Restic Backups with Systemd Timers</title>
+      <link>https://kraashen.github.io/snippets/restic-backups-with-systemd-timers/</link>
+      <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/snippets/restic-backups-with-systemd-timers/</guid>
+      <description>Backing up with Restic using systemd timers. Using SFTP with key login as the backend.
+Prerequisites mkdir /opt/restic mkdir /opt/restic/.ssh mkdir /opt/restic/.cache touch /opt/restic/restic.env touch /opt/restic/.restic-password # put in place touch /opt/restic/.ssh/config # fill as necessary chmod 600 /opt/restic/.restic-password ssh-keygen -t ed25519 -f /opt/restic/.ssh/restic chmod 600 /opt/restic/.ssh/restic ssh-keyscan -H host &amp;gt;&amp;gt; /opt/restic/.ssh/known_hosts cat &amp;lt;&amp;lt;EOF &amp;gt; /opt/restic/restic.env RESTIC_REPOSITORY=sftp:user@host:/path/to/repo RESTIC_PASSWORD_FILE=/opt/restic/.restic-password RESTIC_CACHE_DIR=/opt/restic/.cache EOF Service # /etc/systemd/system/restic-backup.service [Unit] Description=Restic Backup Wants=network-online.target After=network-online.target [Service] Type=oneshot WorkingDirectory=/opt/restic EnvironmentFile=/opt/restic/restic.</description>
+    </item>
+  </channel>
+</rss>

@@ -6,8 +6,29 @@
     <description>Recent content in Tags on tracing bytes</description>
     <generator>Hugo -- 0.127.0</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kraashen.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Backup</title>
+      <link>https://kraashen.github.io/tags/backup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/tags/backup/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://kraashen.github.io/tags/linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Systemd</title>
+      <link>https://kraashen.github.io/tags/systemd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kraashen.github.io/tags/systemd/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Network</title>
       <link>https://kraashen.github.io/tags/network/</link>
@@ -34,13 +55,6 @@
       <link>https://kraashen.github.io/tags/git/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://kraashen.github.io/tags/git/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://kraashen.github.io/tags/linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://kraashen.github.io/tags/linux/</guid>
       <description></description>
     </item>
     <item>
