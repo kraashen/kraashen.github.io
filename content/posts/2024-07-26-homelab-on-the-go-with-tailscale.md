@@ -2,6 +2,8 @@
 title: "Homelab on the go with Tailscale"
 date: 2024-07-26
 draft: false
+showToc: true
+summary: Having a home lab and services such as PiHole, RSS reader, K3s, Home Assistant, and more is fun and all at home, but how to access them when leaving the house without opening up parts of the home network to the Internet? In this post, we'll go through a setup of Tailscale VPN and running services such as PiHole on Debian server.
 tags:
     - network
     - tailscale
