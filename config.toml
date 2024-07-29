@@ -16,6 +16,9 @@ pygmentsCodefences = true
 # Missing translations will default to this content language
 defaultContentLanguage = "en"
 
+[params]
+defaultTheme = "dark"
+
 [minify]
 disableXML = true
 
